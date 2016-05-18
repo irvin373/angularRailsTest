@@ -1,0 +1,2 @@
+class HelpwithsController < ApplicationController
+end

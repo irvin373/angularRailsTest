@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: 
+  date_in: 2016-05-18
+  date_expiration: 2016-05-18
+  cost_in: 1.5
+  quantity_lot: 1
+  available: false
+
+two:
+  product_id: 
+  date_in: 2016-05-18
+  date_expiration: 2016-05-18
+  cost_in: 1.5
+  quantity_lot: 1
+  available: false

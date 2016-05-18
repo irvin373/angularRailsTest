@@ -1,0 +1,2 @@
+class HavesController < ApplicationController
+end

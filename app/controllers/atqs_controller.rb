@@ -1,0 +1,2 @@
+class AtqsController < ApplicationController
+end

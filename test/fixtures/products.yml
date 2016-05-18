@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  comercialname: MyString
+  genericname: MyString
+  unitprice: 1.5
+  company_id: 
+
+two:
+  code: MyString
+  comercialname: MyString
+  genericname: MyString
+  unitprice: 1.5
+  company_id: 
