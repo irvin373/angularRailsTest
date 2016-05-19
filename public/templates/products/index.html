@@ -1,12 +1,41 @@
 <br>
 
-<h1> codigo </h1>
+<h1> Products </h1>
 
 <table>
 	<thead>
 		<th>codigo</th>
 	</thead>
 	<tbody>
-		<td>{{ producto.codigo }}</td>
+		<td>{{ product.codigo }}</td>
 	</tbody>
 </table>
+
+<br/>
+<div class="row">
+    <div class="col-md-12">    
+        <h3 class="block">Products {{ 2 + 4}}</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>code</th>
+                <th>generic name</th>
+                <th>comercial name</th>
+                <th>unit cost</th>
+                <th></th>
+            </tr>
+            <tr ng-hide="products.length" >
+                <td colspan="5">No products found, Please create one.</td>
+            </tr>
+            <tr ng-show="products.length" ng-repeat="product in products">
+                <td>{{product.code}}</td>
+                <td>{{product.genericname}}</td>
+                <td>{{product.generic}}</td>
+                <td>{{product.phone}}</td>
+                <td>
+                    <a href="#/products/{{product.id}}/edit">Edit</a> | <a href="" ng-click="deleteUser(product.id)">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+	<a class="btn btn-primary" href="#/products/new">Create a product</a>
+</div>
