@@ -26,3 +26,6 @@ Detail.create(sell_id: 1, product_id: 2, quantity: 5, promo: 1.5, sellpromo: tru
 Lot.create( product_id: 1, date_in: Time.now.to_date, date_expiration: Time.now.to_date, cost_in: 20, quantity_lot: 10, available: true)
 Lot.create( product_id: 1, date_in: Time.now.to_date, date_expiration: Time.now.to_date, cost_in: 100, quantity_lot: 50, available: true)
 Lot.create( product_id: 2, date_in: Time.now.to_date, date_expiration: Time.now.to_date, cost_in: 200, quantity_lot: 200, available: true)
+
+#json.extract! @lot, :product_id, :date_in, :date_expiration, :cost_in, :quantity_lot, :available
+#json.extract! @detail, :sell_id, :product_id, :quantity, :promo, :sellpromo
