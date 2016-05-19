@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518194951) do
+ActiveRecord::Schema.define(version: 20160519172914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20160518194951) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comunicates", force: :cascade do |t|
+    t.integer  "atq_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comunicates", ["atq_id"], name: "index_comunicates_on_atq_id", using: :btree
+  add_index "comunicates", ["product_id"], name: "index_comunicates_on_product_id", using: :btree
+
   create_table "details", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "sell_id"
@@ -40,16 +50,6 @@ ActiveRecord::Schema.define(version: 20160518194951) do
 
   add_index "details", ["product_id"], name: "index_details_on_product_id", using: :btree
   add_index "details", ["sell_id"], name: "index_details_on_sell_id", using: :btree
-
-  create_table "haves", force: :cascade do |t|
-    t.integer  "atq_id"
-    t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "haves", ["atq_id"], name: "index_haves_on_atq_id", using: :btree
-  add_index "haves", ["product_id"], name: "index_haves_on_product_id", using: :btree
 
   create_table "helps", force: :cascade do |t|
     t.string   "detail"
@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(version: 20160518194951) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comunicates", "atqs"
+  add_foreign_key "comunicates", "products"
   add_foreign_key "details", "products"
   add_foreign_key "details", "sells"
   add_foreign_key "haves", "atqs"
