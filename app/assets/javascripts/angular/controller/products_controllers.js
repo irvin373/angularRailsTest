@@ -1,46 +1,126 @@
-var myApp = angular.module('myapplication', ['ngRoute', 'ngResource']); 
+myApp.controller("ProductListCtr",['$scope','$resource',function($scope,$resource){
 
-//Factory
-myApp.factory('Products', ['$resource',function($resource){
-  return $resource('/products.json', {},{
-    query: { method: 'GET', isArray: true },
-    create: { method: 'POST' }
-  })
-}]);
+    $scope.filterProduct = "";
+    $scope.products =[ 
+        {
+            codigo:'A1',
+            nombre_comercial: 'Rivotril',
+            nombre_generico: 'Clonazepam',
+            precio_unitario:2,
+            empresas:[
+                {
+                    linea: 'Roche'
+                },
+            ],
+        },
+        {
+            codigo:'A2',
+            nombre_comercial: 'Valium',
+            nombre_generico: 'Diazepam',
+            precio_unitario:4,
+            empresas:[
+                {
+                    linea: 'Roche'
+                },
+            ],
+        },
+        {
+            codigo:'A3',
+            nombre_comercial: 'Bayaspirina',
+            nombre_generico: 'Aspirina',
+            precio_unitario:3,
+            empresas:[
+                {
+                    linea: 'Bayer'
+                },
+            ],
+        },
+        {
+            codigo:'A4',
+            nombre_comercial: 'Eliur',
+            nombre_generico: 'Furosemida',
+            precio_unitario:25,
+            empresas:[
+                {
+                    linea: 'Biomep'
+                },
+            ],
+        },
+        {
+            codigo:'A5',
+            nombre_comercial: 'Aforex',
+            nombre_generico: 'albendazol',
+            precio_unitario:30,
+            empresas:[
+                {
+                    linea: 'Alcos'
+                },
+            ],
+        },
+        {
+            codigo:'A6',
+            nombre_comercial: 'Alcoderm',
+            nombre_generico: 'Alcoderm',
+            precio_unitario:45,
+            empresas:[
+                {
+                    linea: 'Alcos'
+                },
+            ],
+        },
+        {
+            codigo:'A7',
+            nombre_comercial: 'Alcolax',
+            nombre_generico: 'Bisacodilo',
+            precio_unitario:58,
+            empresas:[
+                {
+                    linea: 'Alcos'
+                },
+            ],
+        },
+        {
+            codigo:'A8',
+            nombre_comercial: 'AlcosKectil',
+            nombre_generico: 'Cotrimoxazol',
+            precio_unitario:64,
+            empresas:[
+                {
+                    linea: 'Alcos'
+                },
+            ],
+        },
+        {
+            codigo:'A9',
+            nombre_comercial: 'Actilab',
+            nombre_generico: 'Pseudoefedrina',
+            precio_unitario:71,
+            empresas:[
+                {
+                    linea: 'Alcos'
+                },
+            ],
+        },
+        {
+            codigo:'A10',
+            nombre_comercial: 'Dioxadol',
+            nombre_generico: 'Antipiretico analgesico',
+            precio_unitario:3,
+            empresas:[
+                {
+                    linea: 'Bago'
+                },
+            ],
+        },
+    ]
 
-myApp.factory('Product', ['$resource', function($resource){
-  return $resource('/products/:id.json', {}, {
-    show: { method: 'GET' },
-    update: { method: 'PUT', params: {id: '@id'} },
-    delete: { method: 'DELETE', params: {id: '@id'} }
-  });
-}]);
-
-//Controller
-myApp.controller("ProductListCtr", ['$scope', '$http', '$resource', 'Products', 'Product', '$location', function($scope, $http, $resource, Products, Product, $location) {
-
-  $scope.products = Products.query();
-
-  $scope.deleteProduct = function (productId) {
-    if (confirm("Are you sure you want to delete this product?")){
-      Product.delete({ id: productId }, function(){
-        $scope.products = Products.query();
-        $location.path('/');
-      });
+    $scope.addProductLine = function(product, name){
+        var line = {
+            linea:name
+        }
+        product.empresas.push(line);
     }
-  };
+    console.log($scope.product);
+
+
 }]);
-
-//Routes
-myApp.config([
-  '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-    $routeProvider.when('/products',{
-      templateUrl: '/templates/products/index.html',
-      controller: 'ProductListCtr'
-    });
-
-    $routeProvider.otherwise({
-      redirectTo: '/products'
-    });
-  }
-]);
