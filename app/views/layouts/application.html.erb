@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html ng-app="myapplication">
 <head>
-  <title>AngularRailsTest</title>
+  <title>Rails4CrudWithAngularjs</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container" ng-view>
-	<%= yield %>
-</div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <!--<a class="navbar-brand">Farmacia</a>-->
+            <img class="img-brand" src="/images/brand.png"/>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a class="text-navbar" href="#/products"><strong>Productos</strong></a></li>
+                <li><a class="text-navbar" href="#"><strong>Ventas</strong></a></li>
+                <li><a class="text-navbar" href="#"><strong>Almacen</strong></a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container" ng-view>
+        <%= yield %>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Software de gestion de Farmacias.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

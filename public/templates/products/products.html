@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-lg-9">
+        <div class="panel">
+            <div class="panel-header">
+                <strong>Productos</strong>
+
+            </div>
+            <div class="panel-content">
+                <div class="form-group">
+                    <label for="search">Buscar Por:</label>
+                    <label class="radio-inline"><input type="radio" name="optradio">Codigo</label>
+                    <label class="radio-inline"><input type="radio" name="optradio">Nombre comercial</label>
+                    <label class="radio-inline"><input type="radio" name="optradio">Nombre generico</label>
+                    <label class="radio-inline"><input type="radio" name="optradio">Linea</label>
+                    
+
+                    <input type="text" id="search" ng-model="filterProduct" placeholder="Buscar por nombre comercial" class="form-control"/>
+                    
+                </div>
+                <div class="pre-scrollable">
+                <table class="table">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre comercial</th>
+                        <th>Nombre generico</th>
+                        <th>Precio unitario</th>
+                        <th>Empresas</th>
+
+                    </tr>
+                    <tr ng-repeat="product in products | filter:{nombre_comercial:filterProduct} | orderBy: 'nombre_comercial'">
+                        <td>{{product.codigo}}</td>
+                        <td>{{product.nombre_comercial}}</td>
+                        <td>{{product.nombre_generico}}</td>
+                        <td>{{product.precio_unitario}}</td>
+                        <td>{{product.empresas[0].linea}}</td>
+                        <td><button class="btn btn-primary">Vender</button></td>
+
+                    </tr>
+                </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-3"> 
+        <div class="panel">
+            <div class="panel-header">
+                <strong>Notificaciones</strong>
+            </div>
+            <div class="panel-content">
+                <p>Atencion productos por vencer!</p>
+            </div>
+
+        </div>
+        
+    </div>
+
+</div>
