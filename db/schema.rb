@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20160519172914) do
   add_index "details", ["product_id"], name: "index_details_on_product_id", using: :btree
   add_index "details", ["sell_id"], name: "index_details_on_sell_id", using: :btree
 
+  create_table "haves", force: :cascade do |t|
+    t.integer  "atq_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "haves", ["atq_id"], name: "index_haves_on_atq_id", using: :btree
+  add_index "haves", ["product_id"], name: "index_haves_on_product_id", using: :btree
+
   create_table "helps", force: :cascade do |t|
     t.string   "detail"
     t.datetime "created_at", null: false

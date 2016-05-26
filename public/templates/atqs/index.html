@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="panel">
+        <div class="panel-header">
+            <strong>Acciones Terapeuticas</strong>
+        </div>
+        <div class="panel-content">
+            <div class="form-group">
+                <label for="search">Buscar</label>
+                <input type="text" id="search" ng-model="filterProduct" placeholder="Buscar por nombre comercial" class="form-control" />
+            </div>
+            <div class="pre-scrollable">
+                <table class="table">
+                	<thead>
+                    <tr>
+                        <th>detalle</th>
+                        <th>link</th>
+                    </tr>
+                	</thead>
+                	<tbody>
+                    <tr ng-repeat="atq in atqs | filter:{detail:filterAtq} | orderBy: 'detail'">
+                        <td>{{atq.detail}}</td>
+                        <td>
+                            <button class="btn btn-primary">accion</button>
+                        </td>
+                    </tr>
+                	</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="btn btn-success" href="#atqs/new"> crear nuevo ATQ </a>
