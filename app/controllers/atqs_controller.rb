@@ -13,6 +13,7 @@ class AtqsController < ApplicationController
   # GET /atqs/new
   def new
     @atq = Atq.new
+    100.times{ print '=' }
   end
 
   # GET /atqs/1/edit
@@ -23,7 +24,7 @@ class AtqsController < ApplicationController
   # POST /atqs.json
   def create
     @atq = Atq.new(atq_params)
-
+    100.times{ print '=' }
     respond_to do |format|
       if @atq.save
         #format.html { redirect_to @atq, notice: 'Atq was successfully created.' }

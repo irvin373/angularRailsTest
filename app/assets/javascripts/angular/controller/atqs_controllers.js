@@ -23,16 +23,16 @@ myApp.controller("AtqListCtr",
   };
 }]);
 
-myApp.controller("AtqAddCtr", ['$scope', '$resource', 'Atqs', '$location',
-    function($scope, $resource, Users, $location) {
+myApp.controller("AtqAddCtr", ['$scope', '$resource', 'Atqs', '$location', '$http',
+    function($scope, $resource, Atqs, $location, $http) {
   $scope.save = function () {
-    if ($scope.AtqForm.$valid){
-      Atqs.create({atq: $scope.atq}, function(){
-        $location.path('/');
-      }, function(error){
+    console.log($scope.atq);
+    console.log($scope.atq.detail);
+    Atqs.create({atq: $scope.atq}, function(){
+      $location.path('/');
+    }, function(error){
         console.log(error)
-      });
-    }
+    });
   }
 }]);
 
@@ -55,3 +55,11 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     });
   }
 ]);
+/*
+//config
+myAngularApp.config([
+  "$httpProvider", function($httpProvider) {
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+  }
+]);
+*/
