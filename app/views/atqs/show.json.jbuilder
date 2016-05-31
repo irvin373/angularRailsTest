@@ -1,1 +1,1 @@
-json.extract! @atq, :detail
+json.extract! @atq, :id, :detail

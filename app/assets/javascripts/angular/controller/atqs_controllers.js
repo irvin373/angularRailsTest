@@ -6,6 +6,14 @@ myApp.factory('Atqs', ['$resource',function($resource){
   })
 }]);
 
+myApp.factory('Atq', ['$resource', function($resource){
+  return $resource('/atqs/:id.json', {}, {
+    show: { method: 'GET' },
+    update: { method: 'PUT', params: {id: '@id'} },
+    delete: { method: 'DELETE', params: {id: '@id'} }
+  });
+}]);
+
 //Controller
 myApp.controller("AtqListCtr", 
     ['$scope', '$http', '$resource', 'Atqs', '$location', 
@@ -15,9 +23,9 @@ myApp.controller("AtqListCtr",
 
   $scope.deleteAtq = function (atqId) {
     if (confirm("Are you sure you want to delete this atq?")){
-      Atq.delete({ id: atqId }, function(){
-        $scope.atqs = Atqs.query();
-        $location.path('/');
+      Atqs.delete({ id: atqId }, function(){
+        //$scope.atqs = Atqs.query();
+        //$location.path('/');
       });
     }
   };
@@ -26,14 +34,28 @@ myApp.controller("AtqListCtr",
 myApp.controller("AtqAddCtr", ['$scope', '$resource', 'Atqs', '$location', '$http',
     function($scope, $resource, Atqs, $location, $http) {
   $scope.save = function () {
-    console.log($scope.atq);
-    console.log($scope.atq.detail);
     Atqs.create({atq: $scope.atq}, function(){
       $location.path('/');
     }, function(error){
         console.log(error)
     });
   }
+}]);
+
+myApp.controller("AtqUpdateCtr", ['$scope', '$resource', 'Atq', '$location', '$routeParams', function($scope, $resource, Atq, $location, $routeParams) {
+  $scope.atq = Atq.get({id: $routeParams.id})
+  $scope.update = function(){
+      Atq.update({id: $scope.atq.id},{atq: $scope.atq},function(){
+        $location.path('/');
+      }, function(error) {
+        console.log(error)
+      });
+  };
+}]);
+
+myApp.controller("AtqShowCtr", ['$scope', '$resource', 'Atq', '$location', '$routeParams', 
+  function($scope, $resource, Atq, $location, $routeParams) {
+  $scope.atq = Atq.get({id: $routeParams.id})
 }]);
 
 //Routes
@@ -50,16 +72,15 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
       templateUrl: '/templates/atqs/edit.html',
       controller: "AtqUpdateCtr"
     });
+    $routeProvider.when('/atqs/:id/delete', {
+      controller: "AtqDeleteCtr"
+    });
+    $routeProvider.when('/atqs/:id', {
+      templateUrl: '/templates/atqs/show.html',
+      controller: "AtqShowCtr"
+    });
     $routeProvider.otherwise({
       redirectTo: '/atqs'
     });
   }
 ]);
-/*
-//config
-myAngularApp.config([
-  "$httpProvider", function($httpProvider) {
-    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-  }
-]);
-*/

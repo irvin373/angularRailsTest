@@ -13,7 +13,6 @@ class AtqsController < ApplicationController
   # GET /atqs/new
   def new
     @atq = Atq.new
-    100.times{ print '=' }
   end
 
   # GET /atqs/1/edit
@@ -24,13 +23,10 @@ class AtqsController < ApplicationController
   # POST /atqs.json
   def create
     @atq = Atq.new(atq_params)
-    100.times{ print '=' }
     respond_to do |format|
       if @atq.save
-        #format.html { redirect_to @atq, notice: 'Atq was successfully created.' }
         format.json { render :show, status: :created, location: @atq }
       else
-        #format.html { render :new }
         format.json { render json: @atq.errors, status: :unprocessable_entity }
       end
     end
@@ -41,10 +37,8 @@ class AtqsController < ApplicationController
   def update
     respond_to do |format|
       if @atq.update(atq_params)
-        #format.html { redirect_to @atq, notice: 'Atq was successfully updated.' }
         format.json { render :show, status: :ok, location: @atq }
       else
-        #format.html { render :edit }
         format.json { render json: @atq.errors, status: :unprocessable_entity }
       end
     end
@@ -53,9 +47,9 @@ class AtqsController < ApplicationController
   # DELETE /atqs/1
   # DELETE /atqs/1.json
   def destroy
+    100.times { print '==' }
     @atq.destroy
     respond_to do |format|
-      #format.html { redirect_to atqs_url, notice: 'Atq was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
