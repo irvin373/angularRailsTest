@@ -16,22 +16,22 @@ myApp.factory('Atq', ['$resource', function($resource){
 
 //Controller
 myApp.controller("AtqListCtr", 
-    ['$scope', '$http', '$resource', 'Atqs', '$location', 
-    function($scope, $http, $resource, Atqs, $location) {
+    ['$scope', '$http', '$resource', 'Atqs', 'Atq', '$location', 
+    function($scope, $http, $resource, Atqs, Atq, $location) {
 
   $scope.atqs = Atqs.query();
 
   $scope.deleteAtq = function (atqId) {
     if (confirm("Are you sure you want to delete this atq?")){
-      Atqs.delete({ id: atqId }, function(){
-        //$scope.atqs = Atqs.query();
-        //$location.path('/');
+      Atq.delete({ id: atqId }, function(){
+        $scope.atqs = Atqs.query();
+        $location.path('/');
       });
     }
   };
 }]);
 
-myApp.controller("AtqAddCtr", ['$scope', '$resource', 'Atqs', '$location', '$http',
+myApp.controller("AtqAddCtr", ['$scope', '$resource', 'Atqs','$location', '$http',
     function($scope, $resource, Atqs, $location, $http) {
   $scope.save = function () {
     Atqs.create({atq: $scope.atq}, function(){
