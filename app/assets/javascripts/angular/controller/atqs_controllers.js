@@ -76,6 +76,7 @@ myApp.controller("AsignAtqCtr", ['$scope', '$resource', 'Product', 'Asign', 'Atq
   $scope.products = Product.query();
   
   $scope.asign = function(IdAsign){
+      alert('asignado a' + $scope.atq.detail);
       Asign.query({idProd: IdAsign},{idAtq: $scope.atq.id},function(){
         console.log('Entro');    
       }, function(error) {

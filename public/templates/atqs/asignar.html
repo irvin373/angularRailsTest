@@ -1,7 +1,6 @@
-<h1>asignemos</h1>
 <div class="panel">
     <div class="panel-header">
-        <strong>Productos</strong>
+        <strong ng-model="atq"> asignar {{atq.detail}}</strong>
     </div>
     <div class="panel-content">
         <div class="form-group">
@@ -31,10 +30,11 @@
                     <td>{{product.genericname}}</td>
                     <td>{{product.unitprice}}</td>
                     <td>
-                        <button ng-click="asign(product.id)">Vender</button>
+                        <button class="btn btn-success" ng-click="asign(product.id)">Asignar</button>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
 </div>
+<a ng-model="atq" class="btn btn-default" href="/#/atqs/{{atq.id}}">Volver</a>

@@ -56,6 +56,7 @@ class AtqsController < ApplicationController
   # DELETE /atqs/1
   # DELETE /atqs/1.json
   def destroy
+    Comunicate.where(atq_id: @atq.id).delete_all
     @atq.destroy
     respond_to do |format|
       format.json { head :no_content }
