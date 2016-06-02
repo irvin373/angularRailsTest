@@ -4,10 +4,30 @@
             <strong>Accion Terapeutica</strong>
         </div>
         <div ng-model="atq">
-            {{atq.id}}
-            {{atq.detail}}
+        <h1 class="container">{{atq.detail}}</h1>
+         <table class="table table-striped">
+            <tr>
+                <th>code</th>
+                <th>comercial name</th>
+                <th>generic name</th>
+                <th>unit cost</th>
+                <th>company</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="product in atq.Have_products">
+                <td>{{product.code}}</td>
+                <td>{{product.comercialname}}</td>
+                <td>{{product.genericname}}</td>
+                <td>{{product.unitprice}}</td>
+                <td>{{product.line}}</td>
+                <td>
+                    <a href="/#/products/{{product.id}}">Mostrar</a>
+                </td>
+            </tr>
+        </table>
         </div>
     </div>
+    <a ng-model="atq" class="btn btn-success" href="#atqs/{{atq.id}}/asignar"> asignar nuevo ATQ </a>
 </div>
 
-<a class="btn btn-success" href="#atqs/new"> crear nuevo ATQ </a>
+

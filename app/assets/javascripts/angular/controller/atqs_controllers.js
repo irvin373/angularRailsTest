@@ -14,6 +14,18 @@ myApp.factory('Atq', ['$resource', function($resource){
   });
 }]);
 
+myApp.factory('Product', ['$resource',function($resource){
+  return $resource('/products.json', {},{
+    query: { method: 'GET', isArray: true }
+  })
+}]);
+
+myApp.factory('Asign', ['$resource',function($resource){
+  return $resource('/atqs/asign', {},{
+    query: { method: 'POST', params: {idProd: '@idP', idAtq: '@idA'} }
+  })
+}]);
+
 //Controller
 myApp.controller("AtqListCtr", 
     ['$scope', '$http', '$resource', 'Atqs', 'Atq', '$location', 
@@ -58,6 +70,21 @@ myApp.controller("AtqShowCtr", ['$scope', '$resource', 'Atq', '$location', '$rou
   $scope.atq = Atq.get({id: $routeParams.id})
 }]);
 
+myApp.controller("AsignAtqCtr", ['$scope', '$resource', 'Product', 'Asign', 'Atq', '$location', '$routeParams', 
+  function($scope, $resource, Product, Asign ,Atq, $location, $routeParams) {
+  $scope.atq = Atq.get({id: $routeParams.id})
+  $scope.products = Product.query();
+  
+  $scope.asign = function(IdAsign){
+      Asign.query({idProd: IdAsign},{idAtq: $scope.atq.id},function(){
+        console.log('Entro');    
+      }, function(error) {
+        Alert('Fue asignado');
+        console.log(error)
+      });
+  };
+}]);
+
 //Routes
 myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.when('/atqs',{
@@ -78,6 +105,10 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     $routeProvider.when('/atqs/:id', {
       templateUrl: '/templates/atqs/show.html',
       controller: "AtqShowCtr"
+    });
+    $routeProvider.when('/atqs/:id/asignar', {
+      templateUrl: '/templates/atqs/asignar.html',
+      controller: "AsignAtqCtr"
     });
     $routeProvider.otherwise({
       redirectTo: '/atqs'

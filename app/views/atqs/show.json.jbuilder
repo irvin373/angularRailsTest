@@ -1,1 +1,1 @@
-json.extract! @atq, :id, :detail
+json.extract! @atq, :id, :detail, :Have_products

@@ -1,0 +1,40 @@
+<h1>asignemos</h1>
+<div class="panel">
+    <div class="panel-header">
+        <strong>Productos</strong>
+    </div>
+    <div class="panel-content">
+        <div class="form-group">
+            <label for="search">Buscar Por:</label>
+            <label class="radio-inline">
+                <input type="radio" name="optradio">Codigo</label>
+            <label class="radio-inline">
+                <input type="radio" name="optradio">Nombre comercial</label>
+            <label class="radio-inline">
+                <input type="radio" name="optradio">Nombre generico</label>
+            <label class="radio-inline">
+                <input type="radio" name="optradio">Linea</label>
+            <input type="text" id="search" ng-model="filterProduct" placeholder="Buscar por nombre comercial" class="form-control" />
+        </div>
+        <div class="pre-scrollable">
+            <table class="table">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre comercial</th>
+                    <th>Nombre generico</th>
+                    <th>Precio unitario</th>
+                    <th>Empresas</th>
+                </tr>
+                <tr ng-repeat="product in products | filter:{comercialname:filterProduct} | orderBy: 'nombre_comercial'">
+                    <td>{{product.code}}</td>
+                    <td>{{product.comercialname}}</td>
+                    <td>{{product.genericname}}</td>
+                    <td>{{product.unitprice}}</td>
+                    <td>
+                        <button ng-click="asign(product.id)">Vender</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

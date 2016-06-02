@@ -9,6 +9,15 @@ class AtqsController < ApplicationController
   # GET /atqs/1 || /atqs/1.json 
   def show
   end
+  #post asign
+  def asign
+    atq = params[:idAtq]
+    product = params[:idProd]
+    Comunicate.create(atq_id: atq, product_id: product)
+    respond_to do |format|
+        format.json { render json: {}, status: :ok }
+    end
+  end
 
   # GET /atqs/new
   def new
@@ -47,7 +56,6 @@ class AtqsController < ApplicationController
   # DELETE /atqs/1
   # DELETE /atqs/1.json
   def destroy
-    100.times { print '==' }
     @atq.destroy
     respond_to do |format|
       format.json { head :no_content }
