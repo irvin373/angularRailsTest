@@ -1,2 +1,2 @@
-json.extract! @company, :line
+json.extract! @company, :id, :line
 
