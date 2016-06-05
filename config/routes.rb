@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :atqs
   resources :helps
   resources :companies
+  resources :lots
   root 'products#index'
   post 'atqs/asign' => 'atqs#asign'
   # The priority is based upon order of creation: first created -> highest priority.
