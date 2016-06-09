@@ -4,6 +4,7 @@
   <title>Rails4CrudWithAngularjs</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script>document.write('<script src="http://' + (location.host || '${1:localhost}').split(':')[0] + ':${2:35729}/livereload.js?snipver=1"></' + 'script>')</script>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -16,9 +17,8 @@
             <ul class="nav navbar-nav">
                 <li><a class="text-navbar" href="#/products"><strong>Productos</strong></a></li>
                 <li><a class="text-navbar" href="#"><strong>Ventas</strong></a></li>
-                <li><a class="text-navbar" href="#"><strong>Almacen</strong></a></li>
+                <li><a class="text-navbar" href="#/lots"><strong>Almacen</strong></a></li>
             </ul>
-
         </div>
     </nav>
 
@@ -31,6 +31,5 @@
             <p class="text-muted">Software de gestion de Farmacias.</p>
         </div>
     </footer>
-
 </body>
 </html>

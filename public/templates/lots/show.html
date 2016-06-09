@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="panel">
+        <div class="panel-header">
+            <strong>Lote</strong>
+        </div>
+        <div class="container" ng-model="lot">
+            <h2><strong>producto:</strong>  {{lot.product}}</h2>
+            <h3> <strong>fecha ingreso:</strong> {{lot.date_in}}</h3>
+            <h3> <strong>fecha expiracion:</strong> {{lot.date_expiration}}</h3>
+            <h3> <strong>costo unitario</strong> {{lot.cost_in}}</h3>
+            <h3> <strong>cantidad:</strong> {{lot.quantity_lot}}</h3>
+            <h3> <strong>lote disponible:</strong> {{(lot.available)}}</h3>
+        </div>
+    </div>
+    <a ng-model="lot" class="btn btn-success" href="#lots/{{lot.id}}/edit"> Editar </a>
+    <a class="btn btn-default" href="/#/lots">Volver</a>
+</div>
+

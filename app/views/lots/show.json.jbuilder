@@ -1,0 +1,1 @@
+json.extract! @lot, :id, :product, :date_in, :date_expiration, :cost_in, :quantity_lot, :available
