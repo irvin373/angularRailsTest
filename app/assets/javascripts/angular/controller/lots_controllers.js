@@ -37,11 +37,16 @@ myApp.controller("LotListCtr",
   };
 }]);
 
-myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http',
-    function($scope, $resource, Lots, $location, $http) {
+myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log',
+    function($scope, $resource, Lots, $location, $http, $uibModal, $log) {
+  
+  $scope.doSomething = function(typedthings){
+    console.log("Do something like reload data with this: " + typedthings );
+    };
+  
   $scope.save = function () {
     Lots.create({lot: $scope.lot}, function(){
-      $location.path('/');
+      $location.path('#/lots');
     }, function(error){
         console.log(error)
     });
@@ -50,9 +55,11 @@ myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http
 
 myApp.controller("LotUpdateCtr", ['$scope', '$resource', 'Lot', '$location', '$routeParams', function($scope, $resource, Lot, $location, $routeParams) {
   $scope.lot = Lot.get({id: $routeParams.id})
+  console.log($scope.lot);
+  //$scope.lot.date_in = new Date($scope.lot.date_in); 
   $scope.update = function(){
       Lot.update({id: $scope.lot.id},{lot: $scope.lot},function(){
-        $location.path('/');
+        $location.path('/lots');
       }, function(error) {
         console.log(error)
       });
@@ -63,6 +70,7 @@ myApp.controller("LotShowCtr", ['$scope', '$resource', 'Lot', '$location', '$rou
   function($scope, $resource, Lot, $location, $routeParams) {
   $scope.lot = Lot.get({id: $routeParams.id});
 }]);
+
 
 //Routes
 myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -84,9 +92,6 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     $routeProvider.when('/lots/:id', {
       templateUrl: '/templates/lots/show.html',
       controller: "LotShowCtr"
-    });
-    $routeProvider.otherwise({
-      redirectTo: '/lots'
     });
   }
 ]);

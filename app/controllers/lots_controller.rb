@@ -23,6 +23,7 @@ class LotsController < ApplicationController
   # POST /lots.json
   def create
     @lot = Lot.new(lot_params)
+    @lot.available = true
     respond_to do |format|
       if @lot.save
         format.json { render :show, status: :created, location: @lot }
