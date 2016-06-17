@@ -1,1 +1,1 @@
-json.extract! @product, :code, :comercialname, :genericname, :unitprice, :line, :atq, :help
+json.extract! @product, :id,:code, :comercialname, :genericname, :unitprice, :line, :atq, :help

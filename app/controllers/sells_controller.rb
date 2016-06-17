@@ -1,4 +1,4 @@
-class SellsController < ApplicationController
+  class SellsController < ApplicationController
 before_action :set_sell, only: [:show, :edit, :update, :destroy]
 
 # GET /sells || /sells.json
@@ -8,6 +8,36 @@ before_action :set_sell, only: [:show, :edit, :update, :destroy]
 
   # GET /sells/1 || /sells/1.json 
   def show
+  end
+
+  def updateTotal(sell)
+    sell.details.select(:quantity, :sellpromo).map{|x| x.quantity*x.sellpromo}.reduce(:+)
+  end
+
+  def asign
+    @detail = Detail.new
+    @detail.product_id = params[:product_id]
+    @detail.sell_id = params[:sell_id] 
+    @detail.quantity = params[:quantity] 
+    @detail.sellpromo = params[:sellpromo]
+    @product = Product.find(@detail.product_id)
+    if @product.unitprice == @detail.sellpromo
+      @detail.promo = false
+    else
+      @detail.promo = true
+    end
+    respond_to do |format|
+      if @detail.save
+        @sell = Sell.find(@detail.sell_id)
+        @sell.total = updateTotal(@sell)
+        @sell.save
+        #format.html { redirect_to @sell, notice: 'Sell was successfully created.' }
+        format.json { render :show, status: :created, location: @sell }
+      else
+        #format.html { render :new }
+        format.json { render json: @sell.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /sells/new
@@ -23,14 +53,13 @@ before_action :set_sell, only: [:show, :edit, :update, :destroy]
   # POST /sells.json
   def create
     @sell = Sell.new(sell_params)
-
+    
     respond_to do |format|
       if @sell.save
         #format.html { redirect_to @sell, notice: 'Sell was successfully created.' }
-        format.json { render :show, status: :created, location: @sell }
+       format.json { render :show, status: :created, location: @atq }
       else
-        #format.html { render :new }
-        format.json { render json: @sell.errors, status: :unprocessable_entity }
+        format.json { render json: @atq.errors, status: :unprocessable_entity }
       end
     end
   end

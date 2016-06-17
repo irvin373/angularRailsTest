@@ -1,1 +1,0 @@
-json.extract! @sell, :ci, :total, :date_sell

@@ -1,0 +1,27 @@
+<div class="row" ng-model="sell">
+    <div class="panel">
+        <div class="panel-header">
+            <strong>venta</strong>
+        </div>
+        <div class="container">
+        <h2 > <strong>ci/nit: </strong> {{sell.ci}}</h2>
+        <h2 > <strong>Fecha Venta:</strong> {{sell.date_sell}} </h2>
+        <h2 > <strong>Total: </strong>   {{sell.total}} </h2>            
+        </div>
+         <table class="table table-striped">
+            <tr>
+                <th>producto</th>
+                <th>cantidad</th>
+                <th>precio venta</th>
+            </tr>
+            <tr ng-repeat="product in sell.sell_details">
+                <td>{{product[0]}}</td>
+                <td>{{product[1]}}</td>
+                <td>{{product[2]}}</td>
+            </tr>
+        </table>
+    </div>
+    <a class="btn btn-success" href="#sells/{{sell.id}}/add"> agregar Producto </a>
+    <a class="btn btn-default" href="/#/sells">Volver</a>
+</div>
+

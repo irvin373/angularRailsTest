@@ -48,7 +48,6 @@ class LotsController < ApplicationController
   # DELETE /lots/1
   # DELETE /lots/1.json
   def destroy
-    Comunicate.where(lot_id: @lot.id).delete_all
     @lot.destroy
     respond_to do |format|
       format.json { head :no_content }

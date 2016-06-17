@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="panel">
+        <div class="panel-header">
+            <strong>Ventas</strong>
+        </div>
+        <div class="panel-content">
+            <div class="form-group">
+                <label for="search">Buscar</label>
+                <input type="text" id="search" ng-model="filterSell" placeholder="Buscar por ci" class="form-control"/>
+            </div>
+
+            <div class="pre-scrollable">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>ci</th>
+                            <th>total</th>
+                            <th>fecha venta</th>
+                            <th colspan="3"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="sell in sells | filter:{product:filterSell} | orderBy: 'product'">
+                            <td>{{sell.id}}</td>
+                            <td>{{sell.ci}}</td>
+                            <td>{{sell.total}}</td>
+                            <td>{{sell.date_sell}}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{{'#/sells/'+ sell.id}}">show</a>
+                                <!--<a class="btn btn-warning" href="{{'#/sells/'+ sell.id+ '/edit'}}">editar</a>-->
+                                <button class="btn btn-danger" ng-click="deleteSell (sell.id)">eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a class="btn btn-success" href="#sells/new"> nueva venta </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container" ng-model="sell">
+	<h1>agregar producto</h1>
+	<h2>ci/nit: {{sell.ci}}</h2>
+    <input type="text" id="search" ng-model="filterProduct" placeholder="Buscar por nombre comercial" class="form-control" />
+	<div class="pre-scrollable">
+            <table class="table">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre comercial</th>
+                    <th>Precio unitario</th>
+                    <th>cantidad</th>
+                    <th>precio venta</th>
+                    <th>agregar venta</th>
+                </tr>
+                <tr ng-repeat="product in products | filter:{comercialname:filterProduct} | orderBy: 'id'">
+                    <td>{{product.code}}</td>
+                    <td>{{product.comercialname}}</td>
+					<td>{{product.unitprice}}</td>
+                    <td><input class="smallInput" type="number" ng-model="quantity"></td>
+                    <td><input ng-init="sell_price = product.unitprice" ng-model="sell_price" class="smallInput" type="text"></td>
+                    <td><button class="btn btn-success" ng-click="doSomething(product.id, sell.id, quantity,sell_price)">agregar</button></td>
+                </tr>
+            </table>
+    </div>
+    <a class="btn btn-success" href="/#sells/{{sell.id}}">volver</a>
+</div>
