@@ -14,12 +14,6 @@ myApp.factory('Sell', ['$resource', function($resource){
   });
 }]);
 
-myApp.factory('Product', ['$resource',function($resource){
-  return $resource('/products.json', {},{
-    query: { method: 'GET', isArray: true }
-  })
-}]);
-
 myApp.factory('Asign', ['$resource',function($resource){
   return $resource('/sells/asign',{},{
     query: { method: 'POST' }
