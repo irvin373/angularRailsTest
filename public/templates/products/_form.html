@@ -1,0 +1,71 @@
+<div class="form-group" ng-class="{'has-error': submitted && productForm.code.$error.required}">
+    <label class="control-label col-md-3">Codigo <span class="required">* </span> </label>
+    <div class="col-md-4">
+        <input type="text" name="code" class="form-control" ng-model="product.code" required placeholder="Codigo"/>
+    </div>
+
+    <p ng-show=" submitted && productForm.code.$error.required" class="help-block">Codigo requerido.</p>
+    
+</div>
+
+<div class="form-group" ng-class="{'has-error': submitted && productForm.comercialname.$error.required}">
+    <label class="control-label col-md-3">Nombre comercial <span class="required"> *</span></label>
+    <div class="col-md-4">
+        <input type="text" name="comercialname" class="form-control" ng-model="product.comercialname" required placeholder="Nombre comercial"/>
+    </div>
+    <p ng-show="submitted && product.comercialname.$error.required" class="help-block">Nombre comercial requerido. </p>
+
+</div>
+
+<div class="form-group" ng-class="{'has-error' : submitted && productForm.genericname.$error.required}">
+    <label class="control-label col-md-3">Nombre generico <span class="required">* </span> </label>
+    <div class="col-md-4">
+        <input type="text" name="genericname" class="form-control" ng-model="product.genericname" required placeholder="Nombre generico"/>
+    </div>
+    <p ng-show="submitted && productForm.genericname.$error.required" class="help-block">Nombre generico requerido.</p>
+</div>
+
+<div class="form-group" ng-class="{'has-error' : submitted && productForm.company_id.$error.required}">
+    <label class="control-label col-md-3">Linea<span class="required">* </span> </label>
+    
+    <div class="col-md-4">
+        <!--
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Action</a>
+
+                <a class="dropdown-item" href="#">Another Action</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated Link</a>
+            </div>
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="loadCompanys()">Action</button>
+            </div>
+        </div>
+    -->
+
+        <input type="number" name="company_id" class="form-control" ng-model="product.company_id" required placeholder="id"/>
+    </div>
+    <p ng-show="submitted && productForm.company_id.$error.required" class="help-block">company id requerido.</p>
+</div>
+
+<div class="form-group" ng-class="{'has-error' : submitted && productForm.unitprice.$error.required}" >
+    <label class="control-label col-md-3">Precio unitario</label>
+    <div class="col-md-4">
+        <input type="number" name="unitprice" class="form-control" ng-model="product.unitprice" required placeholder="BS"/>
+    </div>
+    <p ng-show="submitted && productForm.unitprice.$error.required" class="help-block">Precio requerido.</p>
+
+</div>
+
+<div class="form-group">
+    <div class="pull-right">
+        <a class="btn btn-default" href="/#/products/">Back</a>
+        <button type="submit" class="btn btn-primary" ng-click="submitted=true">Registrar</button>
+    </div>
+</div>
+
+
+
+

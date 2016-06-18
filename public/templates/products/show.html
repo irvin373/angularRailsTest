@@ -1,0 +1,34 @@
+<div class="col-md-10">
+    <div class="panel">
+        <div class="panel-header">
+            <strong>Producto {{product.comercialname}}</strong>
+        </div>
+        <div class="panel-content">
+            <div class="btn-group">
+                  <button type="button" class="btn btn-primary">Vender</button>
+                  <button type="button" class="btn btn-primary" ng-click="redirectEdit()">Editar</button>
+                  <button type="button" class="btn btn-danger" ng-click="remove()">Eliminar</button>
+            </div>
+            <br/>
+            <h2>{{product.comercialname}}</h2>
+            <br/>
+
+            <table class="table">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre comercial</th>
+                    <th>Nombre generico</th>
+                    <th>Precio unitario</th>
+                    <th>Linea</th>
+                </tr>
+                <tr>
+                    <td>{{product.code}}</td>
+                    <td>{{product.comercialname}}</td>
+                    <td>{{product.genericname}}</td>
+                    <td>{{product.unitprice}}</td>
+                    <td>{{product.line}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
