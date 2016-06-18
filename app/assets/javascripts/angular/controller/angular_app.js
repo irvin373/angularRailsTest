@@ -2,20 +2,3 @@
 var myApp = angular.module('myapplication',['ngRoute','ngResource','ui.bootstrap']);
 //angular.module('myapplication', ['ngAnimate', 'ui.bootstrap']);
 
-myApp.config([
-        '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-
-            $routeProvider.when('/products',{
-                templateUrl: '/templates/products/products.html',
-                controller: 'ProductListCtr'
-            
-            });
-
-            $routeProvider.otherwise({
-                redirectTo: '/products'
-            
-            });
-            
-    }
-]);
-
