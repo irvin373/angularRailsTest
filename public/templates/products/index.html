@@ -15,14 +15,14 @@
                 <div class="form-group">
                     <label for="search">Buscar Por:</label>
                     <label class="radio-inline">
-                        <input type="radio" name="optradio">Codigo</label>
+                        <input type="radio" ng-model="selectedFilter" value="code" name="optradio">Codigo</label>
                     <label class="radio-inline">
-                        <input type="radio" name="optradio">Nombre comercial</label>
+                        <input type="radio" ng-model="selectedFilter" value="comercialname" name="optradio">Nombre comercial</label>
                     <label class="radio-inline">
-                        <input type="radio" name="optradio">Nombre generico</label>
+                        <input type="radio" ng-model="selectedFilter" value="genericname" name="optradio">Nombre generico</label>
                     <label class="radio-inline">
-                        <input type="radio" name="optradio">Linea</label>
-                    <input type="text" id="search" ng-model="filterProduct" placeholder="Buscar por nombre comercial" class="form-control" />
+                        <input type="radio" ng-model="selectedFilter" value="line" name="optradio">Linea</label>
+                    <input type="text" id="search" ng-model="search[selectedFilter]" ng-init="search = {}" placeholder="Buscar por {{filters[selectedFilter]}}" class="form-control" />
                 </div>
                 <div class="pre-scrollable">
                     <table class="table">
@@ -33,7 +33,7 @@
                             <th>Precio unitario</th>
                             <th>Linea</th>
                         </tr>
-                        <tr ng-repeat="product in products | filter:{comercialname:filterProduct} | orderBy: 'nombre_comercial'" ng-click="redirectShow(product.id)">
+                        <tr ng-repeat="product in products | filter:search | orderBy: selectedFilter" ng-click="redirectShow(product.id)">
                             <td>{{product.code}}</td>
                             <td>{{product.comercialname}}</td>
                             <td>{{product.genericname}}</td>

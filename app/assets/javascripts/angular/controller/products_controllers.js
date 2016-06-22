@@ -55,16 +55,21 @@ function productAddCtr($scope,$resource,$location,Products,Companys){
 }
 
 function productListCtr($scope,$resource,$http,$location,Product,Products){
-    $scope.filterProduct = "";
-    $scope.filterCompany = "";
+    $scope.selectedFilter = "comercialname";
+    $scope.search = {};
     $scope.products = Products.query();
     $scope.remove = remove;
     $scope.redirectShow = redirectShow;
     $scope.redirectNew = redirectNew
+    $scope.filters = {
+        comercialname: "nombre comercial",
+        code: "codigo",
+        line: "linea",
+        genericname: "nombre generico"
+    }
     
     function redirectShow(id){
         var route = "/products/"+id+"/show";
-        console.log(route);
         $location.path(route);
     }
 
