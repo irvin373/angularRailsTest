@@ -29,23 +29,31 @@
     <label class="control-label col-md-3">Linea<span class="required">* </span> </label>
     
     <div class="col-md-4">
-        <!--
-        <div class="input-group">
-            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Action</a>
+        <div ng-controller="companyAutoCompleteCtr as ctrl" layout="column" ng-cloak>
+            <md-content>
+            <form>
+            <md-autocomplete
+                ng-disabled="ctrl.isDisabled"
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItem"
+                md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                md-search-text="ctrl.searchText"
+                md-selected-item-change="product.company_id = item.id"
+                md-items="item in ctrl.querySearch(ctrl.searchText)"
+                md-item-text="item.line"
+                md-min-length="0"
+                placeholder="Linea ?">
+                <md-item-template>
+                    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.line}}</span>
+                </md-item-template>
+                <md-not-found>
+                    <a ng-click="ctrl.newCompany(ctrl.searchText)">Crear linea "{{ctrl.searchText}}" ?</a>
 
-                <a class="dropdown-item" href="#">Another Action</a>
-                <div role="separator" class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated Link</a>
-            </div>
-            <div class="input-group-btn">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="loadCompanys()">Action</button>
-            </div>
+                </md-not-found>
+            </md-autocomplete>
+            </form>
+            </md-content>
         </div>
-    -->
-
-        <input type="number" name="company_id" class="form-control" ng-model="product.company_id" required placeholder="id"/>
     </div>
     <p ng-show="submitted && productForm.company_id.$error.required" class="help-block">company id requerido.</p>
 </div>
