@@ -1,0 +1,53 @@
+<div class="panel">
+    <div class="panel-header">
+        <strong>ventas</strong>
+    </div>
+
+    <div class="row container">
+        <div class="col-md-6">
+		  <h3>ventas del dia</h3>
+		  <label for="dateDay" class="col-sm-3 control-label">Ingrese el dia: </label>
+    	  <div class="col-sm-9">
+          <input id="dateDay" class="form-control" type="date" ng-model="day">
+    	  </div>
+          <button ng-click="day_selected()" class="btn btn-success">ventas del dia</button>
+      	</div>
+            
+        <div class="col-md-6">
+        <h3>ventas del mes</h3>
+        <label for="dateMounth" class="col-sm-3 control-label">Ingrese el mes: </label>
+    	  <div class="col-sm-9">
+            <select id="dateMounth" class="form-control" ng-model="mounth">
+			  <option value=1>Enero</option>
+			  <option value=2>Febrero</option>
+			  <option value=3>Marzo</option>
+			  <option value=4>Abril</option>
+			  <option value=5>Mayo</option>
+			  <option value=6>Junio</option>
+			  <option value=7>Julio</option>
+			  <option value=8>Agosto</option>
+			  <option value=9>Septiembre</option>
+			  <option value=10>Octubre</option>
+  			  <option value=11>Noviembre</option>
+			  <option value=12>Diciembre</option>
+			</select>
+		  </div>
+            <button class="btn btn-success">ventas del Mes</button>
+        </div>
+        
+        <div class="col-md-6">
+            <h3>ventas entre fechas</h3>
+            <label for="dateInitial" class="col-sm-5 control-label">Ingrese la fecha inicial: </label>
+    	  <div class="col-sm-7">
+            <input id="dateInitial" class="form-control" type="date">
+          </div>
+		
+		<label for="dateEnd" class="col-sm-5 control-label">Ingrese la fecha final: </label>
+    	  <div class="col-sm-7">
+            <input id="dateEnd" class="form-control" type="date">
+          </div>
+        <button class="btn btn-success">ventas entre fechas</button>
+        </div>
+    </div>
+</div>
+<a class="btn btn-default" href="/#/sells">Volver</a>

@@ -1,9 +1,11 @@
-<div class="row">
-    <div class="panel">
-        <div class="panel-header">
-            <strong>Ventas</strong>
-        </div>
-        <div class="panel-content">
+<div class="panel">
+    <div class="panel-header">
+        <strong ng-model="day">ventas del dia: {{day.day}}</strong>
+        <h4 ng-model="CalculateTotal">Total vendido {{CalculateTotal()}} Bs.</h4>
+    </div>
+
+    <div class="row container">
+    <div class="panel-content">
             <div class="form-group">
                 <label for="search">Buscar</label>
                 <input type="text" id="search" ng-model="filterSell" placeholder="Buscar por ci" class="form-control"/>
@@ -28,15 +30,12 @@
                             <td>{{sell.date_sell}}</td>
                             <td>
                                 <a class="btn btn-primary" href="{{'#/sells/'+ sell.id}}">show</a>
-                                <!--<a class="btn btn-warning" href="{{'#/sells/'+ sell.id+ '/edit'}}">editar</a>-->
-                                <button class="btn btn-danger" ng-click="deleteSell (sell.id)">eliminar</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <a class="btn btn-success" href="#sells/new"> nueva venta </a>
-            <a class="btn btn-success" href="#/reports"> Reports </a>
         </div>
     </div>
 </div>
+<a class="btn btn-default" href="/#/reports">Volver</a>
