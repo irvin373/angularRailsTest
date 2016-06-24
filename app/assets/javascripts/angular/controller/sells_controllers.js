@@ -20,6 +20,18 @@ myApp.factory('Asign', ['$resource',function($resource){
   })
 }]);
 
+myApp.factory('Last', ['$resource',function($resource){
+  return $resource('/sells/last.json',{},{
+    get: { method: 'GET' }
+  })
+}]);
+
+myApp.factory('Reportday', ['$resource',function($resource){
+  return $resource('reports/:day.json',{},{
+    query: { method: 'GET', isArray: true }
+  })
+}]);
+
 //Controller
 myApp.controller("SellListCtr", 
     ['$scope', '$http', '$resource', 'Sells', 'Sell', '$location', 
@@ -31,7 +43,7 @@ myApp.controller("SellListCtr",
     if (confirm("Are you sure you want to delete this sell?")){
       Sell.delete({ id: sellId }, function(){
         $scope.sells = Sells.query();
-        $location.path('/');
+        $location.path("/sells");
       });
     }
   };
@@ -41,7 +53,7 @@ myApp.controller("SellAddProductCtr", ['$scope', '$resource', 'Product', 'Asign'
   function($scope, $resource, Product, Asign ,Sell, $location, $routeParams) {
   $scope.sell = Sell.get({id: $routeParams.id})
   $scope.products = Product.query();
-  $scope.quantity = 0;
+  $scope.quantity = 1;
   $scope.sell_price = 0;
   
   $scope.doSomething = function(id_product,id_sell,quantity,sellPrice){
@@ -55,25 +67,27 @@ myApp.controller("SellAddProductCtr", ['$scope', '$resource', 'Product', 'Asign'
 }]);
 
 
-myApp.controller("SellAddCtr", ['$scope', '$resource', 'Sells','$location', '$http',
-    function($scope, $resource, Sells, $location, $http) {
-  
+myApp.controller("SellAddCtr", ['$scope', '$resource', 'Sells','$location', '$http', 'Last',
+    function($scope, $resource, Sells, $location, $http, Last) {
   $scope.save = function () {
     Sells.create({sell: $scope.sell}, function(){
-      $location.path('/sells');
+      $scope.last = Last.get();
+      $scope.last.$promise.then(function(data) {
+        $location.path("/sells/"+data.id);
+      });
     }, function(error){
         console.log(error)
     });
   }
 }]);
 
-myApp.controller("SellUpdateCtr", ['$scope', '$resource', 'Sell', '$location', '$routeParams', function($scope, $resource, Sell, $location, $routeParams) {
+myApp.controller("SellUpdateCtr", ['$scope', '$resource', 'Sell', '$location', '$routeParams',
+  function($scope, $resource, Sell, $location, $routeParams) {
   $scope.sell = Sell.get({id: $routeParams.id})
   console.log($scope.sell);
-  //$scope.sell.date_in = new Date($scope.sell.date_in); 
   $scope.update = function(){
       Sell.update({id: $scope.sell.id},{sell: $scope.sell},function(){
-        $location.path('/sells');
+        $location.path("/sells");
       }, function(error) {
         console.log(error)
       });
@@ -85,10 +99,28 @@ myApp.controller("SellShowCtr", ['$scope', '$resource', 'Sell', '$location', '$r
   $scope.sell = Sell.get({id: $routeParams.id});
 }]);
 
+myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParams', 
+  function($scope, $resource, $location, $routeParams) {
+    $scope.day = new Date();
+    $scope.mounth = 0;
+    $scope.day_selected = function (){
+      var date = $scope.day.getFullYear() + '-' + ($scope.day.getMonth()+1) + '-' +$scope.day.getDate(); 
+      $location.path("/reports/"+date);
+    }
+}]);
+
+myApp.controller("ReportsCtrDay", ['$scope', '$resource', '$location','Reportday', '$routeParams', 
+  function($scope, $resource, $location, Reportday,$routeParams) {
+    $scope.day = {day: $routeParams.day};
+    $scope.sells = Reportday.query({day: $routeParams.day});
+    $scope.CalculateTotal = function(){
+      return $scope.sells.reduce(function(total, i){ return total += i.total},0);
+    }
+}]);
 
 //Routes
 myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-    $routeProvider.when('/sells',{
+    $routeProvider.when("/sells",{
       templateUrl: '/templates/sells/index.html',
       controller: 'SellListCtr'
     });
@@ -111,8 +143,13 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
       templateUrl: '/templates/sells/show.html',
       controller: "SellShowCtr"
     });
-    $routeProvider.otherwise({
-      redirectTo: '/sells'
+    $routeProvider.when('/reports', {
+      templateUrl: '/templates/reports/index.html',
+      controller: "ReportsCtr"
+    });
+    $routeProvider.when('/reports/:day', {
+      templateUrl: '/templates/reports/reportsDay.html',
+      controller: "ReportsCtrDay"
     });
   }
 ]);

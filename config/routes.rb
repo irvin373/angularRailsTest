@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :products
   resources :atqs
   resources :helps
+  get 'reports/:date' => 'sells#report_day'
+  get 'sells/last' => 'sells#last'
   resources :sells
   resources :companies
   resources :lots
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
   get  'sys' => 'products#index'
   post 'atqs/asign' => 'atqs#asign'
   post 'sells/asign' => 'sells#asign'
-  get 'prices' => 'products#prices'
+  #get 'informs' => 'informs#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

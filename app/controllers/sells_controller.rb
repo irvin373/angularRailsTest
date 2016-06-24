@@ -10,13 +10,26 @@ before_action :set_sell, only: [:show, :edit, :update, :destroy]
   def show
   end
 
+  def last
+    @sell = Sell.last
+  end
+
+  def report_day
+    date = params[:date]
+    @sells = Sell.where(date_sell: Date.parse(date))
+  end
+
+  def total_day
+      @sell = Sell.first
+  end
+
   def updateTotal(sell)
     sell.details.select(:quantity, :sellpromo).map{|x| x.quantity*x.sellpromo}.reduce(:+)
   end
 
   def asign
     @detail = Detail.new
-    @detail.product_id = params[:product_id]
+    @detail.product_id = params[:product_id] 
     @detail.sell_id = params[:sell_id] 
     @detail.quantity = params[:quantity] 
     @detail.sellpromo = params[:sellpromo]
@@ -53,13 +66,13 @@ before_action :set_sell, only: [:show, :edit, :update, :destroy]
   # POST /sells.json
   def create
     @sell = Sell.new(sell_params)
-    
+
     respond_to do |format|
       if @sell.save
-        #format.html { redirect_to @sell, notice: 'Sell was successfully created.' }
-       format.json { render :show, status: :created, location: @atq }
+        #format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.json { render :show, status: :created, location: @sell }
       else
-        format.json { render json: @atq.errors, status: :unprocessable_entity }
+        format.json { render json: @sell.errors, status: :unprocessable_entity }
       end
     end
   end
