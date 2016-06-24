@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :sells
   resources :companies
   resources :lots
-  root 'products#index'
+  root 'login#index'
+  get  'sys' => 'products#index'
   post 'atqs/asign' => 'atqs#asign'
   post 'sells/asign' => 'sells#asign'
   get 'prices' => 'products#prices'
