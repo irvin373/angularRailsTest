@@ -29,7 +29,7 @@ function productRoutes($routeProvider, $locationProvider) {
         
     $routeProvider.when('/products/:id/delete',{
         controller: 'ProductDeleteCtr'
-    });        
+    });
 }
 
 function productAddCtr($scope,$resource,$location,Products,Companys){
@@ -60,7 +60,8 @@ function productListCtr($scope,$resource,$http,$location,Product,Products){
     $scope.products = Products.query();
     $scope.remove = remove;
     $scope.redirectShow = redirectShow;
-    $scope.redirectNew = redirectNew
+    $scope.redirectNew = redirectNew;
+    $scope.clearFilter = clearFilter;
     $scope.filters = {
         comercialname: "nombre comercial",
         code: "codigo",
@@ -84,6 +85,10 @@ function productListCtr($scope,$resource,$http,$location,Product,Products){
             $location.path('/products');
           });
         }
+    }
+
+    function clearFilter(){
+        $scope.search = {}; 
     }
 }
 
