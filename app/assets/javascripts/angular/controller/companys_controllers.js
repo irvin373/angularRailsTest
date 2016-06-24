@@ -10,6 +10,8 @@ function companyAutoCompleteCtr($scope,$q,$log,Companys){
     self.selectedItemChange = selectedItemChange;
     self.searchTextChange = searchTextChange;
     self.newCompany = newCompany;
+    self.searchText = "";
+    self.setSearchText = setSearchText;
     loadCompanys();
 
     function newCompany(){
@@ -27,6 +29,7 @@ function companyAutoCompleteCtr($scope,$q,$log,Companys){
                        id: company.id
                    });
                });
+               setEdit();
            },function(err){
                console.log(err);
            });
@@ -48,11 +51,30 @@ function companyAutoCompleteCtr($scope,$q,$log,Companys){
 
     function selectedItemChange(item){
         $log.info('Item changed to ' + JSON.stringify(item));
-    
     }
 
     function searchTextChange(text){
         $log.info('Text changed to ' + text);
+    }
+
+    function setSearchText(text){
+        self.searchText = text;
+    }
+
+    function setEdit(){
+        var parent_scope = $scope.$parent.$parent;
+        var product_promise = parent_scope.product.$promise;
+        if(product_promise != undefined){
+            product_promise.then(function(product){
+                if (product != undefined){
+                    console.log(product.line);
+                    self.setSearchText(product.line);
+                }
+            },function(err){
+                console.log(err);
+            
+            });
+        }
     }
 }
 
