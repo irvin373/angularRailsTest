@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 	before_action :set_product, only: [:show, :edit, :update, :destroy]
+        layout "sigin"
 	
   # GET /products || /products.json
   def index

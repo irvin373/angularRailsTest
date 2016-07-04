@@ -15,14 +15,14 @@
                 <div class="form-group">
                     <label for="search">Buscar Por:</label>
                     <label class="radio-inline">
-                        <input type="radio" ng-model="selectedFilter" value="code" name="optradio">Codigo</label>
+                        <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="code" name="optradio">Codigo</label>
                     <label class="radio-inline">
-                        <input type="radio" ng-model="selectedFilter" value="comercialname" name="optradio">Nombre comercial</label>
+                        <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="comercialname" name="optradio">Nombre comercial</label>
                     <label class="radio-inline">
-                        <input type="radio" ng-model="selectedFilter" value="genericname" name="optradio">Nombre generico</label>
+                        <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="genericname" name="optradio">Nombre generico</label>
                     <label class="radio-inline">
-                        <input type="radio" ng-model="selectedFilter" value="line" name="optradio">Linea</label>
-                    <input type="text" id="search" ng-model="search[selectedFilter]" ng-init="search = {}" placeholder="Buscar por {{filters[selectedFilter]}}" class="form-control" />
+                        <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="line" name="optradio">Linea</label>
+                    <input type="text" id="search" ng-model="search[selectedFilter]"  placeholder="Buscar por {{filters[selectedFilter]}}" class="form-control" />
                 </div>
                 <div class="pre-scrollable">
                     <table class="table">
