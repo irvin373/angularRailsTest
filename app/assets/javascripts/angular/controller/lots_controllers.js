@@ -27,22 +27,18 @@ myApp.controller("LotListCtr",
 
   $scope.lots = Lots.query();
 
-  $scope.deleteLot = function (lotId) {
-    if (confirm("Are you sure you want to delete this lot?")){
-      Lot.delete({ id: lotId }, function(){
-        $scope.lots = Lots.query();
-        $location.path('/');
-      });
-    }
-  };
+  $scope.redirectShow = function (Id) {
+      var route = "/lots/"+Id;
+      $location.path(route);
+    };
 }]);
 
-myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log',
-    function($scope, $resource, Lots, $location, $http, $uibModal, $log) {
+myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log', 'Product',
+    function($scope, $resource, Lots, $location, $http, $uibModal, $log,Product) {
   
-  $scope.doSomething = function(typedthings){
-    console.log("Do something like reload data with this: " + typedthings );
-    };
+  $scope.loadProducts = function(){
+    $scope.companys = Product.query();      
+  };
   
   $scope.save = function () {
     Lots.create({lot: $scope.lot}, function(){
@@ -69,6 +65,14 @@ myApp.controller("LotUpdateCtr", ['$scope', '$resource', 'Lot', '$location', '$r
 myApp.controller("LotShowCtr", ['$scope', '$resource', 'Lot', '$location', '$routeParams', 
   function($scope, $resource, Lot, $location, $routeParams) {
   $scope.lot = Lot.get({id: $routeParams.id});
+
+  $scope.deleteLot = function (lotId) {
+    if (confirm("Quiere eliminar este lote?")){
+      Lot.delete({ id: lotId }, function(){
+        $location.path("/lots");
+      });
+    }
+  };
 }]);
 
 

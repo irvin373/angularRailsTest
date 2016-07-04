@@ -4,8 +4,13 @@
             <strong>Accion Terapeutica</strong>
         </div>
         <div ng-model="atq">
-        <h1 class="container">{{atq.detail}}</h1>
-         <table class="table table-striped">
+        <section class="container">
+            <h1>{{atq.detail}}</h1>
+            <a class="btn btn-warning" href="{{'#/atqs/'+ atq.id+ '/edit'}}">editar</a>
+            <button class="btn btn-danger" ng-click="deleteAtq(atq.id)">eliminar</button>
+            <hr>
+        </section>
+        <table class="table table-striped">
             <tr>
                 <th>code</th>
                 <th>comercial name</th>

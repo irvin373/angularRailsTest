@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :products
   resources :atqs
   resources :helps
-  get 'reports/:date' => 'sells#report_day'
+  get 'reports/day/:date' => 'sells#report_day'
+  get 'reports/mounth/:date' => 'sells#report_mounth'
   get 'sells/last' => 'sells#last'
   resources :sells
   resources :companies

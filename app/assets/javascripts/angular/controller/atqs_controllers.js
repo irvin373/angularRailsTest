@@ -33,13 +33,9 @@ myApp.controller("AtqListCtr",
 
   $scope.atqs = Atqs.query();
 
-  $scope.deleteAtq = function (atqId) {
-    if (confirm("Are you sure you want to delete this atq?")){
-      Atq.delete({ id: atqId }, function(){
-        $scope.atqs = Atqs.query();
-        $location.path('/');
-      });
-    }
+  $scope.redirectShow = function (Id) {
+      var route = "/atqs/"+Id;
+      $location.path(route);
   };
 }]);
 
@@ -67,7 +63,15 @@ myApp.controller("AtqUpdateCtr", ['$scope', '$resource', 'Atq', '$location', '$r
 
 myApp.controller("AtqShowCtr", ['$scope', '$resource', 'Atq', '$location', '$routeParams', 
   function($scope, $resource, Atq, $location, $routeParams) {
-  $scope.atq = Atq.get({id: $routeParams.id})
+  $scope.atq = Atq.get({id: $routeParams.id});
+
+  $scope.deleteAtq = function (atqId) {
+    if (confirm("quiere eliminar esta accion terapeutica?")){
+      Atq.delete({ id: atqId }, function(){
+        $location.path("/atqs");
+      });
+    }
+  };
 }]);
 
 myApp.controller("AsignAtqCtr", ['$scope', '$resource', 'Product', 'Asign', 'Atq', '$location', '$routeParams', 

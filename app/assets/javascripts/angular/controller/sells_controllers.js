@@ -27,7 +27,13 @@ myApp.factory('Last', ['$resource',function($resource){
 }]);
 
 myApp.factory('Reportday', ['$resource',function($resource){
-  return $resource('reports/:day.json',{},{
+  return $resource('reports/day/:day.json',{},{
+    query: { method: 'GET', isArray: true }
+  })
+}]);
+
+myApp.factory('Reportday', ['$resource',function($resource){
+  return $resource('reports/mounth/:day.json',{},{
     query: { method: 'GET', isArray: true }
   })
 }]);
@@ -39,14 +45,10 @@ myApp.controller("SellListCtr",
 
   $scope.sells = Sells.query();
 
-  $scope.deleteSell = function (sellId) {
-    if (confirm("Are you sure you want to delete this sell?")){
-      Sell.delete({ id: sellId }, function(){
-        $scope.sells = Sells.query();
-        $location.path("/sells");
-      });
-    }
-  };
+  $scope.redirectShow = function (Id) {
+      var route = "/sells/"+Id;
+      $location.path(route);
+    };
 }]);
 
 myApp.controller("SellAddProductCtr", ['$scope', '$resource', 'Product', 'Asign', 'Sell', '$location', '$routeParams', 
@@ -97,16 +99,29 @@ myApp.controller("SellUpdateCtr", ['$scope', '$resource', 'Sell', '$location', '
 myApp.controller("SellShowCtr", ['$scope', '$resource', 'Sell', '$location', '$routeParams', 
   function($scope, $resource, Sell, $location, $routeParams) {
   $scope.sell = Sell.get({id: $routeParams.id});
+
+  $scope.deleteSell = function (sellId) {
+    if (confirm("quiere eliminar la venta?")){
+      Sell.delete({ id: sellId }, function(){
+        $location.path("/sells");
+      });
+    }
+  };
 }]);
 
 myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParams', 
   function($scope, $resource, $location, $routeParams) {
-    $scope.day = new Date();
+    var date = new Date();
+    $scope.day = date;
     $scope.mounth = 0;
     $scope.day_selected = function (){
-      var date = $scope.day.getFullYear() + '-' + ($scope.day.getMonth()+1) + '-' +$scope.day.getDate(); 
-      $location.path("/reports/"+date);
-    }
+      dates = $scope.day.getFullYear() + '-' + ($scope.day.getMonth()+1) + '-' +$scope.day.getDate(); 
+      $location.path("/reports/day/"+dates);
+    };
+    $scope.mounth_selected = function (){
+      dates = date.getFullYear() + '-' + ($scope.mounth) + '-' +1;
+      $location.path("/reports/mounth/"+dates);
+    };
 }]);
 
 myApp.controller("ReportsCtrDay", ['$scope', '$resource', '$location','Reportday', '$routeParams', 
@@ -147,7 +162,11 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
       templateUrl: '/templates/reports/index.html',
       controller: "ReportsCtr"
     });
-    $routeProvider.when('/reports/:day', {
+    $routeProvider.when('/reports/day/:day', {
+      templateUrl: '/templates/reports/reportsDay.html',
+      controller: "ReportsCtrDay"
+    });
+    $routeProvider.when('/reports/mounth/:day', {
       templateUrl: '/templates/reports/reportsDay.html',
       controller: "ReportsCtrDay"
     });

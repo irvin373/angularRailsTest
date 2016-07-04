@@ -10,6 +10,8 @@
             <h3> <strong>costo unitario</strong> {{lot.cost_in}}</h3>
             <h3> <strong>cantidad:</strong> {{lot.quantity_lot}}</h3>
             <h3> <strong>lote disponible:</strong> {{(lot.available)}}</h3>
+            <a class="btn btn-warning" href="{{'#/lots/'+ lot.id+ '/edit'}}">editar</a>
+            <button class="btn btn-danger" ng-click="deleteLot(lot.id)">eliminar</button>
         </div>
     </div>
     <a ng-model="lot" class="btn btn-success" href="#lots/{{lot.id}}/edit"> Editar </a>

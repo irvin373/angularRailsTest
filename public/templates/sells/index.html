@@ -21,16 +21,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="sell in sells | filter:{sell:filterSell} | orderBy: 'id'">
+                        <tr ng-repeat="sell in sells | filter:{sell:filterSell} | orderBy: 'id'" ng-click="redirectShow(sell.id)">
                             <td>{{sell.id}}</td>
                             <td>{{sell.ci}}</td>
                             <td>{{sell.total}}</td>
                             <td>{{sell.date_sell}}</td>
-                            <td>
-                                <a class="btn btn-primary" href="{{'#/sells/'+ sell.id}}">show</a>
-                                <!--<a class="btn btn-warning" href="{{'#/sells/'+ sell.id+ '/edit'}}">editar</a>-->
-                                <button class="btn btn-danger" ng-click="deleteSell (sell.id)">eliminar</button>
-                            </td>
                         </tr>
                     </tbody>
                 </table>

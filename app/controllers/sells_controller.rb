@@ -19,6 +19,12 @@ before_action :set_sell, only: [:show, :edit, :update, :destroy]
     @sells = Sell.where(date_sell: Date.parse(date))
   end
 
+  def report_mounth
+    date_ini = Date.parse(params[:date]) 
+    date_end = date_ini.end_of_month
+    @sells = Sell.where(date_sell: (date_ini..date_end))
+  end
+
   def total_day
       @sell = Sell.first
   end

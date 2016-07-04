@@ -17,21 +17,15 @@
                             <th>fecha expiracion</th>
                             <th>costo ingreso</th>
                             <th>cantidad ingreso</th>
-                            <th colspan="3"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="lot in lots | filter:{product:filterLot} | orderBy: 'product'">
+                        <tr ng-repeat="lot in lots | filter:{product:filterLot} | orderBy: 'product'" ng-click="redirectShow(lot.id)">
                             <td>{{lot.product}}</td>
                             <td>{{lot.date_in}}</td>
                             <td>{{lot.date_expiration}}</td>
                             <td>{{lot.cost_in}}</td>
                             <td>{{lot.quantity_lot}}</td>
-                            <td>
-                                <a class="btn btn-primary" href="{{'#/lots/'+ lot.id}}">show</a>
-                                <a class="btn btn-warning" href="{{'#/lots/'+ lot.id+ '/edit'}}">editar</a>
-                                <button class="btn btn-danger" ng-click="deleteLot(lot.id)">eliminar</button>
-                            </td>
                         </tr>
                     </tbody>
                 </table>

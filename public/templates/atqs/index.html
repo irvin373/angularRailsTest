@@ -14,17 +14,12 @@
                     <tr>
                         <th>detalle</th>
                         <th>link</th>
-                        <th colspan="3"></th>
                     </tr>
                 	</thead>
                 	<tbody>
-                    <tr ng-repeat="atq in atqs | filter:{detail:filterAtq} | orderBy: 'detail'">
+                    <tr ng-repeat="atq in atqs | filter:{detail:filterAtq} | orderBy: 'detail'" ng-click="redirectShow(atq.id)">
                         <td>{{atq.detail}}</td>
-                        <td>
-                        <a class="btn btn-primary" href="{{'#/atqs/'+ atq.id}}">show</a>
-                           <a class="btn btn-warning" href="{{'#/atqs/'+ atq.id+ '/edit'}}">editar</a>
-                           <button class="btn btn-danger" ng-click="deleteAtq(atq.id)">eliminar</button>
-                        </td>
+                        
                     </tr>
                 	</tbody>
                 </table>
