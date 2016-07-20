@@ -14,13 +14,13 @@ myApp.factory('Atq', ['$resource', function($resource){
   });
 }]);
 
-myApp.factory('Product', ['$resource',function($resource){
+myApp.factory('ProductAtq', ['$resource',function($resource){
   return $resource('/products.json', {},{
     query: { method: 'GET', isArray: true }
   })
 }]);
 
-myApp.factory('Asign', ['$resource',function($resource){
+myApp.factory('AsignAtq', ['$resource',function($resource){
   return $resource('/atqs/asign', {},{
     query: { method: 'POST', params: {idProd: '@idP', idAtq: '@idA'} }
   })
@@ -43,7 +43,7 @@ myApp.controller("AtqAddCtr", ['$scope', '$resource', 'Atqs','$location', '$http
     function($scope, $resource, Atqs, $location, $http) {
   $scope.save = function () {
     Atqs.create({atq: $scope.atq}, function(){
-      $location.path('/');
+      $location.path('/atqs');
     }, function(error){
         console.log(error)
     });
@@ -54,7 +54,7 @@ myApp.controller("AtqUpdateCtr", ['$scope', '$resource', 'Atq', '$location', '$r
   $scope.atq = Atq.get({id: $routeParams.id})
   $scope.update = function(){
       Atq.update({id: $scope.atq.id},{atq: $scope.atq},function(){
-        $location.path('/');
+        $location.path('/atqs');
       }, function(error) {
         console.log(error)
       });
@@ -74,17 +74,16 @@ myApp.controller("AtqShowCtr", ['$scope', '$resource', 'Atq', '$location', '$rou
   };
 }]);
 
-myApp.controller("AsignAtqCtr", ['$scope', '$resource', 'Product', 'Asign', 'Atq', '$location', '$routeParams', 
-  function($scope, $resource, Product, Asign ,Atq, $location, $routeParams) {
+myApp.controller("AsignAtqCtr", ['$scope', '$resource', 'ProductAtq', 'AsignAtq', 'Atq', '$location', '$routeParams', 
+  function($scope, $resource, ProductAtq, AsignAtq ,Atq, $location, $routeParams) {
   $scope.atq = Atq.get({id: $routeParams.id})
-  $scope.products = Product.query();
+  $scope.products = ProductAtq.query();
   
   $scope.asign = function(IdAsign){
       alert('asignado a' + $scope.atq.detail);
-      Asign.query({idProd: IdAsign},{idAtq: $scope.atq.id},function(){
+      AsignAtq.query({idProd: IdAsign},{idAtq: $scope.atq.id},function(){
         console.log('Entro');    
       }, function(error) {
-        Alert('Fue asignado');
         console.log(error)
       });
   };

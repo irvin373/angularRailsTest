@@ -3,13 +3,18 @@
         <div class="panel-header">
             <strong>venta</strong>
         </div>
-        <div class="container">
-        <h2 > <strong>ci/nit: </strong> {{sell.ci}}</h2>
-        <h2 > <strong>Fecha Venta:</strong> {{sell.date_sell}} </h2>
-        <h2 > <strong>Total: </strong>   {{sell.total}} </h2>   
-<!--<a class="btn btn-warning" href="{{'#/sells/'+ sell.id+ '/edit'}}">editar</a>-->
-        <button class="btn btn-danger" ng-click="deleteSell(sell.id)">eliminar</button>         
+        <div class="panel-content">
+            
+        <div class="btn-group">
+          <a class="btn btn-primary" href="#sells/{{sell.id}}/add">agregar Producto</a>
+          <a class="btn btn-primary" href="#sells/{{sell.id}}/edit"> editar</a>
+          <button class="btn btn-danger" ng-click="deleteSell(sell.id)">eliminar</button>
         </div>
+        <h2> datos de la venta: </h2>
+        <h3 > <strong>ci/nit: </strong> {{sell.ci}}</h3>
+        <h3 > <strong>Fecha Venta:</strong> {{sell.date_sell}} </h3>
+        <h3 > <strong>Total: </strong>   {{sell.total}} </h3>   
+        <div class="pre-scrollable">
          <table class="table table-striped">
             <tr>
                 <th>producto</th>
@@ -22,8 +27,9 @@
                 <td>{{product[2]}}</td>
             </tr>
         </table>
+        <a class="btn btn-default" href="/sys/#/sells">Volver</a>
+        </div>  
     </div>
-    <a class="btn btn-success" href="#sells/{{sell.id}}/add"> agregar Producto </a>
-    <a class="btn btn-default" href="/sys/#/sells">Volver</a>
+    
 </div>
 

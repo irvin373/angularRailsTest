@@ -22,7 +22,9 @@
                         <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="genericname" name="optradio">Nombre generico</label>
                     <label class="radio-inline">
                         <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="line" name="optradio">Linea</label>
-                    <input type="text" id="search" ng-model="search[selectedFilter]"  placeholder="Buscar por {{filters[selectedFilter]}}" class="form-control" />
+                    
+                        <input type="text" id="search" ng-model="search[selectedFilter]"  placeholder="Buscar por {{filters[selectedFilter]}}" class="form-control" />
+                        
                 </div>
                 <div class="pre-scrollable">
                     <table class="table">
@@ -33,7 +35,7 @@
                             <th>Precio unitario</th>
                             <th>Linea</th>
                         </tr>
-                        <tr ng-repeat="product in products | filter:search | orderBy: selectedFilter" ng-click="redirectShow(product.id)">
+                        <tr ng-repeat="product in products | filter:search " ng-click="redirectShow(product.id)">
                             <td>{{product.code}}</td>
                             <td>{{product.comercialname}}</td>
                             <td>{{product.genericname}}</td>

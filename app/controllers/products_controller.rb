@@ -1,17 +1,21 @@
 class ProductsController < ApplicationController
 	before_action :set_product, only: [:show, :edit, :update, :destroy]
-        layout "sigin"
+  layout "sigin"
 	
   # GET /products || /products.json
   def index
-		@products = Product.all
+		@products = Product.all.take(100)
 	end
+
+  def to_sell
+    @products = Product.select(:id,:comercialname,:unitprice).joins("INNER JOIN lots as l ON(products.id = l.product_id and available = True)")
+  end
 
   # GET /products/1 || /products/1.json 
   def show
   end
 
-  def prices
+  def options
     @products = Product.all
   end
 

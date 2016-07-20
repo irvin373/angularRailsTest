@@ -14,8 +14,8 @@ myApp.factory('Lot', ['$resource', function($resource){
   });
 }]);
 
-myApp.factory('Product', ['$resource',function($resource){
-  return $resource('/products.json', {},{
+myApp.factory('ProductAutoComplete', ['$resource',function($resource){
+  return $resource('/autocomplete.json', {},{
     query: { method: 'GET', isArray: true }
   })
 }]);
@@ -33,29 +33,39 @@ myApp.controller("LotListCtr",
     };
 }]);
 
-myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log', 'Product',
-    function($scope, $resource, Lots, $location, $http, $uibModal, $log,Product) {
-  
-  $scope.loadProducts = function(){
-    $scope.companys = Product.query();      
-  };
-  
-  $scope.save = function () {
+myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log', 'ProductAutoComplete',
+    function($scope, $resource, Lots, $location, $http, $uibModal, $log,ProductAutoComplete) {  
+  $scope.products = ProductAutoComplete.query();
+  $scope.save = function() {
+    console.log($scope.lot.product_id);
+    $scope.lot.product_id = test($scope.lot.product_id);
     Lots.create({lot: $scope.lot}, function(){
-      $location.path('#/lots');
+      $location.path("/#/lots");
     }, function(error){
-        console.log(error)
+        console.log(error);
     });
-  }
+  };
+
+  test = function(nameSelected){
+      console.log(nameSelected);
+      var temp; 
+      $scope.products.forEach(function(x) {
+        if ( x["comercialname"] == nameSelected) {
+          temp = x["id"];
+        }
+      });
+      return temp;
+  };
 }]);
 
 myApp.controller("LotUpdateCtr", ['$scope', '$resource', 'Lot', '$location', '$routeParams', function($scope, $resource, Lot, $location, $routeParams) {
   $scope.lot = Lot.get({id: $routeParams.id})
   console.log($scope.lot);
   //$scope.lot.date_in = new Date($scope.lot.date_in); 
+
   $scope.update = function(){
       Lot.update({id: $scope.lot.id},{lot: $scope.lot},function(){
-        $location.path('/lots');
+        $location.path("/lots");
       }, function(error) {
         console.log(error)
       });

@@ -1,4 +1,10 @@
-//Factory
+//Factory 
+myApp.factory('ProductSell', ['$resource',function($resource){
+  return $resource('/product_sell.json', {},{
+    query: { method: 'GET', isArray: true }
+  })
+}]);
+
 myApp.factory('Sells', ['$resource',function($resource){
   return $resource('/sells.json', {},{
     query: { method: 'GET', isArray: true },
@@ -14,7 +20,7 @@ myApp.factory('Sell', ['$resource', function($resource){
   });
 }]);
 
-myApp.factory('Asign', ['$resource',function($resource){
+myApp.factory('AsignSell', ['$resource',function($resource){
   return $resource('/sells/asign',{},{
     query: { method: 'POST' }
   })
@@ -51,15 +57,15 @@ myApp.controller("SellListCtr",
     };
 }]);
 
-myApp.controller("SellAddProductCtr", ['$scope', '$resource', 'Product', 'Asign', 'Sell', '$location', '$routeParams', 
-  function($scope, $resource, Product, Asign ,Sell, $location, $routeParams) {
+myApp.controller("SellAddProductSellCtr", ['$scope', '$resource', 'ProductSell', 'AsignSell', 'Sell', '$location', '$routeParams', 
+  function($scope, $resource, ProductSell, AsignSell ,Sell, $location, $routeParams) {
   $scope.sell = Sell.get({id: $routeParams.id})
-  $scope.products = Product.query();
+  $scope.products = ProductSell.query();
   $scope.quantity = 1;
   $scope.sell_price = 0;
   
   $scope.doSomething = function(id_product,id_sell,quantity,sellPrice){
-    Asign.query({id: id_sell},{product_id: id_product,sell_id: id_sell, quantity: quantity,sellpromo:sellPrice}, function(){
+    AsignSell.query({id: id_sell},{product_id: id_product,sell_id: id_sell, quantity: quantity,sellpromo:sellPrice}, function(){
       alert('asignado a la factura');
       }, function(error) {
         alert('Agregado');
@@ -112,6 +118,8 @@ myApp.controller("SellShowCtr", ['$scope', '$resource', 'Sell', '$location', '$r
 myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParams', 
   function($scope, $resource, $location, $routeParams) {
     var date = new Date();
+    var date1 = new Date();
+    var date2 = new Date();
     $scope.day = date;
     $scope.mounth = 0;
     $scope.day_selected = function (){
@@ -121,6 +129,12 @@ myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParam
     $scope.mounth_selected = function (){
       dates = date.getFullYear() + '-' + ($scope.mounth) + '-' +1;
       $location.path("/reports/mounth/"+dates);
+    };
+
+    $scope.dateSelector = function (){
+      date1 = $scope.date1.getFullYear() + '-' + ($scope.date1.getMonth()+1) + '-' +$scope.date1.getDate(); 
+      date2 = $scope.date2.getFullYear() + '-' + ($scope.date2.getMonth()+1) + '-' +$scope.date2.getDate(); 
+      $location.path("/reports/day/"+date1+'/'+date2);
     };
 }]);
 
@@ -152,7 +166,7 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     });
     $routeProvider.when('/sells/:id/add', {
       templateUrl: '/templates/sells/agregar.html',
-      controller: "SellAddProductCtr"
+      controller: "SellAddProductSellCtr"
     });
     $routeProvider.when('/sells/:id', {
       templateUrl: '/templates/sells/show.html',
@@ -163,6 +177,10 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
       controller: "ReportsCtr"
     });
     $routeProvider.when('/reports/day/:day', {
+      templateUrl: '/templates/reports/reportsDay.html',
+      controller: "ReportsCtrDay"
+    });
+    $routeProvider.when('/reports/day/:day1/:day2', {
       templateUrl: '/templates/reports/reportsDay.html',
       controller: "ReportsCtrDay"
     });

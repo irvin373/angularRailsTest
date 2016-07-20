@@ -3,14 +3,19 @@
         <div class="panel-header">
             <strong>Accion Terapeutica</strong>
         </div>
-        <div ng-model="atq">
+        <div class="panel-content" ng-model="atq">
+        
+        <div class="btn-group">
+          <a ng-model="atq" class="btn btn-primary" href="#atqs/{{atq.id}}/asignar"> asignar nuevo ATQ </a>
+          <a class="btn btn-primary" href="{{'#/atqs/'+ atq.id+ '/edit'}}">editar</a>
+          <button class="btn btn-danger" ng-click="deleteAtq(atq.id)">eliminar</button>
+        </div>
+
         <section class="container">
-            <h1>{{atq.detail}}</h1>
-            <a class="btn btn-warning" href="{{'#/atqs/'+ atq.id+ '/edit'}}">editar</a>
-            <button class="btn btn-danger" ng-click="deleteAtq(atq.id)">eliminar</button>
-            <hr>
+            <h2>{{atq.detail}}</h2>
+            <h3>Productos:</h3>
         </section>
-        <table class="table table-striped">
+        <table class="container table table-striped">
             <tr>
                 <th>code</th>
                 <th>comercial name</th>
@@ -30,9 +35,8 @@
                 </td>
             </tr>
         </table>
+        <a class="btn btn-default" href="/sys/#/atqs">Volver</a>
         </div>
     </div>
-    <a ng-model="atq" class="btn btn-success" href="#atqs/{{atq.id}}/asignar"> asignar nuevo ATQ </a>
-    <a class="btn btn-default" href="/sys/#/atqs">Volver</a>
 </div>
 

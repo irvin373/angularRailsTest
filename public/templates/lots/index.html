@@ -4,6 +4,9 @@
             <strong>Lotes</strong>
         </div>
         <div class="panel-content">
+            <a class="btn btn-primary" href="#lots/new"> registrar nuevo lote </a>
+            <br/>
+            <br/>
             <div class="form-group">
                 <label for="search">Buscar</label>
                 <input type="text" id="search" ng-model="filterLot" placeholder="Buscar por producto" class="form-control"/>
@@ -21,7 +24,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="lot in lots | filter:{product:filterLot} | orderBy: 'product'" ng-click="redirectShow(lot.id)">
-                            <td>{{lot.product}}</td>
+                            <td>{{lot.product_commercialname}}</td>
                             <td>{{lot.date_in}}</td>
                             <td>{{lot.date_expiration}}</td>
                             <td>{{lot.cost_in}}</td>
@@ -30,7 +33,6 @@
                     </tbody>
                 </table>
             </div>
-            <a class="btn btn-success" href="#lots/new"> registrar nuevo lote </a>
         </div>
     </div>
 </div>

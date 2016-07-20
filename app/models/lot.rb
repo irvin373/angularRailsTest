@@ -1,8 +1,10 @@
 class Lot < ActiveRecord::Base
   belongs_to :product
 
-  	def product
-		Product.find(self.product_id).comercialname 
+  	def product_commercialname
+  		100.times{ print "="}
+  		puts self.product_id
+		Product.select(:comercialname).find(self.product_id).comercialname
 	end
 
 	def productLot
@@ -11,7 +13,7 @@ class Lot < ActiveRecord::Base
 
 	def to_builder
 	    Jbuilder.new do |lot|
-	      lot.(self, :product, :productLot)
+	      lot.(self, :product_commercialname, :productLot)
 	    end
 	end
 end

@@ -10,7 +10,7 @@
     	  <div class="col-sm-9">
           <input id="dateDay" class="form-control" type="date" ng-model="day">
     	  </div>
-          <button ng-click="day_selected()" class="btn btn-success">ventas del dia</button>
+          <button ng-click="day_selected()" class="btn btn-primary">ventas del dia</button>
       	</div>
             
         <div class="col-md-6">
@@ -32,21 +32,21 @@
 			  <option value=12>Diciembre</option>
 			</select>
 		  </div>
-            <button class="btn btn-success" ng-click="mounth_selected()">ventas del Mes</button>
+            <button class="btn btn-primary" ng-click="mounth_selected()">ventas del Mes</button>
         </div>
         
         <div class="col-md-6">
             <h3>ventas entre fechas</h3>
             <label for="dateInitial" class="col-sm-5 control-label">Ingrese la fecha inicial: </label>
     	  <div class="col-sm-7">
-            <input id="dateInitial" class="form-control" type="date">
+            <input id="dateInitial" class="form-control" type="date" ng-model="date1">
           </div>
 		
 		<label for="dateEnd" class="col-sm-5 control-label">Ingrese la fecha final: </label>
     	  <div class="col-sm-7">
-            <input id="dateEnd" class="form-control" type="date">
+            <input id="dateEnd" class="form-control" type="date" ng-model="date2">
           </div>
-        <button class="btn btn-success">ventas entre fechas</button>
+        <button class="btn btn-primary" ng-click=dateSelector()>ventas entre fechas</button>
         </div>
     </div>
 </div>

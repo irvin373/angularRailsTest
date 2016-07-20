@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   resources :products
-  resources :atqs
   resources :helps
   get 'reports/day/:date' => 'sells#report_day'
+  get 'reports/day/:date1/:date2' => 'sells#report_dates'
   get 'reports/mounth/:date' => 'sells#report_mounth'
   get 'sells/last' => 'sells#last'
+  get 'autocomplete' => 'products#options'
+  get 'product_sell' => 'products#to_sell'
   resources :sells
+  resources :atqs
   resources :companies
   resources :lots
   root 'login#index'

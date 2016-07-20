@@ -1,7 +1,25 @@
-<form ng-submit="save()">
-<!--<div ng-include src="'/templates/users/_form.html'"></div>-->
-  <input type="text" placeholder="detail" ng-model="atq.detail">
-  <br>
-  <button type="submit">create</button>
-  <a class="btn btn-default" href="/sys/#/atqs">Volver</a>
-</form> 
+<div class="panel">
+    <div class="panel-header">
+        <strong>Acciones terapeuticas</strong>
+    </div>
+    <div class="panel-content">
+        <h3 class="block">Nueva Accion Terapeutica</h3>
+		<form class="tab-pane active form-horizontal" ng-submit="save()">
+		<!--<div ng-include src="'/templates/users/_form.html'"></div>-->
+		<div class="form-group">
+		    <label class="control-label col-md-2">detalle <span class="required">* </span> </label>
+		    <div class="col-md-10">
+		        <input type="text" name="code" class="form-control" ng-model="atq.detail" required placeholder="Accion terapeutica"/>
+		    </div>
+		</div>
+
+		<div class="form-group">
+		    <div class="pull-right">
+		  		<a class="btn btn-default" href="/sys/#/atqs">Volver</a>
+		        <button class="btn btn-primary" type="submit">Registrar</button>
+		    </div>
+		</div>
+
+		</form>           
+    </div>
+</div>

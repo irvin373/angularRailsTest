@@ -9,6 +9,7 @@ class AtqsController < ApplicationController
   # GET /atqs/1 || /atqs/1.json 
   def show
   end
+
   #post asign
   def asign
     atq = params[:idAtq]

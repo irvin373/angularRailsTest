@@ -3,18 +3,47 @@
         <div class="panel-header">
             <strong>Lote</strong>
         </div>
-        <div class="container" ng-model="lot">
-            <h2><strong>producto:</strong> {{lot.product}}</h2> 
-            <h3> <strong>fecha ingreso:</strong> {{lot.date_in}}</h3>
-            <h3> <strong>fecha expiracion:</strong> {{lot.date_expiration}}</h3>
-            <h3> <strong>costo unitario</strong> {{lot.cost_in}}</h3>
-            <h3> <strong>cantidad:</strong> {{lot.quantity_lot}}</h3>
-            <h3> <strong>lote disponible:</strong> {{(lot.available)}}</h3>
-            <a class="btn btn-warning" href="{{'#/lots/'+ lot.id+ '/edit'}}">editar</a>
-            <button class="btn btn-danger" ng-click="deleteLot(lot.id)">eliminar</button>
+        
+        <div class="panel-content" ng-model="lot">
+        <section class="container">
+          <div class="btn-group">
+          <a class="btn btn-primary" href="{{'#/lots/'+ lot.id+ '/edit'}}">editar</a>
+          <button class="btn btn-danger" ng-click="deleteLot(lot.id)">eliminar</button>
+        </div>
+        </section>
+
+        <h3 class="tittle">Datos del lote</h3>
+        <div class="container row">
+        <h2><strong>producto:</strong></h2> 
+            <div class="container col s12">
+              <h4><strong>nombre comercial:</strong> {{lot.product.comercialname}}</h3>
+              <h4><strong>nombre generico:</strong> {{lot.product.genericname}}</h3>
+            </div>
+        </div>
+
+        <table class="container table table-striped">
+            <thead>
+            <tr>
+                <th>fecha ingreso</th>
+                <th>fecha expiracion</th>
+                <th>costo unitario</th>
+                <th>cantidad</th>
+                <th>lote disponible</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                    <td>{{lot.date_in}}</td>
+                    <td>{{lot.date_expiration}}</td>
+                    <td>{{lot.cost_in}}</td>
+                    <td>{{lot.quantity_lot}}</td>
+                    <td>{{(lot.available)}}</td>
+            </tbody>
+        </table>
+ 
+            
+        <a class="btn btn-default" href="/sys/#/lots">Volver</a>
         </div>
     </div>
-    <a ng-model="lot" class="btn btn-success" href="#lots/{{lot.id}}/edit"> Editar </a>
-    <a class="btn btn-default" href="/sys/#/lots">Volver</a>
 </div>
 
