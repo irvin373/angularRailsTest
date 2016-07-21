@@ -5,6 +5,12 @@ myApp.factory('ProductSell', ['$resource',function($resource){
   })
 }]);
 
+myApp.factory('SellSearch', ['$resource',function($resource){
+  return $resource('/sells.json?search=:query', {},{
+    query: { method: 'GET', params: {query: '@query'} ,isArray: true }
+  })
+}]);
+
 myApp.factory('Sells', ['$resource',function($resource){
   return $resource('/sells.json', {},{
     query: { method: 'GET', isArray: true },
@@ -46,10 +52,14 @@ myApp.factory('Reportday', ['$resource',function($resource){
 
 //Controller
 myApp.controller("SellListCtr", 
-    ['$scope', '$http', '$resource', 'Sells', 'Sell', '$location', 
-    function($scope, $http, $resource, Sells, Sell, $location) {
+    ['$scope', '$http', '$resource', 'Sells', 'SellSearch', '$location', 
+    function($scope, $http, $resource, Sells, SellSearch, $location) {
 
   $scope.sells = Sells.query();
+
+  $scope.search = function (query) {
+      $scope.sells = SellSearch.query({search: query});
+  };
 
   $scope.redirectShow = function (Id) {
       var route = "/sells/"+Id;

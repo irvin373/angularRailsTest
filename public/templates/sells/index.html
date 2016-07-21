@@ -8,10 +8,16 @@
             <a class="btn btn-primary" href="#/reports"> Reports </a>
             <br/>
             <br/>
-            <div class="form-group">
-                <label for="search">Buscar</label>
-                <input type="text" id="search" ng-model="filterSell" placeholder="Buscar por ci" class="form-control"/>
+
+        <div class="row">
+            <label class="control-label col-md-1" for="search">Buscar</label>
+            <div class="col-md-8">
+                <input type="search" ng-model="filterSell" class="form-control" placeholder="Buscar por ci" ng-model="query" name="query"> 
             </div>
+            <button class="col-md-2 btn btn-primary" ng-click="search(query)">Buscar</button>
+        </div>
+        <br/>
+        <br/>
 
             <div class="pre-scrollable">
                 <table class="table">
@@ -25,7 +31,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="sell in sells | filter:{sell:filterSell} | orderBy: 'id'" ng-click="redirectShow(sell.id)">
+                        <tr ng-repeat="sell in sells | filter:{ci:filterSell} | orderBy: 'id'" ng-click="redirectShow(sell.id)">
                             <td>{{sell.id}}</td>
                             <td>{{sell.ci}}</td>
                             <td>{{sell.total}}</td>

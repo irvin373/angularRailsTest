@@ -1,7 +1,7 @@
 myApp
     .config(['$routeProvider','$locationProvider',productRoutes])
     .controller("ProductAddCtr",['$scope','$resource','$location','Products','Companys',productAddCtr])
-    .controller("ProductListCtr",['$scope','$resource','$http','$location','Product','Products',productListCtr])
+    .controller("ProductListCtr",['$scope','$resource','$http','$location','ProductSearch','Product','Products',productListCtr])
     .controller("ProductUpdateCtr",['$scope','$resource','$location','$routeParams','Product',productUpdateCtr])
     .controller("ProductShowCtr", ['$scope', '$resource','$location', '$routeParams','Product',productShowCtr])
 
@@ -54,9 +54,10 @@ function productAddCtr($scope,$resource,$location,Products,Companys){
     }
 }
 
-function productListCtr($scope,$resource,$http,$location,Product,Products){
+function productListCtr($scope,$resource,$http,$location,ProductSearch,Product,Products){
     $scope.selectedFilter = "comercialname";
     $scope.search = {};
+    $scope.query = "";
     $scope.products = Products.query();
     $scope.remove = remove;
     $scope.redirectShow = redirectShow;
@@ -67,6 +68,11 @@ function productListCtr($scope,$resource,$http,$location,Product,Products){
         code: "codigo",
         line: "linea",
         genericname: "nombre generico"
+    }
+
+    function searchProduct(query) {
+        console.log('Entro');
+        //$scope.products = ProductSearch.query({search: query});
     }
     
     function redirectShow(id){

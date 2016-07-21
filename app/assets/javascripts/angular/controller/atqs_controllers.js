@@ -6,6 +6,12 @@ myApp.factory('Atqs', ['$resource',function($resource){
   })
 }]);
 
+myApp.factory('AtqsSearch', ['$resource',function($resource){
+  return $resource('/atqs.json?search=:query', {},{
+    query: { method: 'GET', params: {query: '@query'} ,isArray: true }
+  })
+}]);
+
 myApp.factory('Atq', ['$resource', function($resource){
   return $resource('/atqs/:id.json', {}, {
     show: { method: 'GET' },
@@ -28,10 +34,14 @@ myApp.factory('AsignAtq', ['$resource',function($resource){
 
 //Controller
 myApp.controller("AtqListCtr", 
-    ['$scope', '$http', '$resource', 'Atqs', 'Atq', '$location', 
-    function($scope, $http, $resource, Atqs, Atq, $location) {
+    ['$scope', '$http', '$resource', 'Atqs', 'AtqsSearch', '$location', 
+    function($scope, $http, $resource, Atqs, AtqsSearch, $location) {
 
   $scope.atqs = Atqs.query();
+  $scope.query = "";
+  $scope.search = function (query) {
+      $scope.atqs = AtqsSearch.query({search: query});
+  };  
 
   $scope.redirectShow = function (Id) {
       var route = "/atqs/"+Id;

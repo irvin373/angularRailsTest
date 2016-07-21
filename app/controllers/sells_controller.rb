@@ -6,6 +6,15 @@ before_action :set_sell, only: [:show, :edit, :update, :destroy]
 		@sells = Sell.all
 	end
 
+  def index
+    if params[:search]
+      @searchUpcase = params[:search].upcase
+      @sells = Sell.where("ci LIKE ? OR ci LIKE ?", "%#{params[:search]}%","%#{@searchUpcase}%")
+    else
+      @sells = Sell.all
+    end
+  end
+
   # GET /sells/1 || /sells/1.json 
   def show
   end

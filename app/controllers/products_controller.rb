@@ -4,8 +4,13 @@ class ProductsController < ApplicationController
 	
   # GET /products || /products.json
   def index
-		@products = Product.all.take(100)
-	end
+    if params[:search]
+      @searchUpcase = params[:search].upcase
+      @products = Product.where("comercialname LIKE ? OR comercialname LIKE ?", "%#{params[:search]}%","%#{@searchUpcase}%",)
+    else
+      @products = Product.all.take(100)
+    end
+  end
 
   def to_sell
     @products = Product.select(:id,:comercialname,:unitprice).joins("INNER JOIN lots as l ON(products.id = l.product_id and available = True)")

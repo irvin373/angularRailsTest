@@ -22,8 +22,8 @@ myApp.factory('ProductAutoComplete', ['$resource',function($resource){
 
 //Controller
 myApp.controller("LotListCtr", 
-    ['$scope', '$http', '$resource', 'Lots', 'Lot', '$location', 
-    function($scope, $http, $resource, Lots, Lot, $location) {
+    ['$scope', '$http', '$resource', 'Lots', '$location', 
+    function($scope, $http, $resource, Lots, $location) {
 
   $scope.lots = Lots.query();
 
@@ -40,14 +40,13 @@ myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http
     console.log($scope.lot.product_id);
     $scope.lot.product_id = test($scope.lot.product_id);
     Lots.create({lot: $scope.lot}, function(){
-      $location.path("/#/lots");
+      $location.path("/sys/#/lots");
     }, function(error){
         console.log(error);
     });
   };
 
-  test = function(nameSelected){
-      console.log(nameSelected);
+  var test = function(nameSelected){
       var temp; 
       $scope.products.forEach(function(x) {
         if ( x["comercialname"] == nameSelected) {

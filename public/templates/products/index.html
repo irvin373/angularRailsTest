@@ -11,7 +11,6 @@
                 <br/>
                 <br/>
 
-
                 <div class="form-group">
                     <label for="search">Buscar Por:</label>
                     <label class="radio-inline">
@@ -24,8 +23,16 @@
                         <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="line" name="optradio">Linea</label>
                     
                         <input type="text" id="search" ng-model="search[selectedFilter]"  placeholder="Buscar por {{filters[selectedFilter]}}" class="form-control" />
-                        
                 </div>
+                
+                <div class="row">
+                    <label class="control-label col-md-1" for="search">Buscar</label>
+                    <div class="col-md-8">
+                        <input type="search" class="form-control" placeholder="Search" ng-model="query" name="query"> 
+                    </div>
+                    <button class="col-md-2 btn btn-primary" ng-click="searchProduct(query)">Buscar</button>
+                </div>
+
                 <div class="pre-scrollable">
                     <table class="table">
                         <tr>

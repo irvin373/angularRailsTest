@@ -7,10 +7,15 @@
             <a class="btn btn-primary" href="#lots/new"> registrar nuevo lote </a>
             <br/>
             <br/>
-            <div class="form-group">
-                <label for="search">Buscar</label>
-                <input type="text" id="search" ng-model="filterLot" placeholder="Buscar por producto" class="form-control"/>
+
+        <div class="row">
+            <label class="control-label col-md-1" for="search">Buscar</label>
+            <div class="col-md-11">
+                <input type="search" ng-model="filterLot" class="form-control" placeholder="Search" ng-model="query" name="query"> 
             </div>
+            <!--<button class="col-md-2 btn btn-primary" ng-click="search(query)">Buscar</button>-->
+        </div>
+
             <div class="pre-scrollable">
                 <table class="table">
                     <thead>
@@ -20,15 +25,17 @@
                             <th>fecha expiracion</th>
                             <th>costo ingreso</th>
                             <th>cantidad ingreso</th>
+                            <th>porcentaje de ganancia</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="lot in lots | filter:{product:filterLot} | orderBy: 'product'" ng-click="redirectShow(lot.id)">
+                        <tr ng-repeat="lot in lots | filter:{product_commercialname:filterLot} | orderBy: 'product_commercialname'" ng-click="redirectShow(lot.id)">
                             <td>{{lot.product_commercialname}}</td>
                             <td>{{lot.date_in}}</td>
                             <td>{{lot.date_expiration}}</td>
                             <td>{{lot.cost_in}}</td>
                             <td>{{lot.quantity_lot}}</td>
+                            <td>{{lot.percentage_gain}}</td>
                         </tr>
                     </tbody>
                 </table>

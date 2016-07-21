@@ -3,7 +3,12 @@ class AtqsController < ApplicationController
 
 # GET /atqs || /atqs.json
   def index
-    @atqs = Atq.all
+    if params[:search]
+      @searchUpcase = params[:search].upcase
+      @atqs = Atq.where("detail LIKE ? OR detail LIKE ?", "%#{params[:search]}%","%#{@searchUpcase}%",)
+    else
+      @atqs = Atq.all
+    end
   end
 
   # GET /atqs/1 || /atqs/1.json 

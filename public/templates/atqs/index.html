@@ -7,10 +7,21 @@
         <a class="btn btn-primary" href="#atqs/new"> crear nuevo ATQ </a>
         <br/>
         <br/>
-            <div class="form-group">
-                <label for="search">Buscar</label>
-                <input type="text" id="search" ng-model="filterAtq" placeholder="Buscar por accion terapeutica" class="form-control" />
+        
+        <div class="row">
+            <label class="control-label col-md-1" for="search">Buscar</label>
+            <div class="col-md-8">
+                <input type="search" ng-model="filterAtq" class="form-control" placeholder="Search" ng-model="query" name="query"> 
             </div>
+            <button class="col-md-2 btn btn-primary" ng-click="search(query)">Buscar</button>
+        </div>
+            
+        <!--
+        <div class="form-group">
+            <label for="search">Buscar</label>
+            <input type="text" id="search" ng-model="filterAtq" placeholder="Buscar por accion terapeutica" class="form-control" />
+        </div>-->
+
             <div class="pre-scrollable">
                 <table class="table">
                 	<thead>
