@@ -21,24 +21,20 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
 
-config: &config
-  <<: *default
-  username: pguser
-  password: CatetO37
-  host: localhost
-  port: 5432
-
-db1:
 development:
-  <<: *config
+  <<: *default
   database: farmacia_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  
-  # # The password associated with the postgres role (username).
+  username: pguser
+  password: CatetO37
+  host: localhost
+  port: 5432
+
+  # The password associated with the postgres role (username).
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -60,12 +56,12 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *config
+  <<: *default
   database: farmacia_test
-  # username: pguser
-  # password: CatetO37
-  # host: localhost
-  # port: 5432
+  username: pguser
+  password: CatetO37
+  host: localhost
+  port: 5432
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -91,12 +87,3 @@ production:
   database: farmacia_production
   username: farmacia
   password: <%= ENV['FARMACIA_DATABASE_PASSWORD'] %>
-
-db2:
-development_sec:
-  <<: *config
-  database: farmacia_development_sec
-  # username: pguser
-  # password: CatetO37
-  # host: localhost
-  # port: 5432 

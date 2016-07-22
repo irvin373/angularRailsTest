@@ -70,11 +70,10 @@ function productListCtr($scope,$resource,$http,$location,ProductSearch,Product,P
         genericname: "nombre generico"
     }
 
-    function searchProduct(query) {
-        console.log('Entro');
-        //$scope.products = ProductSearch.query({search: query});
+    $scope.searchProduct = function(query,filter) {
+        $scope.products = ProductSearch.query({search: query, filter: filter});
     }
-    
+
     function redirectShow(id){
         var route = "/products/"+id+"/show";
         $location.path(route);

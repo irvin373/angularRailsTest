@@ -6,7 +6,13 @@ class ProductsController < ApplicationController
   def index
     if params[:search]
       @searchUpcase = params[:search].upcase
-      @products = Product.where("comercialname LIKE ? OR comercialname LIKE ?", "%#{params[:search]}%","%#{@searchUpcase}%",)
+      @filter = params[:filter]
+      if @filter == 'line'
+        @line = Company.where("line LIKE ? OR line LIKE ?", "#{params[:search]}%", "#{@searchUpcase}%").last
+        @products = @line.products  
+      else
+        @products = Product.where("#{@filter} LIKE ? OR #{@filter} LIKE ?", "%#{params[:search]}%","%#{@searchUpcase}%")
+      end 
     else
       @products = Product.all.take(100)
     end

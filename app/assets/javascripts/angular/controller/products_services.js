@@ -19,7 +19,7 @@ function productsFactory($resource){
 }
 
 function ProductSearch($resource){
-    return $resource('/products.json?search=:query', {},{
-    query: { method: 'GET', params: {query: '@query'} ,isArray: true }
+    return $resource('/products.json?search=:query&filter=:filter', {},{
+    query: { method: 'GET', params: {query: '@query', filter:'@filter'} ,isArray: true }
     });
 }
