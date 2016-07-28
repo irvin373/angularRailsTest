@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   #root to: "home#index"
-  root 'login#index'
+  root to: 'login#index'
   resources :products
   resources :helps
   get 'reports/day/:date' => 'sells#report_day'
@@ -10,13 +10,17 @@ Rails.application.routes.draw do
   get 'sells/last' => 'sells#last'
   get 'autocomplete' => 'products#options'
   get 'product_sell' => 'products#to_sell'
+  #get 'pharmacys' => 'pharmacy#index'
   resources :sells
   resources :atqs
   resources :companies
   resources :lots
+  resources :pharmacy
+  get 'pharmacy/:idP/change' => 'pharmacy#change'
   get  'sys' => 'products#index'
   post 'atqs/asign' => 'atqs#asign'
   post 'sells/asign' => 'sells#asign'
+
   #get 'informs' => 'informs#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

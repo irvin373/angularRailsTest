@@ -1,5 +1,6 @@
 class Lot < ActiveRecord::Base
   belongs_to :product
+  belongs_to :pharmacy
 
   	def product_commercialname
   		100.times{ print "="}

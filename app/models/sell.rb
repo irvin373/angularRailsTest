@@ -1,5 +1,6 @@
 class Sell < ActiveRecord::Base
-	has_many :details
+	belongs_to :pharmacy
+  has_many :details
   has_many :products, :through => :details
 
   	def sell_details
@@ -16,7 +17,7 @@ class Sell < ActiveRecord::Base
 
   	def to_builder
 	    Jbuilder.new do |product|
-	      product.(self, :sell_details, :total_day, :day_selected)
+	      product.(self, :sell_details, :total_day,:pharmacy_id ,:day_selected)
 	    end
   	end
 end

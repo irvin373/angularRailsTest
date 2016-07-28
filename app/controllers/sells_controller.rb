@@ -2,16 +2,14 @@
 before_action :set_sell, only: [:show, :edit, :update, :destroy]
 before_action :authenticate_user!
 # GET /sells || /sells.json
-  def index
-		@sells = Sell.all
-	end
 
   def index
+      @idPharmacy = current_user.role.pharmacy.id
     if params[:search]
       @searchUpcase = params[:search].upcase
-      @sells = Sell.where("ci LIKE ? OR ci LIKE ?", "%#{params[:search]}%","%#{@searchUpcase}%")
+      @sells = Sell.where(pharmacy_id: @idPharmacy).where("ci LIKE ? OR ci LIKE ?", "%#{params[:search]}%","%#{@searchUpcase}%")
     else
-      @sells = Sell.all
+      @sells = Sell.where(pharmacy_id: @idPharmacy)
     end
   end
 
@@ -86,8 +84,9 @@ before_action :authenticate_user!
   # POST /sells
   # POST /sells.json
   def create
+    @idPharmacy = current_user.role.pharmacy.id
     @sell = Sell.new(sell_params)
-
+    @sell.pharmacy_id = @idPharmacy
     respond_to do |format|
       if @sell.save
         #format.html { redirect_to @product, notice: 'Product was successfully created.' }

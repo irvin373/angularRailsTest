@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="panel">
+        <div class="panel-header">
+            <strong>Farmacias</strong>
+        </div>
+        <div class="panel-content">
+        <a class="btn btn-primary" href="#pharmacys/new"> crear nueva Farmacia </a>
+        <br/>
+        <br/>
+            
+            <div class="pre-scrollable">
+                <table class="table">
+                	<thead>
+                    <tr>
+                        <th>nombre Farmacia</th>
+                        <th>cambiar</th>
+                    </tr>
+                	</thead>
+                	<tbody>
+                    <tr ng-repeat="pharmacy in pharmacys">
+                    <td>{{pharmacy.name}}</td>
+                    <td><button class="btn btn-primary" ng-click="change(pharmacy.id)">cambiar</button></td>
+                    </tr>
+                	</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

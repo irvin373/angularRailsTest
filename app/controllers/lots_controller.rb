@@ -3,12 +3,18 @@ class LotsController < ApplicationController
   before_action :authenticate_user!
 # GET /lots || /lots.json
   def index
-    @lots =Lot.where(available: true)
-    # Lot.all
+    @idPharmacy = current_user.role.pharmacy.id
+    @lots =Lot.where(available: true, pharmacy_id: @idPharmacy)
   end
 
   # GET /lots/1 || /lots/1.json 
   def show
+  end
+
+  def report_expiration
+    today = Time.now.to_date
+    limitDate = hoy + 3.month
+    Lot.where(date_expiration: (today..limitDate))
   end
 
   # GET /lots/new
@@ -23,8 +29,10 @@ class LotsController < ApplicationController
   # POST /lots
   # POST /lots.json
   def create
+    @idPharmacy = current_user.role.pharmacy.id
     @lot = Lot.new(lot_params)
     @lot.available = true
+    @lot.pharmacy_id = @idPharmacy
     respond_to do |format|
       if @lot.save
         format.json { render :show, status: :created, location: @lot }
@@ -64,6 +72,6 @@ class LotsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lot_params
       params.require(:lot).permit(:product_id, :date_in, :date_expiration, :cost_in, 
-      	:quantity_lot, :available, :created_at ,:percentage_gain, :updated_at)
+      	:quantity_lot, :available,:pharmacy_id, :created_at ,:percentage_gain, :updated_at)
     end
 end
