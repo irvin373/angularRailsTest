@@ -1,6 +1,6 @@
 class HelpsController < ApplicationController
 	before_action :set_help, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
 # GET /helps || /helps.json
   def index
     @helps = Help.all

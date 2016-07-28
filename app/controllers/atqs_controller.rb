@@ -1,6 +1,6 @@
 class AtqsController < ApplicationController
 	before_action :set_atq, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
 # GET /atqs || /atqs.json
   def index
     if params[:search]

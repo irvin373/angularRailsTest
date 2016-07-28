@@ -16,6 +16,7 @@ myApp
         }
 
         function login(){
+            window.location.pathname = "/sys/";
             if ($scope.user === "beta"){
                 if($scope.password === "beta"){
                     window.location.pathname = "/sys/";

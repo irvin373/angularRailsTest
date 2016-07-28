@@ -1,9 +1,10 @@
 class LotsController < ApplicationController
 	before_action :set_lot, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
 # GET /lots || /lots.json
   def index
-    @lots = Lot.all
+    @lots =Lot.where(available: true)
+    # Lot.all
   end
 
   # GET /lots/1 || /lots/1.json 

@@ -39,13 +39,13 @@ myApp.factory('Last', ['$resource',function($resource){
 }]);
 
 myApp.factory('Reportday', ['$resource',function($resource){
-  return $resource('reports/day/:day.json',{},{
+  return $resource('/reports/day/:day.json',{},{
     query: { method: 'GET', isArray: true }
   })
 }]);
 
 myApp.factory('Reportday', ['$resource',function($resource){
-  return $resource('reports/mounth/:day.json',{},{
+  return $resource('/reports/mounth/:day.json',{},{
     query: { method: 'GET', isArray: true }
   })
 }]);

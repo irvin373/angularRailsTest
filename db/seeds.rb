@@ -13,13 +13,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Pharmacy.create(name: 'FARMACIA 1')
+Pharmacy.create(name: 'FARMACIA 2')
+Pharmacy.create(name: 'FARMACIA 3')
+
+Role.create(name: 'seller', pharmacy_id: 1)
+Role.create(name: 'admin', pharmacy_id: 1)
+
 Company.create(id: 200, line: 'no name')
 Product.create(code: '123ACD', comercialname: 'ampicilina', genericname: 'duclonfenato 5', unitprice: 1.2, company_id: 200)
 Product.create(code: '143ADD', comercialname: 'diclofenato', genericname: 'hidrogeno', unitprice: 2, company_id: 200)
-Atq.create( detail: 'anti inflamatorio')
-Comunicate.create(atq_id: 1, product_id: 1)
-Help.create(detail: 'alivia dolor')
-Helpwith.create(product_id: 1, help_id: 1)
 Sell.create( ci: '123AW', total: 70.5, date_sell: Time.now.to_date)
 Detail.create(sell_id: 1, product_id: 1, quantity: 3, promo: 1.2, sellpromo: false)
 Detail.create(sell_id: 1, product_id: 2, quantity: 5, promo: 1.5, sellpromo: true)

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  #root to: "home#index"
+  root 'login#index'
   resources :products
   resources :helps
   get 'reports/day/:date' => 'sells#report_day'
@@ -11,7 +14,6 @@ Rails.application.routes.draw do
   resources :atqs
   resources :companies
   resources :lots
-  root 'login#index'
   get  'sys' => 'products#index'
   post 'atqs/asign' => 'atqs#asign'
   post 'sells/asign' => 'sells#asign'
