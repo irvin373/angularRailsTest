@@ -6,6 +6,10 @@ class PharmacyController < ApplicationController
     @pharmacys = Pharmacy.all
   end
 
+  def unlogin
+    destroy_user_session_path(current_user)
+    
+  end
   # GET /pharmacys/1 || /pharmacys/1.json 
   def show
   end

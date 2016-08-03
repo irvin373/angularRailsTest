@@ -27,11 +27,21 @@ myApp.controller("LotListCtr",
 
   $scope.lots = Lots.query();
 
+  // Auth.currentUser().then(function(user) {
+  //           // User was logged in, or Devise returned
+  //           // previously authenticated session.
+  //           console.log(user); // => {id: 1, ect: '...'}
+  //       }, function(error) {
+  //           console.log(error);
+  // });
+
   $scope.redirectShow = function (Id) {
       var route = "/lots/"+Id;
       $location.path(route);
     };
 }]);
+
+
 
 myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log', 'ProductAutoComplete',
     function($scope, $resource, Lots, $location, $http, $uibModal, $log,ProductAutoComplete) {  

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  get 'logout' => 'pharmacy#unlogin'
   #root to: "home#index"
   root to: 'login#index'
   resources :products

@@ -21,6 +21,9 @@ module AngularRailsTest
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
     config.active_record.raise_in_transactional_callbacks = true
   end
 end

@@ -34,8 +34,32 @@ myApp.factory('AsignAtq', ['$resource',function($resource){
 
 //Controller
 myApp.controller("AtqListCtr", 
-    ['$scope', '$http', '$resource', 'Atqs', 'AtqsSearch', '$location', 
-    function($scope, $http, $resource, Atqs, AtqsSearch, $location) {
+    ['$scope', '$http', '$resource','Auth', 'Atqs', 'AtqsSearch', '$location', 
+    function($scope, $http, $resource, Auth, Atqs, AtqsSearch, $location) {
+
+  var config = {
+            headers: {
+                'X-HTTP-Method-Override': 'DELETE'
+            }
+        };
+        // Log in user...
+        // ...
+  $scope.salir = function(){
+    Auth.logout(config).then(function(oldUser) {
+              alert(oldUser.name + "you're signed out now.");
+          }, function(error) {
+              console.log(error);
+    });
+  };
+
+
+  Auth.currentUser().then(function(user) {
+            // User was logged in, or Devise returned
+            // previously authenticated session.
+            console.log(user); // => {id: 1, ect: '...'}
+        }, function(error) {
+            console.log(error);
+  });
 
   $scope.atqs = Atqs.query();
   $scope.query = "";
