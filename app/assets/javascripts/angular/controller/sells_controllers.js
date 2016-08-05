@@ -45,7 +45,7 @@ myApp.factory('Last', ['$resource',function($resource){
 }]);
 
 myApp.factory('Report2day', ['$resource',function($resource){
-  return $resource('/reports/day/:day.json',{},{
+  return $resource('/reports/day/:date1/:date2.json',{},{
     query: { method: 'GET', isArray: true }
   })
 }]);
@@ -181,7 +181,7 @@ myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParam
 
 myApp.controller("ReportsCtrDay", ['$scope', '$resource', '$location','Reportday', '$routeParams', 
   function($scope, $resource, $location, Reportday, $routeParams) {
-    $scope.day = {day: $routeParams.day};
+    $scope.day = $routeParams.day;
     $scope.sells = Reportday.query({day: $routeParams.day});
     $scope.CalculateTotal = function(){
       return $scope.sells.reduce(function(total, i){ return total += i.total},0);
@@ -190,8 +190,10 @@ myApp.controller("ReportsCtrDay", ['$scope', '$resource', '$location','Reportday
 
 myApp.controller("ReportsCtr2Day", ['$scope', '$resource', '$location', 'Report2day','$routeParams', 
   function($scope, $resource, $location, Report2day,$routeParams) {
-    $scope.day = {day: $routeParams.day};
-    $scope.sells = Report2day.query({day1: $routeParams.day1, day2: $routeParams.day2});
+    $scope.day = $routeParams.day1 + " al " + $routeParams.day2;
+    // $scope.day = {date1: $routeParams.day1, date2: $routeParams.day2};
+    // $scope.day += {date2: $routeParams.day};
+    $scope.sells = Report2day.query({date1: $routeParams.day1, date2: $routeParams.day2});
     $scope.CalculateTotal = function(){
       return $scope.sells.reduce(function(total, i){ return total += i.total},0);
     }
