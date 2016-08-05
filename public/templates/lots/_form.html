@@ -1,2 +1,51 @@
-<input type="text" placeholder="detail" ng-model="atq.detail">
-<br>
+    <div class="form-group">
+        <label class="control-label col-md-2">producto <span class="required">* </span> </label>
+        <div class="col-md-10">
+            <input list="products" class="form-control" placeholder="producto" name="lista" ng-model="lot.product_id">
+            <datalist id="products">
+              <option ng-repeat="product in products" value="{{product.comercialname}}">{{product.id}}</option>
+            </datalist>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label col-md-2">fecha ingreso<span class="required">* </span> </label>
+        <div class="col-md-10">
+            <input type="date" class="form-control" placeholder="dd/mm/aaaa" ng-model="lot.date_in" aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">fecha expiracion<span class="required">* </span></label>
+        <div class="col-md-10">
+            <input type="date" class="form-control" placeholder="dd/mm/aaaa" ng-model="lot.date_expiration">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label col-md-2">costo ingreso <span class="required">* </span> </label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" placeholder="costo ingreso:" ng-model="lot.cost_in">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Cantidad Lote <span class="required">* </span> </label>
+        <div class="col-md-10">
+            <input type="number" class="form-control" placeholder="cantidad lote:" ng-model="lot.quantity_lot">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">porcentaje de ganancia<span class="required">* </span> </label>
+        <div class="col-md-10">
+            <input type="number" class="form-control" placeholder="cantidad lote:" ng-model="lot.percentage_gain">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="pull-right">
+            <a class="btn btn-default" href="/#/lots">Volver</a>
+            <button class="btn btn-primary" type="submit">Registrar</button>
+        </div>
+    </div>

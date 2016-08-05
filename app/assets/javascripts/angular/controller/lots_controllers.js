@@ -45,9 +45,11 @@ myApp.controller("LotListCtr",
 }]);
 
 myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log', 'ProductAutoComplete',
-    function($scope, $resource, Lots, $location, $http, $uibModal, $log,ProductAutoComplete) {  
+    function($scope, $resource, Lots, $location, $http, $uibModal, $log,ProductAutoComplete) {
+  $scope.lot = {};  
   $scope.products = ProductAutoComplete.query();
   $scope.save = function() {
+    console.log($scope.lot);
     $scope.lot.product_id = test($scope.lot.product_id);
     Lots.create({lot: $scope.lot}, function(){
       var route = "/lots/";
