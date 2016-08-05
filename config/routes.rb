@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   get 'logout' => 'pharmacy#unlogin'
   #root to: "home#index"
-  root to: 'login#index'
+  #root to: 'login#index'
+  root to: "products#index"
   resources :products
   resources :helps
   get 'reports/day/:date' => 'sells#report_day'
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   resources :lots
   resources :pharmacy
   get 'pharmacy/:idP/change' => 'pharmacy#change'
-  get  'sys' => 'products#index'
+  #get  'sys' => 'products#index'
   post 'atqs/asign' => 'atqs#asign'
   post 'sells/asign' => 'sells#asign'
 
