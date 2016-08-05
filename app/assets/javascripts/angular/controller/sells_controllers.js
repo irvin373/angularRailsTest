@@ -5,6 +5,12 @@ myApp.factory('ProductSell', ['$resource',function($resource){
   })
 }]);
 
+myApp.factory('Rol', ['$resource', function($resource){
+  return $resource('/rols/:id.json', {}, {
+    query: { method: 'GET' }
+  });
+}]);
+
 myApp.factory('SellSearch', ['$resource',function($resource){
   return $resource('/sells.json?search=:query', {},{
     query: { method: 'GET', params: {query: '@query'} ,isArray: true }
@@ -38,7 +44,7 @@ myApp.factory('Last', ['$resource',function($resource){
   })
 }]);
 
-myApp.factory('Reportday', ['$resource',function($resource){
+myApp.factory('Report2day', ['$resource',function($resource){
   return $resource('/reports/day/:day.json',{},{
     query: { method: 'GET', isArray: true }
   })
@@ -52,14 +58,32 @@ myApp.factory('Reportday', ['$resource',function($resource){
 
 //Controller
 myApp.controller("SellListCtr", 
-    ['$scope', '$http', '$resource', 'Sells', 'SellSearch', '$location', 
-    function($scope, $http, $resource, Sells, SellSearch, $location) {
+    ['$scope', '$http', '$resource', 'Sells', 'SellSearch', 'Auth','Rol','$location', 
+    function($scope, $http, $resource, Sells, SellSearch, Auth,Rol,$location) {
 
   $scope.sells = Sells.query();
+  var role = "";
+  Auth.currentUser().then(function(user) {
+        role = Rol.query({id: user.role_id});
+            //console.log(user); // => {id: 1, ect: '...'}
+        }, function(error) {
+            console.log(error);
+  });
 
   $scope.search = function (query) {
       $scope.sells = SellSearch.query({search: query});
   };
+
+  $scope.reports = function () {
+      if (role.name == "admin") {
+        var route = "/reports/";
+        $location.path(route);  
+      }
+      else{
+        alert("no tiene los permisos para esta vista");
+      }
+  };
+  
 
   $scope.redirectShow = function (Id) {
       var route = "/sells/"+Id;
@@ -72,9 +96,10 @@ myApp.controller("SellAddProductSellCtr", ['$scope', '$resource', 'ProductSell',
   $scope.sell = Sell.get({id: $routeParams.id})
   $scope.products = ProductSell.query();
   $scope.quantity = 1;
-  $scope.sell_price = 0;
+  
   console.log($scope.products);
   $scope.doSomething = function(id_product,id_sell,quantity,sellPrice, almacen){
+    almacen=parseInt(almacen);
     if (quantity <= almacen) {
         AsignSell.query({id: id_sell},{product_id: id_product,sell_id: id_sell, quantity: quantity,sellpromo:sellPrice}, function(){
         alert('asignado a la factura');
@@ -155,9 +180,18 @@ myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParam
 }]);
 
 myApp.controller("ReportsCtrDay", ['$scope', '$resource', '$location','Reportday', '$routeParams', 
-  function($scope, $resource, $location, Reportday,$routeParams) {
+  function($scope, $resource, $location, Reportday, $routeParams) {
     $scope.day = {day: $routeParams.day};
     $scope.sells = Reportday.query({day: $routeParams.day});
+    $scope.CalculateTotal = function(){
+      return $scope.sells.reduce(function(total, i){ return total += i.total},0);
+    }
+}]);
+
+myApp.controller("ReportsCtr2Day", ['$scope', '$resource', '$location', 'Report2day','$routeParams', 
+  function($scope, $resource, $location, Report2day,$routeParams) {
+    $scope.day = {day: $routeParams.day};
+    $scope.sells = Report2day.query({day1: $routeParams.day1, day2: $routeParams.day2});
     $scope.CalculateTotal = function(){
       return $scope.sells.reduce(function(total, i){ return total += i.total},0);
     }
@@ -198,7 +232,7 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     });
     $routeProvider.when('/reports/day/:day1/:day2', {
       templateUrl: '/templates/reports/reportsDay.html',
-      controller: "ReportsCtrDay"
+      controller: "ReportsCtr2Day"
     });
     $routeProvider.when('/reports/mounth/:day', {
       templateUrl: '/templates/reports/reportsDay.html',

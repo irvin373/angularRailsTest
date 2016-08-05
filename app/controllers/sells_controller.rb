@@ -22,8 +22,10 @@ before_action :authenticate_user!
   end
 
   def report_dates
-    date_ini = Date.parse(params[:date1]) 
+    date_ini = Date.parse(params[:date1])
+    puts date_ini
     date_end = Date.parse(params[:date2])
+    puts date_end
     @sells = Sell.where(date_sell: (date_ini..date_end))
   end
 
@@ -43,6 +45,7 @@ before_action :authenticate_user!
   end
 
   def asign
+    @idPharmacy = current_user.role.pharmacy.id
     @detail = Detail.new
     @detail.product_id = params[:product_id] 
     @detail.sell_id = params[:sell_id] 
@@ -57,16 +60,18 @@ before_action :authenticate_user!
     end
 
     i = 0
-    @size = @detail.quantity
-    @lots = Lot.where(product_id: @detail.product_id).sort_by{|x| x.date_in}
-    while @size > 0
-      if @lots[i].quantity > @size
-        @lots[i].decrement_quantity(@size)
-        @size = 0  
+    size = @detail.quantity
+    @lots = Lot.where(product_id: @detail.product_id, pharmacy_id: @idPharmacy).sort_by{|x| x.date_in}
+    
+    while size > 0
+      size_lot = @lots[i].quantity_lot
+      if size_lot >= size
+        @lots[i].decrement_quantity(size)
+        size = 0  
       else
-        @lots[i].decrement_quantity(@lots[i].quantity)
-        @size -= @lots[i].quantity
-        i++
+        @lots[i].decrement_quantity(size_lot)
+        size = size - size_lot
+        i=i+1
       end
     end
 

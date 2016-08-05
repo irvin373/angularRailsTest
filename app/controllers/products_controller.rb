@@ -21,6 +21,9 @@ class ProductsController < ApplicationController
   def to_sell
     @idPharmacy = current_user.role.pharmacy.id
     @products = Product.select(:id,:comercialname,:unitprice).joins("INNER JOIN lots as l ON(products.id = l.product_id and available = True and pharmacy_id = #{@idPharmacy})").distinct
+    @products.each do |product|
+      product.genericname = Lot.where(product_id: product.id, pharmacy_id: @idPharmacy).sum(:quantity_lot)
+    end
   end
 
   # GET /products/1 || /products/1.json 

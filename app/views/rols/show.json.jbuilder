@@ -1,0 +1,1 @@
+json.extract! @rol, :id,:name
