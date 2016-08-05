@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html ng-app="myapplication">
-<head>
-  <title>Rails4CrudWithAngularjs</title>
+<html>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700italic,300' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'login', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!--<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>-->
   <script>document.write('<script src="http://' + (location.host || '${1:localhost}').split(':')[0] + ':${2:35729}/livereload.js?snipver=1"></' + 'script>')</script>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-    <div class="container" ng-view>
+    <div>
         <%= yield %>
         <br>
     </div>
@@ -19,5 +19,10 @@
             <p class="color-like">Sistema de gestion de Farmacias.</p>
         </div>
     </footer>
+
+        <video id="videoFondo" ng-class="blurry()"  loop autoplay muted>
+            <source id="mp4" src="/video/video3.mov" type="video/mp4">
+                <p>Your user agent does not support the HTML5 Video element.</p>
+        </video>
 </body>
 </html>

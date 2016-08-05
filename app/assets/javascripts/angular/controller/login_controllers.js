@@ -1,5 +1,5 @@
 myApp
-    .config(['$routeProvider','$locationProvider',loginRoutes])
+    //.config(['$routeProvider','$locationProvider',loginRoutes])
     .controller('LoginController',['$scope','$location','$resource',loginController])
 
     function loginController($scope,$location,$resource){
