@@ -12,6 +12,11 @@ class Product < ActiveRecord::Base
   	self.company.line
   end
 
+  def to_sell
+    @idPharmacy = current_user.role.pharmacy.id
+    resp = Lot.where(product_id: self.id, pharmacy_id: @idPharmacy).sum(:quantity_lot)
+  end
+
   def atq
   	resp = []
   	self.atqs.each do |atq|
@@ -30,7 +35,7 @@ class Product < ActiveRecord::Base
 
    def to_builder
     Jbuilder.new do |product|
-      product.(self, :line, :atq, :help)
+      product.(self, :line, :atq, :help, :to_sell)
     end
   end
 

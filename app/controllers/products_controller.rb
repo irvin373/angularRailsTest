@@ -19,7 +19,8 @@ class ProductsController < ApplicationController
   end
 
   def to_sell
-    @products = Product.select(:id,:comercialname,:unitprice).joins("INNER JOIN lots as l ON(products.id = l.product_id and available = True)")
+    @idPharmacy = current_user.role.pharmacy.id
+    @products = Product.select(:id,:comercialname,:unitprice).joins("INNER JOIN lots as l ON(products.id = l.product_id and available = True and pharmacy_id = #{@idPharmacy})").distinct
   end
 
   # GET /products/1 || /products/1.json 

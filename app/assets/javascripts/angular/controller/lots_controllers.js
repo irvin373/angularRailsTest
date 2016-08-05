@@ -14,6 +14,12 @@ myApp.factory('Lot', ['$resource', function($resource){
   });
 }]);
 
+myApp.factory('LotsSearch', ['$resource',function($resource){
+  return $resource('/lots.json?search=:query', {},{
+    query: { method: 'GET', params: {query: '@query'} ,isArray: true }
+  })
+}]);
+
 myApp.factory('ProductAutoComplete', ['$resource',function($resource){
   return $resource('/autocomplete.json', {},{
     query: { method: 'GET', isArray: true }
@@ -22,18 +28,15 @@ myApp.factory('ProductAutoComplete', ['$resource',function($resource){
 
 //Controller
 myApp.controller("LotListCtr", 
-    ['$scope', '$http', '$resource', 'Lots', '$location', 
-    function($scope, $http, $resource, Lots, $location) {
+    ['$scope', '$http', '$resource', 'Lots', 'LotsSearch','$location', 
+    function($scope, $http, $resource, Lots, LotsSearch, $location) {
 
   $scope.lots = Lots.query();
-
-  // Auth.currentUser().then(function(user) {
-  //           // User was logged in, or Devise returned
-  //           // previously authenticated session.
-  //           console.log(user); // => {id: 1, ect: '...'}
-  //       }, function(error) {
-  //           console.log(error);
-  // });
+  $scope.searchparams = "";
+  $scope.search = function (searchparams) {
+      console.log(searchparams);
+      $scope.lots = LotsSearch.query({search: searchparams});
+  };
 
   $scope.redirectShow = function (Id) {
       var route = "/lots/"+Id;
@@ -41,16 +44,14 @@ myApp.controller("LotListCtr",
     };
 }]);
 
-
-
 myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log', 'ProductAutoComplete',
     function($scope, $resource, Lots, $location, $http, $uibModal, $log,ProductAutoComplete) {  
   $scope.products = ProductAutoComplete.query();
   $scope.save = function() {
-    console.log($scope.lot.product_id);
     $scope.lot.product_id = test($scope.lot.product_id);
     Lots.create({lot: $scope.lot}, function(){
-      $location.path("/sys/#/lots");
+      var route = "/lots/";
+      $location.path(route);
     }, function(error){
         console.log(error);
     });

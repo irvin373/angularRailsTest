@@ -1,3 +1,3 @@
 json.array!(@products) do |product|
-  json.extract! product, :id, :comercialname, :unitprice
+  json.extract! product, :id, :comercialname, :unitprice,:to_sell
 end

@@ -8,6 +8,7 @@
                     <th>Nombre comercial</th>
                     <th>Precio unitario</th>
                     <th>cantidad</th>
+                    <th>cantidad Disponible</th>
                     <th>precio venta</th>
                     <th>agregar venta</th>
                 </tr>
@@ -15,8 +16,9 @@
                     <td>{{product.comercialname}}</td>
 					<td>{{product.unitprice}}</td>
                     <td><input class="smallInput" type="number" ng-model="quantity"></td>
+                    <td>{{product.to_sell}}</td>
                     <td><input ng-init="sell_price = product.unitprice" ng-model="sell_price" class="smallInput" type="text"></td>
-                    <td><button class="btn btn-primary" ng-click="doSomething(product.id, sell.id, quantity,sell_price)">agregar</button></td>
+                    <td><button class="btn btn-primary" ng-click="doSomething(product.id, sell.id, quantity,sell_price,product.to_sell)">agregar</button></td>
                 </tr>
             </table>
     </div>

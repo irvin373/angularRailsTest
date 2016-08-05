@@ -20,6 +20,8 @@ Pharmacy.create(name: 'FARMACIA 3')
 Role.create(name: 'seller', pharmacy_id: 1)
 Role.create(name: 'admin', pharmacy_id: 1)
 
+
+
 Company.create(id: 200, line: 'no name')
 Product.create(code: '123ACD', comercialname: 'ampicilina', genericname: 'duclonfenato 5', unitprice: 1.2, company_id: 200)
 Product.create(code: '143ADD', comercialname: 'diclofenato', genericname: 'hidrogeno', unitprice: 2, company_id: 200)

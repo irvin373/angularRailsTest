@@ -2,8 +2,15 @@ class Lot < ActiveRecord::Base
   belongs_to :product
   belongs_to :pharmacy
 
+  	def decrement_quantity(quantity)
+  		self.quantity_lot -= quantity
+  		if self.quantity_lot <= 0
+  			self.available = false
+  		end
+  		self.save
+  	end
+
   	def product_commercialname
-  		100.times{ print "="}
   		puts self.product_id
 		Product.select(:comercialname).find(self.product_id).comercialname
 	end

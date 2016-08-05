@@ -5,6 +5,14 @@ class LotsController < ApplicationController
   def index
     @idPharmacy = current_user.role.pharmacy.id
     @lots =Lot.where(available: true, pharmacy_id: @idPharmacy)
+
+    # if params[:search]
+    #   @searchUpcase = params[:search].upcase
+    #   @product = Product.where("comercialname LIKE ? OR comercialname LIKE ?", "%#{params[:search]}%","%#{@searchUpcase}%").take(1)
+    #   @lots =Lot.where(available: true, pharmacy_id: @idPharmacy, product_id: @product.first.id)
+    # else
+    #   @lots =Lot.where(available: true, pharmacy_id: @idPharmacy)
+    # end
   end
 
   # GET /lots/1 || /lots/1.json 
@@ -13,8 +21,8 @@ class LotsController < ApplicationController
 
   def report_expiration
     today = Time.now.to_date
-    limitDate = hoy + 3.month
-    Lot.where(date_expiration: (today..limitDate))
+    limitDate = today + 3.month
+    @lots = Lot.where(date_expiration: (today..limitDate))
   end
 
   # GET /lots/new

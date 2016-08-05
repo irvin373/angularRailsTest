@@ -73,14 +73,20 @@ myApp.controller("SellAddProductSellCtr", ['$scope', '$resource', 'ProductSell',
   $scope.products = ProductSell.query();
   $scope.quantity = 1;
   $scope.sell_price = 0;
-  
-  $scope.doSomething = function(id_product,id_sell,quantity,sellPrice){
-    AsignSell.query({id: id_sell},{product_id: id_product,sell_id: id_sell, quantity: quantity,sellpromo:sellPrice}, function(){
-      alert('asignado a la factura');
-      }, function(error) {
-        alert('Agregado');
-        console.log(error)
-      });
+  console.log($scope.products);
+  $scope.doSomething = function(id_product,id_sell,quantity,sellPrice, almacen){
+    if (quantity <= almacen) {
+        AsignSell.query({id: id_sell},{product_id: id_product,sell_id: id_sell, quantity: quantity,sellpromo:sellPrice}, function(){
+        alert('asignado a la factura');
+        }, function(error) {
+          alert('Agregado');
+          console.log(error)
+        });
+        $scope.products = ProductSell.query();
+    }
+    else{
+      alert('la cantidad que intenta vender no se encuentra en el Almacen')
+    }
   };
 }]);
 

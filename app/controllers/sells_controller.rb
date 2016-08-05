@@ -38,10 +38,6 @@ before_action :authenticate_user!
     @sells = Sell.where(date_sell: (date_ini..date_end))
   end
 
-  def total_day
-      @sell = Sell.first
-  end
-
   def updateTotal(sell)
     sell.details.select(:quantity, :sellpromo).map{|x| x.quantity*x.sellpromo}.reduce(:+)
   end
@@ -52,12 +48,28 @@ before_action :authenticate_user!
     @detail.sell_id = params[:sell_id] 
     @detail.quantity = params[:quantity] 
     @detail.sellpromo = params[:sellpromo]
+    
     @product = Product.find(@detail.product_id)
     if @product.unitprice == @detail.sellpromo
       @detail.promo = false
     else
       @detail.promo = true
     end
+
+    i = 0
+    @size = @detail.quantity
+    @lots = Lot.where(product_id: @detail.product_id).sort_by{|x| x.date_in}
+    while @size > 0
+      if @lots[i].quantity > @size
+        @lots[i].decrement_quantity(@size)
+        @size = 0  
+      else
+        @lots[i].decrement_quantity(@lots[i].quantity)
+        @size -= @lots[i].quantity
+        i++
+      end
+    end
+
     respond_to do |format|
       if @detail.save
         @sell = Sell.find(@detail.sell_id)

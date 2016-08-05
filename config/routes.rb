@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'sells/last' => 'sells#last'
   get 'autocomplete' => 'products#options'
   get 'product_sell' => 'products#to_sell'
+  get 'report_expiration' => 'lots#report_expiration'
   #get 'pharmacys' => 'pharmacy#index'
   resources :sells
   resources :atqs
