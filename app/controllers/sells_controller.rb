@@ -22,22 +22,25 @@ before_action :authenticate_user!
   end
 
   def report_dates
+    @idPharmacy = current_user.role.pharmacy.id
     date_ini = Date.parse(params[:date1])
     puts date_ini
     date_end = Date.parse(params[:date2])
     puts date_end
-    @sells = Sell.where(date_sell: (date_ini..date_end))
+    @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
   end
 
   def report_day
+    @idPharmacy = current_user.role.pharmacy.id
     date = params[:date]
-    @sells = Sell.where(date_sell: Date.parse(date))
+    @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: Date.parse(date))
   end
 
   def report_mounth
+    @idPharmacy = current_user.role.pharmacy.id
     date_ini = Date.parse(params[:date]) 
     date_end = date_ini.end_of_month
-    @sells = Sell.where(date_sell: (date_ini..date_end))
+    @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
   end
 
   def updateTotal(sell)
