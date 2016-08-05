@@ -186,6 +186,11 @@ myApp.controller("ReportsCtrDay", ['$scope', '$resource', '$location','Reportday
     $scope.CalculateTotal = function(){
       return $scope.sells.reduce(function(total, i){ return total += i.total},0);
     }
+
+    $scope.redirectShow = function (Id) {
+      var route = "/sells/"+Id;
+      $location.path(route);
+    };
 }]);
 
 myApp.controller("ReportsCtr2Day", ['$scope', '$resource', '$location', 'Report2day','$routeParams', 
@@ -197,6 +202,11 @@ myApp.controller("ReportsCtr2Day", ['$scope', '$resource', '$location', 'Report2
     $scope.CalculateTotal = function(){
       return $scope.sells.reduce(function(total, i){ return total += i.total},0);
     }
+
+    $scope.redirectShow = function (Id) {
+      var route = "/sells/"+Id;
+      $location.path(route);
+    };
 }]);
 
 //Routes

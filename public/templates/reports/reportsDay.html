@@ -19,18 +19,14 @@
                             <th>ci</th>
                             <th>total</th>
                             <th>fecha venta</th>
-                            <th colspan="3"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="sell in sells | filter:{sell:filterSell} | orderBy: 'id'">
+                        <tr ng-repeat="sell in sells | filter:{sell:filterSell} | orderBy: 'id'" ng-click="redirectShow(sell.id)">
                             <td>{{sell.id}}</td>
                             <td>{{sell.ci}}</td>
                             <td>{{sell.total}}</td>
                             <td>{{sell.date_sell}}</td>
-                            <td>
-                                <a class="btn btn-primary" href="{{'#/sells/'+ sell.id}}">show</a>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
