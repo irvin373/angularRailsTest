@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :companies
   resources :lots
   resources :pharmacy
+  get 'users' => 'pharmacy#users'
+  get 'users/:idP/change' => 'pharmacy#changeRol'
   get 'pharmacy/:idP/change' => 'pharmacy#change'
   #get  'sys' => 'products#index'
   post 'atqs/asign' => 'atqs#asign'

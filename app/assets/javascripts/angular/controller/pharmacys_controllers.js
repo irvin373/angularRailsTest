@@ -6,6 +6,18 @@ myApp.factory('Pharmacys', ['$resource',function($resource){
   })
 }]);
 
+myApp.factory('User', ['$resource',function($resource){
+  return $resource('/users.json', {},{
+    query: { method: 'GET', isArray: true }
+  })
+}]);
+
+myApp.factory('UserRol', ['$resource',function($resource){
+  return $resource('/users/:idP/change.json', {},{
+    query: { method: 'GET', params: {idP: '@id'} }
+  })
+}]);
+
 myApp.factory('PharmacyChange', ['$resource',function($resource){
   return $resource('/pharmacy/:idP/change.json', {},{
     query: { method: 'GET', params: {idP: '@id'} }
@@ -28,6 +40,16 @@ myApp.controller("PharmacyListCtr", ['$scope', '$http', '$resource', 'Pharmacys'
     $scope.change = function (id) {
       PharmacyChange.query({idP: id});
       alert('cambiando de Farmacia');
+    };
+}]);
+
+myApp.controller("UserListCtr", ['$scope', '$http', '$resource', 'User', 'UserRol','$location', 
+    function($scope, $http, $resource, User, UserRol,$location) {
+
+    $scope.users = User.query();
+    $scope.change_role = function (id) {
+      UserRol.query({idP: id});
+      alert('cambiando de Rol');
     };
 }]);
 
@@ -55,9 +77,13 @@ myApp.controller("PharmacyUpdateCtr", ['$scope', '$resource', 'Pharmacy', '$loca
 
 //Routes
 myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-    $routeProvider.when('/pharmacys',{
+    $routeProvider.when('/pharmacy',{
       templateUrl: '/templates/pharmacys/index.html',
       controller: 'PharmacyListCtr'
+    });
+    $routeProvider.when('/users',{
+      templateUrl: '/templates/pharmacys/users.html',
+      controller: 'UserListCtr'
     });
     $routeProvider.when('/pharmacys/new', {
       templateUrl: '/templates/pharmacys/new.html',
@@ -69,9 +95,6 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     });
     $routeProvider.when('/pharmacys/:id/delete', {
       controller: "PharmacyDeleteCtr"
-    });
-    $routeProvider.otherwise({
-      redirectTo: '/pharmacys'
     });
   }
 ]);

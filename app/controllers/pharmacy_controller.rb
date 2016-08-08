@@ -6,12 +6,21 @@ class PharmacyController < ApplicationController
     @pharmacys = Pharmacy.all
   end
 
-  def unlogin
-    destroy_user_session_path(current_user)
-    
+  def users    
+    @users = User.all
   end
+
   # GET /pharmacys/1 || /pharmacys/1.json 
   def show
+  end
+
+  def changeRol
+    id = params[:idP]
+    user = User.find(id)
+    if ser.role_id == 2
+      user.role_id = 1
+      user.save
+    end
   end
 
   def change

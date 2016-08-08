@@ -63,16 +63,17 @@ myApp.controller("SellListCtr",
 
   $scope.sells = Sells.query();
   var role = "";
+
+  $scope.search = function (query) {
+      $scope.sells = SellSearch.query({search: query});
+  };
+  
   Auth.currentUser().then(function(user) {
         role = Rol.query({id: user.role_id});
             //console.log(user); // => {id: 1, ect: '...'}
         }, function(error) {
             console.log(error);
   });
-
-  $scope.search = function (query) {
-      $scope.sells = SellSearch.query({search: query});
-  };
 
   $scope.reports = function () {
       if (role.name == "admin") {
@@ -83,7 +84,6 @@ myApp.controller("SellListCtr",
         alert("no tiene los permisos para esta vista");
       }
   };
-  
 
   $scope.redirectShow = function (Id) {
       var route = "/sells/"+Id;

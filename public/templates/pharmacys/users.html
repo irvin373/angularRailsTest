@@ -1,10 +1,10 @@
 <div class="row">
     <div class="panel">
         <div class="panel-header">
-            <strong>Farmacias</strong>
+            <strong>Usuarios</strong>
         </div>
         <div class="panel-content">
-        <a class="btn btn-primary" href="#users"> ver usuarios </a>
+        <a class="btn btn-primary" href="#pharmacy"> Volver a Farmacias </a>
         <br/>
         <br/>
             
@@ -12,14 +12,16 @@
                 <table class="table">
                 	<thead>
                     <tr>
-                        <th>nombre Farmacia</th>
-                        <th>cambiar</th>
+                        <th>email</th>
+                        <th>rol Actual</th>
+                        <th>cambiar a vendedor</th>
                     </tr>
                 	</thead>
                 	<tbody>
-                    <tr ng-repeat="pharmacy in pharmacys">
-                    <td>{{pharmacy.name}}</td>
-                    <td><button class="btn btn-primary" ng-click="change(pharmacy.id)">cambiar</button></td>
+                    <tr ng-repeat="user in users">
+                    <td>{{user.email}}</td>
+                    <td>{{user.rolename}}</td>
+                    <td><button class="btn btn-primary" ng-click="change_role(user.id)">cambiar</button></td>
                     </tr>
                 	</tbody>
                 </table>
