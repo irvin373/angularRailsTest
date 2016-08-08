@@ -19,7 +19,7 @@ Pharmacy.create(name: 'FARMACIA 3')
 
 Role.create(name: 'seller', pharmacy_id: 1)
 Role.create(name: 'admin', pharmacy_id: 1)
-
+Role.create(name: 'registred', pharmacy_id: 1)
 
 
 Company.create(id: 200, line: 'no name')

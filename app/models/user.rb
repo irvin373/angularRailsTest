@@ -5,12 +5,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  before_save do
+  before_create do
     usuario = User.first 
     if usuario.nil? 
       self.role_id = 2
     else
-      self.role_id = 1
+      self.role_id = 3
     end
   end
 

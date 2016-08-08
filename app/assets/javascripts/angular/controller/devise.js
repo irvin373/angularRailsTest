@@ -28,8 +28,8 @@ myApp.controller("LogoutCtr",
   $scope.salir = function(){
     Auth.logout(config).then(function(oldUser) {
               alert(oldUser.name + "you're signed out now.");
-              // window.location.href = "/users/sign_in";
-              $location.path("/users/sign_in");
+              window.location.href = "/";
+              //$location.path("/users/sign_in");
           }, function(error) {
               console.log(error);
     });

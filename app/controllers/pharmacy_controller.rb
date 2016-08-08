@@ -17,7 +17,7 @@ class PharmacyController < ApplicationController
   def changeRol
     id = params[:idP]
     user = User.find(id)
-    if ser.role_id == 2
+    if current_user.role_id == 2
       user.role_id = 1
       user.save
     end

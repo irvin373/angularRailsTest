@@ -28,11 +28,19 @@
             </ul>
         </div>
     </nav>
-
-    <div class="container" ng-view>
-        <%= yield %>
-        <br>
-    </div>
+    <% if user_signed_in? %>
+    <% if current_user.role_id != 3 %>
+      <div class="container" ng-view>
+          <%= yield %>
+          <br>
+      </div>
+    <%else%>
+      <div class="container">
+          <h2>No tiene permisos para acceder a la aplicacion consulte con el administrador del sistema</h2>
+          <br>
+      </div>
+    <% end %>
+    <% end %>
 
     <footer class="footer">
         <div class="container">
