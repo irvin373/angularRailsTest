@@ -21,18 +21,12 @@
                 <th>comercial name</th>
                 <th>generic name</th>
                 <th>unit cost</th>
-                <th>company</th>
-                <th></th>
             </tr>
-            <tr ng-repeat="product in atq.Have_products">
+            <tr ng-click="verProducto(product.id)" ng-repeat="product in atq.Have_products">
                 <td>{{product.code}}</td>
                 <td>{{product.comercialname}}</td>
                 <td>{{product.genericname}}</td>
                 <td>{{product.unitprice}}</td>
-                <td>{{product.line}}</td>
-                <td>
-                    <a href="/#/products/{{product.id}}">Mostrar</a>
-                </td>
             </tr>
         </table>
         <a class="btn btn-default" href="/#/atqs">Volver</a>

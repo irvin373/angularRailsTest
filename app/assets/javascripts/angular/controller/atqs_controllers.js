@@ -75,6 +75,11 @@ myApp.controller("AtqShowCtr", ['$scope', '$resource', 'Atq', '$location', '$rou
   function($scope, $resource, Atq, $location, $routeParams) {
   $scope.atq = Atq.get({id: $routeParams.id});
 
+  $scope.verProducto = function(ProductId){
+    var route = "/products/"+ProductId+"/show";
+    $location.path(route);
+  };
+
   $scope.deleteAtq = function (atqId) {
     if (confirm("quiere eliminar esta accion terapeutica?")){
       Atq.delete({ id: atqId }, function(){
@@ -90,7 +95,6 @@ myApp.controller("AsignAtqCtr", ['$scope', '$resource', 'ProductAtq', 'AsignAtq'
   $scope.products = ProductAtq.query();
   
   $scope.asign = function(IdAsign){
-      alert('asignado a' + $scope.atq.detail);
       AsignAtq.query({idProd: IdAsign},{idAtq: $scope.atq.id},function(){
         console.log('Entro');    
       }, function(error) {

@@ -39,7 +39,6 @@ myApp.controller("PharmacyListCtr", ['$scope', '$http', '$resource', 'Pharmacys'
     $scope.pharmacys = Pharmacys.query();
     $scope.change = function (id) {
       PharmacyChange.query({idP: id});
-      alert('cambiando de Farmacia');
     };
 }]);
 
@@ -49,7 +48,7 @@ myApp.controller("UserListCtr", ['$scope', '$http', '$resource', 'User', 'UserRo
     $scope.users = User.query();
     $scope.change_role = function (id) {
       UserRol.query({idP: id});
-      alert('cambiando de Rol');
+      $scope.users = User.query();
     };
 }]);
 

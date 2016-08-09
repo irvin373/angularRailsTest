@@ -30,12 +30,31 @@
                     <td>{{product.genericname}}</td>
                     <td>{{product.unitprice}}</td>
                     <td>
-                        <button class="btn btn-success" ng-click="asign(product.id)">Asignar</button>
+                        <button data-toggle="modal" data-target="#MessageAtq" class="btn btn-success" ng-click="asign(product.id)">Asignar</button>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-</div>
-
 <a ng-model="atq" class="btn btn-default" href="/#/atqs/{{atq.id}}">Volver</a>
+</div>
+<!-- Modal -->
+  <div class="modal fade" id="MessageAtq" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Mensaje</h4>
+        </div>
+        <div class="modal-body">
+          <p ng-model="atq">asignando a {{atq.detail}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

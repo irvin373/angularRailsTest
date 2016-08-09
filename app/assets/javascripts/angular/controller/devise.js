@@ -27,7 +27,6 @@ myApp.controller("LogoutCtr",
   $scope.salir = function(){
     Auth.logout(config).then(function(oldUser) {
               window.location.href = "/";
-              alert("usted esta saliendo del sistema.");
               //$location.path("/users/sign_in");
           }, function(error) {
               console.log(error);
