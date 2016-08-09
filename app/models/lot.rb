@@ -10,18 +10,37 @@ class Lot < ActiveRecord::Base
   		self.save
   	end
 
-  	def product_commercialname
-  		puts self.product_id
-		Product.select(:comercialname).find(self.product_id).comercialname
+  def product_commercialname
+  		Product.select(:comercialname).find(self.product_id).comercialname
 	end
 
-	def productLot
+  def colorExpiration
+    resp = "green"
+    date = self.date_expiration
+    today = Time.now.to_date
+    limitDate3 = today + 3.month
+    limitDate2 = today + 2.month
+    if date > limitDate2 && date < limitDate3
+      resp = "yellow"
+    else
+      if date < limitDate3
+        resp = "red"
+      end
+    end
+    resp
+  end
+
+  def unitprice
+    Product.select(:unitprice).find(self.product_id).unitprice
+  end
+
+  def productLot
 		Lot.where(available: true, product_id: self.product_id).sum(:quantity_lot)
 	end
 
 	def to_builder
 	    Jbuilder.new do |lot|
-	      lot.(self, :product_commercialname, :productLot)
+	      lot.(self, :product_commercialname, :productLot, :unitprice, :colorExpiration)
 	    end
 	end
 end

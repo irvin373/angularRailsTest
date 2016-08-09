@@ -22,7 +22,7 @@ class LotsController < ApplicationController
   def report_expiration
     @idPharmacy = current_user.role.pharmacy.id
     today = Time.now.to_date
-    limitDate = today + 3.month
+    limitDate = today + 6.month
     @lots = Lot.where(pharmacy_id: @idPharmacy,date_expiration: (today..limitDate))
   end
 

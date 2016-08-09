@@ -58,9 +58,11 @@
         <div class="panel">
             <div class="panel-header">
                 <strong>Notificaciones</strong>
-            </div>
-            <div class="panel-content">
                 <p>Atencion productos por vencer!</p>
+            </div>
+            <div class="pre-scrollable">                
+            <p style="background-color:{{productEx.colorExpiration}};" ng-repeat="productEx in productsExpiration" class="panel-content">
+                {{productEx.product_commercialname}}</p>
             </div>
         </div>
     </div>

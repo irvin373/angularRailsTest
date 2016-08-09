@@ -1,7 +1,7 @@
 myApp
     .config(['$routeProvider','$locationProvider',productRoutes])
     .controller("ProductAddCtr",['$scope','$resource','$location','Products','Companys',productAddCtr])
-    .controller("ProductListCtr",['$scope','$resource','$http','$location','ProductSearch','Product','Products',productListCtr])
+    .controller("ProductListCtr",['$scope','$resource','$http','$location','expirationProducts','ProductSearch','Product','Products',productListCtr])
     .controller("ProductUpdateCtr",['$scope','$resource','$location','$routeParams','Product',productUpdateCtr])
     .controller("ProductShowCtr", ['$scope', '$resource','$location', '$routeParams','Product',productShowCtr])
 
@@ -12,12 +12,12 @@ function productRoutes($routeProvider, $locationProvider) {
         controller: 'ProductListCtr'
     });
 
-    $routeProvider .when('/products/new',{
+    $routeProvider.when('/products/new',{
         templateUrl: '/templates/products/new.html',
         controller: 'ProductAddCtr'
     });
         
-    $routeProvider .when('/products/:id/edit',{
+    $routeProvider.when('/products/:id/edit',{
         templateUrl: '/templates/products/edit.html',
         controller: 'ProductUpdateCtr'
     });
@@ -54,7 +54,7 @@ function productAddCtr($scope,$resource,$location,Products,Companys){
     }
 }
 
-function productListCtr($scope,$resource,$http,$location,ProductSearch,Product,Products){
+function productListCtr($scope,$resource,$http,$location,expirationProducts,ProductSearch,Product,Products){
     $scope.selectedFilter = "comercialname";
     $scope.search = {};
     $scope.query = "";
@@ -69,8 +69,10 @@ function productListCtr($scope,$resource,$http,$location,ProductSearch,Product,P
         line: "linea",
         genericname: "nombre generico"
     }
+    $scope.productsExpiration = expirationProducts.query(); 
 
     $scope.searchProduct = function(query,filter) {
+        console.log($scope.productsExpiration);
         $scope.products = ProductSearch.query({search: query, filter: filter});
     }
 
