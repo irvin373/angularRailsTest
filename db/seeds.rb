@@ -21,20 +21,15 @@ Role.create(name: 'seller', pharmacy_id: 1)
 Role.create(name: 'admin', pharmacy_id: 1)
 Role.create(name: 'registred', pharmacy_id: 1)
 
-
-Company.create(id: 200, line: 'no name')
-Product.create(code: '123ACD', comercialname: 'ampicilina', genericname: 'duclonfenato 5', unitprice: 1.2, company_id: 200)
-Product.create(code: '143ADD', comercialname: 'diclofenato', genericname: 'hidrogeno', unitprice: 2, company_id: 200)
-Sell.create( ci: '123AW', total: 70.5, date_sell: Time.now.to_date)
-Detail.create(sell_id: 1, product_id: 1, quantity: 3, promo: 1.2, sellpromo: false)
-Detail.create(sell_id: 1, product_id: 2, quantity: 5, promo: 1.5, sellpromo: true)
-Lot.create( product_id: 1, date_in: Time.now.to_date, date_expiration: Time.now.to_date, cost_in: 20, quantity_lot: 10, available: true)
-Lot.create( product_id: 1, date_in: Time.now.to_date, date_expiration: Time.now.to_date, cost_in: 100, quantity_lot: 50, available: true)
-Lot.create( product_id: 2, date_in: Time.now.to_date, date_expiration: Time.now.to_date, cost_in: 200, quantity_lot: 200, available: true)
-
-#json.extract! @lot, :product_id, :date_in, :date_expiration, :cost_in, :quantity_lot, :available
-#json.extract! @detail, :sell_id, :product_id, :quantity, :promo, :sellpromo
-
+# Company.create(id: 200, line: 'no name')
+# Product.create(code: '123ACD', comercialname: 'ampicilina', genericname: 'duclonfenato 5', unitprice: 1.2, company_id: 200)
+# Product.create(code: '143ADD', comercialname: 'diclofenato', genericname: 'hidrogeno', unitprice: 2, company_id: 200)
+# Sell.create( ci: '123AW', total: 70.5, date_sell: Time.now.to_date)
+# Detail.create(sell_id: 1, product_id: 1, quantity: 3, promo: 1.2, sellpromo: false)
+# Detail.create(sell_id: 1, product_id: 2, quantity: 5, promo: 1.5, sellpromo: true)
+# Lot.create( product_id: 1, date_in: Time.now.to_date, date_expiration: Time.now.to_date, cost_in: 20, quantity_lot: 10, available: true)
+# Lot.create( product_id: 1, date_in: Time.now.to_date, date_expiration: Time.now.to_date, cost_in: 100, quantity_lot: 50, available: true)
+# Lot.create( product_id: 2, date_in: Time.now.to_date, date_expiration: Time.now.to_date, cost_in: 200, quantity_lot: 200, available: true)
 
 Atq.create( detail: 'ANTAGONISTAS DE LA VITAMINA K')
 Atq.create( detail: 'HEPARINAS SIN FRACCIONAR')

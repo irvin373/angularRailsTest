@@ -14,7 +14,6 @@ myApp.controller("LogoutCtr",
           $scope.isAdmin = true;
         }
           console.log($scope.isAdmin);
-            //console.log(user); // => {id: 1, ect: '...'}
         }, function(error) {
             console.log(error);
   });
@@ -27,8 +26,8 @@ myApp.controller("LogoutCtr",
     
   $scope.salir = function(){
     Auth.logout(config).then(function(oldUser) {
-              alert(oldUser.name + "you're signed out now.");
               window.location.href = "/";
+              alert("usted esta saliendo del sistema.");
               //$location.path("/users/sign_in");
           }, function(error) {
               console.log(error);

@@ -9,7 +9,11 @@ class Product < ActiveRecord::Base
   has_many :lots
 
   def line
-  	self.company.line
+    resp = self.company
+    if resp.nil?
+      resp = Company.first
+    end
+  	resp.line
   end
 
   def atq

@@ -77,7 +77,6 @@ function productListCtr($scope,$resource,$http,$location,expirationProducts,Prod
     };
 
     $scope.searchProduct = function(query,filter) {
-        console.log($scope.productsExpiration);
         $scope.products = ProductSearch.query({search: query, filter: filter});
     };
 
