@@ -14,8 +14,13 @@ function companyAutoCompleteCtr($scope,$q,$log,Companys){
     self.setSearchText = setSearchText;
     loadCompanys();
 
-    function newCompany(){
-        console.log("Caracteristica por implementar");
+    function newCompany(text){
+      var data = {line: text};
+      Companys.create({company: data}, function(){
+            console.log('esta ingresando');    
+          }, function(error){
+              console.log(error)
+          });
     }
 
     function loadCompanys(){
