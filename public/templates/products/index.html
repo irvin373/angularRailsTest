@@ -61,7 +61,7 @@
                 <p>Atencion productos por vencer!</p>
             </div>
             <div class="pre-scrollable">                
-            <p style="background-color:{{productEx.colorExpiration}};" ng-repeat="productEx in productsExpiration" class="panel-content">
+            <p ng-click="verLote(productEx.id)" style="background-color:{{productEx.colorExpiration}};" ng-repeat="productEx in productsExpiration" class="panel-content">
                 {{productEx.product_commercialname}}</p>
             </div>
         </div>

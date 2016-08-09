@@ -71,10 +71,15 @@ function productListCtr($scope,$resource,$http,$location,expirationProducts,Prod
     }
     $scope.productsExpiration = expirationProducts.query(); 
 
+    $scope.verLote = function(id){
+        var route = "/lots/"+id;
+        $location.path(route);
+    };
+
     $scope.searchProduct = function(query,filter) {
         console.log($scope.productsExpiration);
         $scope.products = ProductSearch.query({search: query, filter: filter});
-    }
+    };
 
     function redirectShow(id){
         var route = "/products/"+id+"/show";
