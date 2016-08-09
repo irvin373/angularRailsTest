@@ -20,12 +20,13 @@
               <li><a class="text-navbar" href="#/pharmacy"><strong>Farmacias</strong></a></li>
               <li><a class="text-navbar" href="#/lots"><strong>Almacen</strong></a></li>
               <li><a class="text-navbar"  href="#/atqs"><strong>Atqs</strong></a></li>
-              <li><a class="text-navbar"  data-toggle="modal" data-target="#myModal" href="#" ng-click="salir()" ><strong>salir</strong></a></li>
-
-              <% if user_signed_in? %>
-                Loggeado como <%= current_user.email %>
-              <% end %>
             </ul>
+            <% if user_signed_in? %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span><%= current_user.email %></a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal" ng-click="salir()"><span class="glyphicon glyphicon-log-in"></span>Salir</a></li>
+                </ul>
+            <% end %>
         </div>
     </nav>
     <% if user_signed_in? %>
