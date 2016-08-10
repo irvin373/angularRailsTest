@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #get 'report/index'
+
   devise_for :users
   get 'logout' => 'pharmacy#unlogin'
   #root to: "home#index"
@@ -6,6 +8,11 @@ Rails.application.routes.draw do
   root to: "products#index"
   resources :products
   resources :helps
+  get 'pdf/report/day/:date' => 'report#report_day'
+
+  get 'pdf/report/mounth/:date' => 'report#report_mounth'
+  get 'pdf/report/day/:date1/:date2' => 'report#report_dates'
+
   get 'reports/day/:date' => 'sells#report_day'
   get 'reports/day/:date1/:date2' => 'sells#report_dates'
   get 'reports/mounth/:date' => 'sells#report_mounth'
@@ -22,7 +29,7 @@ Rails.application.routes.draw do
   get 'users' => 'pharmacy#users'
   get 'users/:idP/change' => 'pharmacy#changeRol'
   get 'pharmacy/:idP/change' => 'pharmacy#change'
-  #get  'sys' => 'products#index'
+  #get  'report' => 'report#index'
   post 'atqs/asign' => 'atqs#asign'
   post 'sells/asign' => 'sells#asign'
   get 'rols/:id' => 'rols#show'

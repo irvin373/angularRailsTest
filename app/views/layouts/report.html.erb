@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="myapplication">
+    <head>
+        <title>Reportes</title>
+        <%= stylesheet_link_tag 'report', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    </head>
+    <body>
+        <div>
+            <center><h3>Farmacia Loida Hinojosa</h3></center>
+            <hr class="header"/>
+        </div>
+        <div>
+            <%= yield %>
+        </div>
+    </body>
+</html>

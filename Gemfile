@@ -24,6 +24,10 @@ gem 'turbolinks'
 gem 'devise'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+#pdfkit
+gem 'pdfkit'
+#wkhtmltopdf
+gem 'wkhtmltopdf-binary-edge'
 
 source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"

@@ -1,0 +1,35 @@
+<body>
+<div>
+    <center><h3>Farmacia Loida Hinojosa</h3></center>
+    <hr/>
+</div>
+
+<div class="container">
+    <center><h3>VENTAS DEL DIA</h3></center>
+    <center><h3>(<%= @fecha %>)</h3></center>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>CI</th>
+                <th>TOTAL</th>
+                <th>FECHA VENTA</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% total=0 %>
+            <% @sells.each do |sell| %>
+                <tr>
+                <td><%= sell.id %></td>
+                <td><%= sell.ci %></td>
+                <td><%= sell.total %></td>
+                <td><%= sell.date_sell %></td>
+                </tr>
+                <% total = total + sell.total  %>
+            <%end%>
+        </tbody>
+    </table>
+    <strong>TOTAL: <%= total %> BS</strong>
+</div>
+</body>
+
