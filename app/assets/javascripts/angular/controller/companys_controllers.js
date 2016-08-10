@@ -17,10 +17,28 @@ function companyAutoCompleteCtr($scope,$q,$log,Companys){
     function newCompany(text){
       var data = {line: text};
       Companys.create({company: data}, function(){
-            console.log('esta ingresando');    
+            console.log('esta ingresando');
+            loadCompanysSetId(text);
           }, function(error){
               console.log(error)
           });
+    }
+
+    function loadCompanysSetId(name){
+       var promise = Companys.query().$promise;
+       promise
+           .then(function(companys){
+               self.companys = companys.map(function(company){
+                   return ({
+                       value: company.line.toLowerCase(),
+                       line: company.line,
+                       id: company.id
+                   });
+               });
+               setCompanyId(name);
+           },function(err){
+               console.log(err);
+           });
     }
 
     function loadCompanys(){
@@ -72,13 +90,25 @@ function companyAutoCompleteCtr($scope,$q,$log,Companys){
         if(product_promise != undefined){
             product_promise.then(function(product){
                 if (product != undefined){
-                    console.log(product.line);
+                    var results = self.querySearch(product.line);
+                    if(results.length >= 1){
+                        product.company_id = results[0].id
+                    }
                     self.setSearchText(product.line);
                 }
             },function(err){
                 console.log(err);
             
             });
+        }
+    }
+
+    function setCompanyId(nameCompany){
+        var parent_scope = $scope.$parent.$parent;
+        var product = parent_scope.product;
+        var results = self.querySearch(nameCompany);
+        if(results.length>=1){
+            product.company_id = results[0].id;
         }
     }
 }
