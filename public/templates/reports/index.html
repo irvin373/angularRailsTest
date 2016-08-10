@@ -11,6 +11,7 @@
           <input id="dateDay" class="form-control" type="date" ng-model="day">
     	  </div>
           <button ng-click="day_selected()" class="btn btn-primary">ventas del dia</button>
+          <button ng-click="day_selected_pdf()" class="btn btn-primary">Imprimir</button>
       	</div>
             
         <br><br>
@@ -35,6 +36,7 @@
 			</select>
 		  </div>
             <button class="btn btn-primary" ng-click="mounth_selected()">ventas del Mes</button>
+            <button ng-click="mounth_selected_pdf()" class="btn btn-primary">Imprimir</button>
         </div>
         
         <div class="col-md-12">
@@ -49,6 +51,7 @@
             <input id="dateEnd" class="form-control" type="date" ng-model="date2">
           </div>
         <button class="btn btn-primary" ng-click=dateSelector()>ventas entre fechas</button>
+        <button ng-click="dateSelectorPdf()" class="btn btn-primary">Imprimir</button>
         </div>
     </div>
 </div>

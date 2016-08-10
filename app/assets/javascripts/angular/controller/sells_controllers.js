@@ -168,6 +168,23 @@ myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParam
     var date2 = new Date();
     $scope.day = date;
     $scope.mounth = 0;
+    $scope.day_selected_pdf = function (){
+      dates = $scope.day.getFullYear() + '-' + ($scope.day.getMonth()+1) + '-' +$scope.day.getDate(); 
+      window.location.pathname = "/pdf/report/day/"+dates+".pdf";
+    };
+
+    $scope.mounth_selected_pdf = function (){
+      dates = date.getFullYear() + '-' + ($scope.mounth) + '-' +1;
+      window.location.pathname = "/pdf/report/mounth/"+dates+".pdf";
+    };
+
+    $scope.dateSelectorPdf = function (){
+      date1 = $scope.date1.getFullYear() + '-' + ($scope.date1.getMonth()+1) + '-' +$scope.date1.getDate(); 
+      date2 = $scope.date2.getFullYear() + '-' + ($scope.date2.getMonth()+1) + '-' +$scope.date2.getDate(); 
+      window.location.pathname = "/pdf/report/day/"+date1+'/'+date2+".pdf";
+    };
+
+
     $scope.day_selected = function (){
       dates = $scope.day.getFullYear() + '-' + ($scope.day.getMonth()+1) + '-' +$scope.day.getDate(); 
       $location.path("/reports/day/"+dates);
