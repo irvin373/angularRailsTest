@@ -355,7 +355,7 @@ Atq.create( detail: 'LECHES PARA NIÑOS')
 Atq.create( detail: 'OTROS NUTRIENTES')
 
 
-Company.create(id:1, line: 'ALFA' )
+Company.create(line: 'ALFA' )
 # FARMACIA HINOJOSA ALFA
 # 
 Product.create(code: ' ', comercialname: 'ALFA TOSSIN', genericname: 'Codeina fosfato 10mg/5ml', unitprice: 28.8, company_id:1)
@@ -383,7 +383,7 @@ Product.create(code: ' ', comercialname: 'RETENS', genericname: 'Doxiciclina 100
 # 
 # TOTAL CAPITAL 5624,8
 # 
-Company.create(id:2, line: 'ALCOS' )
+Company.create( line: 'ALCOS' )
 # FARMACIA HINOJOSA ALCOS
 # 
 #Product.create(code: ' ', comercialname: 'NOMBRE CORMERCIAL', genericname: 'NOMBRE GENERICO', unitprice: precio unitario, company_id:2)
@@ -452,7 +452,7 @@ Product.create(code: ' ', comercialname: 'STEVIA', genericname: ' ', unitprice: 
 # 
 # TOTAL CAPITAL 11540,83
 # 
-Company.create(id:3, line: 'BAGO' )
+Company.create( line: 'BAGO' )
 # FARMACIA HINOJOSA BAGO
 # 
 Product.create(code: ' ', comercialname: 'ANAFLEX MUJER', genericname: 'Paracetamol 500mg, doclofenaco 50mg,cafeina 30mg', unitprice: 368, company_id:3)
@@ -553,7 +553,7 @@ Product.create(code: ' ', comercialname: 'SANCOR BEBE PREMIUN 3', genericname: '
 # 
 # TOTAL CAPITAL 13577,5
 # 
-Company.create(id:4, line: 'BAGO - BAYER' )
+Company.create( line: 'BAGO - BAYER' )
 # FARMACIA HINOJOSA BAGO - BAYER
 # 
 # 
@@ -574,7 +574,7 @@ Product.create(code: ' ', comercialname: 'SCHERIPROT', genericname: 'Prednisolon
 # 
 # 
 # 
-Company.create(id:5, line: 'COFAR' )
+Company.create( line: 'COFAR' )
 # FARMACIA HINOJOSA COFAR
 # 
 Product.create(code: ' ', comercialname: 'BONAGEL', genericname: '(OH)3 Al,   200mg,  Mg (OH)200mg.', unitprice: 18.2, company_id:5)
@@ -599,7 +599,7 @@ Product.create(code: ' ', comercialname: 'HIDROCORTISONA', genericname: 'Hdrocor
 Product.create(code: ' ', comercialname: 'LAGRIMAS ARTIFICIALES', genericname: 'Hidroxipropil metil celulosa1%', unitprice: 24.3, company_id:5)
 # TOTAL CAPITAL 3163,86
 # 
-Company.create(id:6, line: 'CRESPAL' )
+Company.create( line: 'CRESPAL' )
 # FARMACIA HINOJOSA CRESPAL
 # 
 Product.create(code: ' ', comercialname: 'ACICLOVIR', genericname: 'Aciclovir 5%', unitprice: 18.5, company_id:6)
@@ -639,7 +639,7 @@ Product.create(code: ' ', comercialname: 'ESCALDABABY EN PASTA', genericname: 'Z
 Product.create(code: ' ', comercialname: 'ESCALDABABY EN POLVO', genericname: 'Zn O, almidon, Ac. Borico', unitprice: 24.5, company_id:6)
 # TOTAL CAPITAL 5188,3
 # 
-Company.create(id:7, line: 'DELTA' )
+Company.create( line: 'DELTA' )
 # FARMACIA HINOJOSA DELTA
 # 
 Product.create(code: ' ', comercialname: 'ACICLOVIR', genericname: 'Aciclovir 5%', unitprice: 5, company_id:7)
@@ -698,7 +698,7 @@ Product.create(code: ' ', comercialname: 'DICLOFENACO', genericname: 'Diclofenac
 # 
 # TOTAL CAPITAL 800
 # 
-Company.create(id:8, line: 'EUROFARMA' )
+Company.create( line: 'EUROFARMA' )
 # FARMACIA HINOJOSA EUROFARMA
 # 
 Product.create(code: ' ', comercialname: 'BETISTIN', genericname: 'Betahistidina 16mg', unitprice: 4.42, company_id:8)
@@ -718,7 +718,7 @@ Product.create(code: ' ', comercialname: 'TIRIZ', genericname: 'Levocetirizina 5
 Product.create(code: ' ', comercialname: 'GINNA', genericname: ' ', unitprice: 70, company_id:8)
 # 
 # TOTAL CAPITAL 2479,34
-Company.create(id:9, line: 'FARCOS' )
+Company.create( line: 'FARCOS' )
 # FARMACIA HINOJOSA FARCOS
 # 
 Product.create(code: ' ', comercialname: 'AMIKOTIC - A', genericname: 'Econazol nitrato', unitprice: 35, company_id:9)
@@ -737,12 +737,12 @@ Product.create(code: ' ', comercialname: 'NENE UNGUENTO', genericname: 'ZnO,Alan
 Product.create(code: ' ', comercialname: 'SARCOBENCIL', genericname: 'Benzoato de bencilo', unitprice: 12, company_id:9)
 # 
 # TOTAL CAPITAL 1558,5
-Company.create(id:10, line: 'GALENO' )
+Company.create( line: 'GALENO' )
 # FARMACIA HINOJOSA GALENO
 # 
 # TOTAL CAPITAL 325
 # 
-Company.create(id:11, line: 'GALENO' )
+Company.create( line: 'GALENO' )
 # FARMACIA HINOJOSA GALENO
 # 
 Product.create(code: ' ', comercialname: 'ALGIPAL UNG.', genericname: 'Salicilato de metilo, mentol,trementina,', unitprice: 13.5, company_id:11)
@@ -777,7 +777,7 @@ Product.create(code: ' ', comercialname: 'SUPER ERECTIC 50', genericname: 'silde
 Product.create(code: ' ', comercialname: 'SUPER ERECTIC 100', genericname: 'sildenafil 100mg', unitprice: 17, company_id:11)
 # 
 # TOTAL CAPITAL 2900,3
-Company.create(id:12, line: 'GENOMALAB' )
+Company.create( line: 'GENOMALAB' )
 # FARMACIA HINOJOSA GENOMALAB
 # 
 Product.create(code: ' ', comercialname: 'ASEPXIA EXFOLIANTE JABON', genericname: ' ', unitprice: 5, company_id:12)
@@ -801,7 +801,7 @@ Product.create(code: ' ', comercialname: 'ASEPXIA MAQUILLAJE BRONCE MATE POLVO',
 Product.create(code: ' ', comercialname: 'CICATRICURE CREMA X 60 G.', genericname: ' ', unitprice: 5, company_id:12)
 Product.create(code: ' ', comercialname: 'CICATRICURE CONTORNO DE OJOS', genericname: ' ', unitprice: 5, company_id:12)
 # TOTAL CAPITAL 575
-Company.create(id:13, line: 'GRAMON' )
+Company.create( line: 'GRAMON' )
 # FARMACIA HINOJOSA GRAMON
 # 
 Product.create(code: ' ', comercialname: 'BRONQUISEDAN MENTOLADO', genericname: 'Extto poligalia. Frutilla,amba,crataegus', unitprice: 5, company_id:13)
@@ -828,7 +828,7 @@ Product.create(code: ' ', comercialname: 'DELGANET', genericname: 'Hoodia gordon
 Product.create(code: ' ', comercialname: 'IBUDOLANET SINUS', genericname: 'Ibuprofeno 200mg/5ml', unitprice: 5, company_id:13)
 #
 # TOTAL CAPITAL 550
-Company.create(id:14, line: 'HANNEMAN' )
+Company.create( line: 'HANNEMAN' )
 # FARMACIA HINOJOSA HANNEMAN
 # 
 Product.create(code: ' ', comercialname: 'ECHINACEA COMPLEX', genericname: 'Echinacea, vit.C', unitprice: 5, company_id:14)
@@ -869,7 +869,7 @@ Product.create(code: ' ', comercialname: 'CALENDOL', genericname: 'TM de calendu
 Product.create(code: ' ', comercialname: '3 TRIDERM CRIS', genericname: 'Betametasona 0.05g,gentamicina sulfato 0.1 g,clotrimazol 1g', unitprice: 5, company_id:14)
 # 
 # TOTAL CAPITAL 900
-Company.create(id:15, line: 'IFA' )
+Company.create( line: 'IFA' )
 # FARMACIA HINOJOSA IFA
 # 
 Product.create(code: ' ', comercialname: 'AGUA ANESTESICA .', genericname: 'Lidocaina HCl 50mg', unitprice: 5, company_id:15)
@@ -953,7 +953,7 @@ Product.create(code: ' ', comercialname: 'ESPASMO NACLODIL', genericname: 'metam
 Product.create(code: ' ', comercialname: 'GRISEOVINA', genericname: 'isotretrinoina 20mg', unitprice: 5, company_id:15)
 Product.create(code: ' ', comercialname: 'TRICOBIC', genericname: 'Tinidazol 1 g', unitprice: 5, company_id:15)
 # TOTAL CAPITAL 2000
-Company.create(id:16, line: 'IFARBO' )
+Company.create( line: 'IFARBO' )
 # FARMACIA HINOJOSA IFARBO
 # 
 Product.create(code: ' ', comercialname: 'ACETAMOL', genericname: 'Paracetamol120mg', unitprice: 1, company_id:16)
@@ -1055,14 +1055,14 @@ Product.create(code: ' ', comercialname: 'SULFATO DE MAGNESIA', genericname: 'Su
 Product.create(code: ' ', comercialname: 'TALCO BOROTADO', genericname: 'Talco,', unitprice: 1, company_id:16)
 # TOTAL CAPITAL 495
 # 
-Company.create(id:17, line: 'INMOTHERA GRAMON' )
+Company.create( line: 'INMOTHERA GRAMON' )
 # FARMACIA HINOJOSA INMOTHERA GRAMON
 # 
 Product.create(code: ' ', comercialname: 'POLYGYNAX', genericname: 'Neomicina s. 35.000 UI, Polimixina b35.000UI,NISTATINA 100.000UI', unitprice: 8.17, company_id:17)
 Product.create(code: ' ', comercialname: 'TOTHEMA', genericname: 'Gluconato(Fe 0.200g ,Mn 0,020g ,Cu 0.001g ,Co 0.005g), VtB12 25.00Ug.extto de higado 0.600g', unitprice: 7.5, company_id:17)
 # 
 # TOTAL CAPITAL 398,04
-Company.create(id:18, line: 'INQUIBOL' )
+Company.create( line: 'INQUIBOL' )
 # FARMACIA HINOJOSA INQUIBOL
 # 
 Product.create(code: ' ', comercialname: 'AGUA OXIGENADA', genericname: 'Peroxido de hidrogeno 10 vol.', unitprice: 9.6, company_id:18)
@@ -1081,7 +1081,7 @@ Product.create(code: ' ', comercialname: 'ALCOHOL 500ML', genericname: 'Alcohol 
 Product.create(code: ' ', comercialname: 'ALCOHOL 1000ML', genericname: 'Alcohol medicinal 70%', unitprice: 26.9, company_id:18)
 # 
 # TOTAL CAPITAL 1780,9
-Company.create(id:19, line: 'INTI' )
+Company.create( line: 'INTI' )
 # FARMACIA HINOJOSA INTI
 # 
 Product.create(code: ' ', comercialname: 'A-E VIMIN', genericname: 'Vit,A. 5000 UI, Vit E 50mg.', unitprice: 1, company_id:19)
@@ -1143,7 +1143,7 @@ Product.create(code: ' ', comercialname: 'VIRUSAN', genericname: 'Aciclovir 5g',
 Product.create(code: ' ', comercialname: 'MENTISAN', genericname: 'alcanfor 2.40g,ac.esenciales 3.22g,trementina 0.35g,mentol 2.30g,lanolina 3.33g.', unitprice: 1, company_id:19)
 Product.create(code: ' ', comercialname: 'MENTISAN PLUS NOCHE', genericname: 'Paracetamol 500mg,pseudoefedrina 50mg,loratadina 5mg.', unitprice: 1, company_id:19)
 # TOTAL CAPITAL 315
-Company.create(id:20, line: 'LAB, CHILE-SAE' )
+Company.create( line: 'LAB, CHILE-SAE' )
 # FARMACIA HINOJOSA LAB, CHILE-SAE
 # 
 Product.create(code: ' ', comercialname: 'CONTRALMOR', genericname: 'Betametasona 1mg, lidocaina 20mg , ZnO 250mg.', unitprice: 5, company_id:20)
@@ -1199,7 +1199,7 @@ Product.create(code: ' ', comercialname: 'TAPSIN NOCHE', genericname: 'Paacet,no
 Product.create(code: ' ', comercialname: 'TAPSIN INFANTIL', genericname: 'Paracetamol, ibuprofeno', unitprice: 5, company_id:20)
 Product.create(code: ' ', comercialname: 'VISIONAL GTAS', genericname: 'Tetrahidrozolina,sol.isoton esteril', unitprice: 5, company_id:20)
 # TOTAL CAPITAL 1300
-Company.create(id:21, line: 'LAFAR' )
+Company.create( line: 'LAFAR' )
 # FARMACIA HINOJOSA LAFAR
 # 
 Product.create(code: ' ', comercialname: 'AMOXILANICO DUO', genericname: 'Amoxicilina 875mg, acido clavulanico125mg', unitprice: 5, company_id:21)
@@ -1237,7 +1237,7 @@ Product.create(code: ' ', comercialname: 'POVIDONA YODADA', genericname: 'Povido
 Product.create(code: ' ', comercialname: 'POVIDONA YODADA', genericname: 'Povidonayodada 10g', unitprice: 5, company_id:21)
 Product.create(code: ' ', comercialname: 'POVIDONA YODADA .', genericname: 'Povidona yodada 10g', unitprice: 5, company_id:21)
 # TOTAL CAPITAL 900
-Company.create(id:22, line: 'MEDINAT' )
+Company.create( line: 'MEDINAT' )
 # FARMACIA HINOJOSA MEDINAT
 # 
 Product.create(code: ' ', comercialname: 'CARDIGO', genericname: 'Digoxina  0.25mg', unitprice: 0.4, company_id:22)
@@ -1278,7 +1278,7 @@ Product.create(code: ' ', comercialname: 'PROPOMIEL SPRAY', genericname: ' ', un
 Product.create(code: ' ', comercialname: 'PROPOLEO GTAS', genericname: ' ', unitprice: 5, company_id:22)
 Product.create(code: ' ', comercialname: 'AMPICILINA', genericname: 'Ampicilina', unitprice: 5, company_id:22)
 # TOTAL CAPITAL 3171,51
-Company.create(id:23, line: 'MERCK-INTI' )
+Company.create( line: 'MERCK-INTI' )
 # FARMACIA HINOJOSA MERCK-INTI
 # 
 Product.create(code: ' ', comercialname: 'ARTREN', genericname: 'Diclofenaco sodico 100mg', unitprice: 5, company_id:23)
@@ -1293,7 +1293,7 @@ Product.create(code: ' ', comercialname: 'OSTEOCAPS', genericname: 'Calcio carbo
 Product.create(code: ' ', comercialname: 'SUPRACORTIN COMPOSITUM', genericname: 'Fluprednidenoacetato 0.1g, gentamicina sul. 0.1g,Miconazol 2g', unitprice: 5, company_id:23)
 Product.create(code: ' ', comercialname: 'PYRALVEX', genericname: 'Extto de ruibarbo 0.05g, ac. Salicilico 0.01 g.', unitprice: 5, company_id:23)
 # TOTAL CAPITAL 275
-Company.create(id:24, line: 'NORDMARK-INTI' )
+Company.create( line: 'NORDMARK-INTI' )
 # FARMACIA HINOJOSA NORDMARK-INTI
 # 
 Product.create(code: ' ', comercialname: 'AKTIVANAD ADULTOS', genericname: 'Extto hepatico 1.750mg,extto de levadura 600mg,extto de escaramujo 1mg,cafeina 375mg,hematoporfirina 15mg.', unitprice: 5, company_id:24)
@@ -1304,7 +1304,7 @@ Product.create(code: ' ', comercialname: 'OMNIVAL JBE,', genericname: 'Vit A 50.
 Product.create(code: ' ', comercialname: 'TROMBOFOB UNG.', genericname: 'Heparina 5000 UI, Bencilo nicotinato 250mg', unitprice: 5, company_id:24)
 Product.create(code: ' ', comercialname: 'TROMBOFOB UNG.', genericname: 'Heparina sodica 60.000 UI', unitprice: 5, company_id:24)
 # TOTAL CAPITAL 175
-Company.create(id:25, line: 'NUTRICIA-INTI' )
+Company.create( line: 'NUTRICIA-INTI' )
 # FARMACIA HINOJOSA NUTRICIA-INTI
 # 
 Product.create(code: ' ', comercialname: 'NUTRILON 1', genericname: ' ', unitprice: 77.41, company_id:25)
@@ -1314,7 +1314,7 @@ Product.create(code: ' ', comercialname: 'NUTRILON 2', genericname: ' ', unitpri
 Product.create(code: ' ', comercialname: 'NUTRILON 3', genericname: ' ', unitprice: 77.41, company_id:25)
 Product.create(code: ' ', comercialname: 'NUTRILON 3', genericname: ' ', unitprice: 77.41, company_id:25)
 # TOTAL CAPITAL 928,92
-Company.create(id:26, line: 'PHARMA INVESTI-INTI' )
+Company.create( line: 'PHARMA INVESTI-INTI' )
 # FARMACIA HINOJOSA PHARMA INVESTI-INTI
 # 
 Product.create(code: ' ', comercialname: 'ABRILAR', genericname: 'Extto seco de hojas de hiedra 0,7 g', unitprice: 0.4, company_id:26)
@@ -1347,7 +1347,7 @@ Product.create(code: ' ', comercialname: 'PLIDAN COMP.', genericname: ' ', unitp
 Product.create(code: ' ', comercialname: 'FLOGIATRIN GEL', genericname: ' ', unitprice: 7.5, company_id:26)
 Product.create(code: ' ', comercialname: 'SADETABS -N TAB', genericname: ' ', unitprice: 7.5, company_id:26)
 # TOTAL CAPITAL 729,05
-Company.create(id:27, line: 'PORTUGAL' )
+Company.create( line: 'PORTUGAL' )
 # FARMACIA HINOJOSA PORTUGAL
 # 
 Product.create(code: ' ', comercialname: 'AMOXICILINA', genericname: 'Amoxicilina 500mg', unitprice: 5, company_id:27)
@@ -1385,7 +1385,7 @@ Product.create(code: ' ', comercialname: 'TALCO ANTISUDORALES', genericname: 'Ox
 Product.create(code: ' ', comercialname: 'TALCO ANTTISUDORALES', genericname: 'Oxido de zinc, triclosan, aluminio clorohidratado', unitprice: 5, company_id:27)
 Product.create(code: ' ', comercialname: 'TALCO CON MANZANILLA', genericname: 'Fecula maiz, manzanilla, vit e', unitprice: 5, company_id:27)
 # TOTAL CAPITAL 850
-Company.create(id:28, line: 'PRODEXA' )
+Company.create( line: 'PRODEXA' )
 # FARMACIA HINOJOSA PRODEXA
 # 
 Product.create(code: ' ', comercialname: 'ACICLOVIR', genericname: 'Aciclovir 5%', unitprice: 5, company_id:28)
@@ -1437,7 +1437,7 @@ Product.create(code: ' ', comercialname: 'SALBUTAMOL', genericname: 'Salbutamol 
 Product.create(code: ' ', comercialname: 'SULFATO FERROSO', genericname: 'Sulfato Ferroso 200mg', unitprice: 5, company_id:28)
 Product.create(code: ' ', comercialname: 'TINIDAZOL', genericname: 'Tinidazol  1g', unitprice: 5, company_id:28)
 # TOTAL CAPITAL 1200
-Company.create(id:29, line: 'QUIMFA' )
+Company.create( line: 'QUIMFA' )
 # FARMACIA HINOJOSA QUIMFA
 # 
 Product.create(code: ' ', comercialname: 'AAS 125', genericname: 'Acido acetil salicilico125mg', unitprice: 5, company_id:29)
@@ -1458,7 +1458,7 @@ Product.create(code: ' ', comercialname: 'TIRIZ', genericname: 'Levocetieizina',
 Product.create(code: ' ', comercialname: 'PROFENOL', genericname: ' ', unitprice: 0, company_id:29)
 Product.create(code: ' ', comercialname: 'PROFENOL', genericname: ' ', unitprice: 0, company_id:29)
 # TOTAL CAPITAL 375
-Company.create(id:30, line: 'RECALCINE' )
+Company.create( line: 'RECALCINE' )
 # FARMACIA HINOJOSA RECALCINE
 # 
 Product.create(code: ' ', comercialname: 'ACEVIT GTAS', genericname: 'Vit. A  2500 UI, C 37.5 mg ,D 500 UI.', unitprice: 5, company_id:30)
@@ -1491,7 +1491,7 @@ Product.create(code: ' ', comercialname: 'NIOFEN FLU FORTE', genericname: 'ibupr
 Product.create(code: ' ', comercialname: 'ULCRATEX', genericname: 'Esomeprazol 20mg', unitprice: 5, company_id:30)
 Product.create(code: ' ', comercialname: 'BROPIL', genericname: 'Salbutamol', unitprice: 5, company_id:30)
 # TOTAL CAPITAL 725
-Company.create(id:31, line: 'SAE MARCA' )
+Company.create( line: 'SAE MARCA' )
 # FARMACIA HINOJOSA SAE MARCA
 # 
 Product.create(code: ' ', comercialname: 'ACECLOFEN', genericname: 'Aceclofenaco 100mg', unitprice: 5, company_id:31)
@@ -1528,7 +1528,7 @@ Product.create(code: ' ', comercialname: 'SANATUSIN', genericname: 'Paracetamol 
 Product.create(code: ' ', comercialname: 'SANATUSIN GEL DIA', genericname: 'Paracetamol 500mg,dextrometorfano 20mg,clorfeniramina 4mg, fenilefrina 10mg', unitprice: 5, company_id:31)
 Product.create(code: ' ', comercialname: 'SANATUSIN GEL NOCHE', genericname: 'Paracetamol 500mg,dextrometorfano 20mg, fenilefrina 10mg', unitprice: 5, company_id:31)
 # TOTAL CAPITAL 825
-Company.create(id:32, line: 'SANTIAFAR' )
+Company.create( line: 'SANTIAFAR' )
 # FARMACIA HINOJOSA SANTIAFAR
 # 
 Product.create(code: ' ', comercialname: 'AMBROTEROL CMP.', genericname: 'Ambroxol 30mg ,clenbuterol 0.02mg', unitprice: 5, company_id:32)
@@ -1559,7 +1559,7 @@ Product.create(code: ' ', comercialname: 'CORTIBIOTICO COLIRIO', genericname: 'T
 Product.create(code: ' ', comercialname: 'BIOLACTO', genericname: 'Lactobacillus acidophilus 300mg', unitprice: 5, company_id:32)
 Product.create(code: ' ', comercialname: 'SODAM', genericname: 'Acetilcisteina  200mg', unitprice: 5, company_id:32)
 # TOTAL CAPITAL 675
-Company.create(id:33, line: 'SAVAL' )
+Company.create( line: 'SAVAL' )
 # FARMACIA HINOJOSA SAVAL
 # 
 Product.create(code: ' ', comercialname: 'ALEXIA', genericname: 'Fexofenadina 120mg', unitprice: 5, company_id:33)
@@ -1612,7 +1612,7 @@ Product.create(code: ' ', comercialname: 'XOLOF', genericname: 'Tobramicina', un
 Product.create(code: ' ', comercialname: 'XOLOF D', genericname: 'Tobramicina,dexametasona', unitprice: 5, company_id:33)
 Product.create(code: ' ', comercialname: 'XOLOF D', genericname: 'Tobramicina,dexametasona', unitprice: 5, company_id:33)
 # TOTAL CAPITAL 1225
-Company.create(id:34, line: 'SIGMA' )
+Company.create( line: 'SIGMA' )
 # FARMACIA HINOJOSA SIGMA
 # 
 Product.create(code: ' ', comercialname: 'ADECUAN', genericname: 'Metoclopramida 10mg', unitprice: 5, company_id:34)
@@ -1658,7 +1658,7 @@ Product.create(code: ' ', comercialname: 'TOBRACOL COMPUESTO', genericname: 'Tob
 Product.create(code: ' ', comercialname: 'SAFORELLE', genericname: ' ', unitprice: 5, company_id:34)
 Product.create(code: ' ', comercialname: 'BACILOR', genericname: ' ', unitprice: 5, company_id:34)
 # TOTAL CAPITAL 1050
-Company.create(id:35, line: 'TERBOL' )
+Company.create( line: 'TERBOL' )
 # FARMACIA HINOJOSA TERBOL
 # 
 Product.create(code: ' ', comercialname: '4 DERM', genericname: 'Gentamicina 20mg ,betametasona 20mg ,miconazol 400mg.', unitprice: 1, company_id:35)
@@ -1736,7 +1736,7 @@ Product.create(code: ' ', comercialname: 'BIOTINA', genericname: 'Biotina 800 ug
 # 
 # 
 # 
-Company.create(id:36, line: 'TECNOFARMA' )
+Company.create( line: 'TECNOFARMA' )
 # FARMACIA HINOJOSA TECNOFARMA
 # 
 Product.create(code: ' ', comercialname: 'DOMPER', genericname: 'Domperidona 10 mg', unitprice: 5, company_id:36)
@@ -1761,10 +1761,10 @@ Product.create(code: ' ', comercialname: 'ULTRACILINA', genericname: 'Gentamicin
 Product.create(code: ' ', comercialname: 'URIDON', genericname: 'norfloxacina 400mg', unitprice: 5, company_id:36)
 Product.create(code: ' ', comercialname: 'URIDON F', genericname: 'Norfloxacina 400mg , fenazopiridina 100mg', unitprice: 5, company_id:36)
 # TOTAL CAPITAL 525
-Company.create(id:37, line: 'TELCHI' )
+Company.create( line: 'TELCHI' )
 # FARMACIA HINOJOSA TELCHI
 # TOTAL CAPITAL 525
-Company.create(id:38, line: 'VALENCIA' )
+Company.create( line: 'VALENCIA' )
 # FARMACIA HINOJOSA VALENCIA
 # 
 Product.create(code: ' ', comercialname: 'EXTRACTO DE PROPOLEO', genericname: 'Exttos secos de plantas medicinales', unitprice: 5, company_id:38)
@@ -1780,7 +1780,7 @@ Product.create(code: ' ', comercialname: 'TUSIVAL PASTILLAS', genericname: 'Ficu
 Product.create(code: ' ', comercialname: 'VITAMINA C COMP', genericname: 'Vitamina C', unitprice: 5, company_id:38)
 Product.create(code: ' ', comercialname: 'VITAMINA C CAMU CAMU', genericname: 'Vitamina C', unitprice: 5, company_id:38)
 # TOTAL CAPITAL 300
-Company.create(id:39, line: 'VITA' )
+Company.create( line: 'VITA' )
 # FARMACIA HINOJOSA VITA
 # 
 Product.create(code: ' ', comercialname: 'ALCABOL SOBRES', genericname: 'Peptina, SO4 Mg,AAS,extto de boldo y alcahofa', unitprice: 5, company_id:39)
@@ -1814,7 +1814,7 @@ Product.create(code: ' ', comercialname: 'SOLUCION NASAL A', genericname: 'Cloru
 Product.create(code: ' ', comercialname: 'SUERO VITADEX 500 ML', genericname: 'Dextrosa,ClNa,B1,B6,riboflavina,nicotinamida', unitprice: 5, company_id:39)
 Product.create(code: ' ', comercialname: 'SUERO VITADEX 1000ML', genericname: 'Dextrosa,ClNa,B1,B6,riboflavina,nicotinamida', unitprice: 5, company_id:39)
 # TOTAL CAPITAL 750
-Company.create(id:40, line: 'OTROS' )
+Company.create( line: 'OTROS' )
 # FARMACIA HINOJOSA OTROS
 # 
 Product.create(code: ' ', comercialname: 'VENDA DE GASA 5cm', genericname: ' ', unitprice: 5, company_id:40)

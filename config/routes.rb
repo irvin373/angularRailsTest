@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post 'atqs/asign' => 'atqs#asign'
   post 'sells/asign' => 'sells#asign'
   get 'rols/:id' => 'rols#show'
+  get 'lastLine' => 'companies#lastId'
 
   #get 'informs' => 'informs#index'
   # The priority is based upon order of creation: first created -> highest priority.
