@@ -15,6 +15,7 @@
                         <th>email</th>
                         <th>rol Actual</th>
                         <th>cambiar a vendedor</th>
+                        <th>Eliminar</th>
                     </tr>
                 	</thead>
                 	<tbody>
@@ -22,6 +23,7 @@
                     <td>{{user.email}}</td>
                     <td>{{user.rolename}}</td>
                     <td><button data-toggle="modal" data-target="#ChangeUser" class="btn btn-primary" ng-click="change_role(user.id)">cambiar</button></td>
+                    <td><button data-toggle="modal" ng-click="delete(user.id)" data-target="#DeleteUser" class="btn btn-danger">Eliminar</button></td>
                     </tr>
                 	</tbody>
                 </table>
@@ -41,6 +43,27 @@
         </div>
         <div class="modal-body">
           <p>El usuario sera cambiado a vendedor</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+    <!-- Modal -->
+  <div class="modal fade" id="DeleteUser" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Mensaje</h4>
+        </div>
+        <div class="modal-body">
+          <p>El usuario sera Eliminado</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
