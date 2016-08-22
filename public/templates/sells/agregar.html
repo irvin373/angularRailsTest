@@ -6,6 +6,7 @@
             <table class="table">
                 <tr>
                     <th>Nombre comercial</th>
+                    <th>presentacion</th>
                     <th>Precio unitario</th>
                     <th>cantidad</th>
                     <th>cantidad Disponible</th>
@@ -14,6 +15,7 @@
                 </tr>
                 <tr ng-repeat="product in products | filter:{comercialname:filterProduct} | orderBy: 'id'">
                     <td>{{product.comercialname}}</td>
+                    <td>{{product.presentation}}</td>
 					<td>{{product.unitprice}}</td>
                     <td><input class="smallInput" type="number" ng-model="quantity"></td>
                     <td>{{product.genericname}}</td>
