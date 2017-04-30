@@ -129,9 +129,14 @@ function productShowCtr($scope, $resource, $location, $routeParams,Product) {
     
     function redirectEdit(){
         var route = "/products/"+$routeParams.id+"/edit";
-        console.log(route);
         $location.path(route);
     }
+
+    $scope.lotCreate = function(id){
+        var route = "/lots/new/"+id;
+        console.log(route);
+        $location.path(route);
+    };
 
     function remove(){
         if (confirm("Are you sure you want to delete the product?")){
