@@ -89,9 +89,18 @@ myApp.controller("AtqShowCtr", ['$scope', '$resource', 'Atq', '$location', '$rou
   };
 }]);
 
-myApp.controller("AsignAtqCtr", ['$scope', '$resource', 'ProductAtq', 'AsignAtq', 'Atq', '$location', '$routeParams', 
-  function($scope, $resource, ProductAtq, AsignAtq ,Atq, $location, $routeParams) {
-  $scope.atq = Atq.get({id: $routeParams.id})
+myApp.controller("AsignAtqCtr", ['$scope', '$resource', 'ProductAtq','ProductSearch', 'AsignAtq', 'Atq', '$location', '$routeParams', 
+  function($scope, $resource, ProductAtq,ProductSearch, AsignAtq ,Atq, $location, $routeParams) {
+  $scope.atq = Atq.get({id: $routeParams.id});
+  $scope.selectedFilter = "comercialname";
+  $scope.search = {};
+  $scope.query = "";
+  $scope.filters = {
+      comercialname: "nombre comercial",
+      code: "codigo",
+      line: "linea",
+      genericname: "nombre generico"
+  };
   $scope.products = ProductAtq.query();
   
   $scope.asign = function(IdAsign){
@@ -100,6 +109,14 @@ myApp.controller("AsignAtqCtr", ['$scope', '$resource', 'ProductAtq', 'AsignAtq'
       }, function(error) {
         console.log(error)
       });
+  };
+      
+  $scope.searchProduct = function(query,filter){
+      $scope.products = ProductSearch.query({search: query,filter: filter});
+  };
+
+  $scope.clearFilter = function(){
+      $scope.search = {}; 
   };
 }]);
 

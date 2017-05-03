@@ -6,14 +6,21 @@
         <div class="form-group">
             <label for="search">Buscar Por:</label>
             <label class="radio-inline">
-                <input type="radio" name="optradio">Codigo</label>
+                <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="code">Codigo</label>
             <label class="radio-inline">
-                <input type="radio" name="optradio">Nombre comercial</label>
+                <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="comercialname">Nombre comercial</label>
             <label class="radio-inline">
-                <input type="radio" name="optradio">Nombre generico</label>
+                <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="genericname">Nombre generico</label>
             <label class="radio-inline">
-                <input type="radio" name="optradio">Linea</label>
-            <input type="text" id="search" ng-model="filterProduct" placeholder="Buscar por nombre comercial" class="form-control" />
+                <input type="radio" ng-click="clearFilter()" ng-model="selectedFilter" value="line">Linea</label>
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" id="search" ng-model="search[selectedFilter]" placeholder="Buscar por {{filters[selectedFilter]}}" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" ng-click="searchProduct(search[selectedFilter],selectedFilter)">Buscar</button>
+                </div>
+            </div>
         </div>
         <div class="pre-scrollable">
             <table class="table">
