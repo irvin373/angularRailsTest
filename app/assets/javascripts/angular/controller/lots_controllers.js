@@ -44,13 +44,12 @@ myApp.controller("LotListCtr",
     };
 }]);
 
-myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log', 'ProductAutoComplete',
-    function($scope, $resource, Lots, $location, $http, $uibModal, $log,ProductAutoComplete) {
-  $scope.lot = {};  
-  $scope.products = ProductAutoComplete.query();
+myApp.controller("ProductLotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http', '$uibModal', '$log', '$routeParams',
+    function($scope, $resource, Lots, $location, $http, $uibModal, $log,$routeParams) {
+  $scope.lot = {};
+  $scope.lot.product_id = $routeParams.id;
   $scope.save = function() {
     console.log($scope.lot);
-    $scope.lot.product_id = test($scope.lot.product_id);
     Lots.create({lot: $scope.lot}, function(){
       var route = "/lots/";
       $location.path(route);
@@ -58,19 +57,11 @@ myApp.controller("LotAddCtr", ['$scope', '$resource', 'Lots','$location', '$http
         console.log(error);
     });
   };
-
-  var test = function(nameSelected){
-      var temp; 
-      $scope.products.forEach(function(x) {
-        if ( x["comercialname"] == nameSelected) {
-          temp = x["id"];
-        }
-      });
-      return temp;
-  };
+  
 }]);
 
-myApp.controller("LotUpdateCtr", ['$scope', '$resource', 'Lot', '$location', '$routeParams', function($scope, $resource, Lot, $location, $routeParams) {
+myApp.controller("LotUpdateCtr", ['$scope', '$resource', 'Lot', '$location', '$routeParams', 
+function($scope, $resource, Lot, $location, $routeParams) {
   $scope.lot = Lot.get({id: $routeParams.id})
   console.log($scope.lot);
   //$scope.lot.date_in = new Date($scope.lot.date_in); 
@@ -104,9 +95,9 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
       templateUrl: '/templates/lots/index.html',
       controller: 'LotListCtr'
     });
-    $routeProvider.when('/lots/new', {
+    $routeProvider.when('/lots/new/:id', {
       templateUrl: '/templates/lots/new.html',
-      controller: 'LotAddCtr'
+      controller: 'ProductLotAddCtr'
     });
     $routeProvider.when('/lots/:id/edit', {
       templateUrl: '/templates/lots/edit.html',

@@ -12,6 +12,12 @@ myApp.factory('User', ['$resource',function($resource){
   })
 }]);
 
+myApp.factory('UserDelete', ['$resource',function($resource){
+  return $resource('/deleteuser/:id.json', {},{
+    query: { method: 'GET', params: {id: '@id'} }
+  })
+}]);
+
 myApp.factory('UserRol', ['$resource',function($resource){
   return $resource('/users/:idP/change.json', {},{
     query: { method: 'GET', params: {idP: '@id'} }
@@ -42,12 +48,17 @@ myApp.controller("PharmacyListCtr", ['$scope', '$http', '$resource', 'Pharmacys'
     };
 }]);
 
-myApp.controller("UserListCtr", ['$scope', '$http', '$resource', 'User', 'UserRol','$location', 
-    function($scope, $http, $resource, User, UserRol,$location) {
+myApp.controller("UserListCtr", ['$scope', '$http', '$resource', 'User','UserDelete', 'UserRol','$location', 
+    function($scope, $http, $resource, User,UserDelete, UserRol,$location) {
 
     $scope.users = User.query();
     $scope.change_role = function (id) {
       UserRol.query({idP: id});
+      $scope.users = User.query();
+    };
+
+    $scope.delete = function (id) {
+      UserDelete.query({id: id});
       $scope.users = User.query();
     };
 }]);

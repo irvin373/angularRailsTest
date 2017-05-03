@@ -5,7 +5,8 @@
         </div>
         <div class="panel-content">
             <div class="btn-group">
-                  <button type="button" class="btn btn-primary">Vender</button>
+                  <button type="button" class="btn btn-primary" ng-click="lotCreate(product.id)">Nuevo Lote</button>
+                  <button type="button" class="btn btn-primary"> Vender</button>
                   <button type="button" class="btn btn-primary" ng-click="redirectEdit()">Editar</button>
                   <button type="button" class="btn btn-danger" ng-click="remove()">Eliminar</button>
             </div>
@@ -20,6 +21,7 @@
                     <th>Nombre generico</th>
                     <th>Precio unitario</th>
                     <th>Linea</th>
+                    <th>envase</th>
                 </tr>
                 <tr>
                     <td>{{product.code}}</td>
@@ -27,6 +29,7 @@
                     <td>{{product.genericname}}</td>
                     <td>{{product.unitprice}}</td>
                     <td>{{product.line}}</td>
+                    <td>{{product.presentation}}</td>
                 </tr>
             </table>
             <br/>

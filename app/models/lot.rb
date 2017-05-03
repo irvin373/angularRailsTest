@@ -14,6 +14,10 @@ class Lot < ActiveRecord::Base
   		Product.select(:comercialname).find(self.product_id).comercialname
 	end
 
+  def presentation
+      Product.select(:comercialname).find(self.product_id).presentation
+  end
+
   def colorExpiration
     resp = "green"
     date = self.date_expiration
@@ -40,7 +44,7 @@ class Lot < ActiveRecord::Base
 
 	def to_builder
 	    Jbuilder.new do |lot|
-	      lot.(self, :product_commercialname, :productLot, :unitprice, :colorExpiration)
+	      lot.(self, :product_commercialname, :productLot, :unitprice, :presentation,:colorExpiration)
 	    end
 	end
 end

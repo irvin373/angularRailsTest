@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'autocomplete' => 'products#options'
   get 'product_sell' => 'products#to_sell'
   get 'report_expiration' => 'lots#report_expiration'
+  get 'deleteuser/:id' => 'pharmacy#deleteUser'
   #get 'pharmacys' => 'pharmacy#index'
   resources :sells
   resources :atqs

@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 
   def to_sell
     @idPharmacy = current_user.role.pharmacy.id
-    @products = Product.select(:id,:comercialname,:unitprice).joins("INNER JOIN lots as l ON(products.id = l.product_id and available = True and pharmacy_id = #{@idPharmacy})").distinct
+    @products = Product.select(:id,:comercialname,:unitprice, :presentation).joins("INNER JOIN lots as l ON(products.id = l.product_id and available = True and pharmacy_id = #{@idPharmacy})").distinct
     @products.each do |product|
       product.genericname = Lot.where(product_id: product.id, pharmacy_id: @idPharmacy).sum(:quantity_lot)
     end
@@ -91,6 +91,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:code, :comercialname, :genericname, :unitprice, :company_id)
+      params.require(:product).permit(:code, :comercialname, :genericname, :unitprice, :company_id, :presentation)
     end
 end

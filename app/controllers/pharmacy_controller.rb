@@ -23,6 +23,12 @@ class PharmacyController < ApplicationController
     end
   end
 
+  def deleteUser
+    id = params[:id]
+    user = User.find(id)
+    user.destroy
+  end
+
   def change
   	@id = params[:idP]
   	rol = current_user.role
