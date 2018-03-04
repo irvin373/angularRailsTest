@@ -2,17 +2,25 @@ class Lot < ActiveRecord::Base
   belongs_to :product
   belongs_to :pharmacy
 
-  	def decrement_quantity(quantity)
-  		self.quantity_lot -= quantity
-  		if self.quantity_lot <= 0
-  			self.available = false
-  		end
-  		self.save
-  	end
+  def line
+    resp = self.product
+    if resp.nil?
+      resp = Product.first
+    end
+    resp.line
+  end
+
+  def decrement_quantity(quantity)
+      self.quantity_lot -= quantity
+      if self.quantity_lot <= 0
+          self.available = false
+      end
+      self.save
+  end
 
   def product_commercialname
-  		Product.select(:comercialname).find(self.product_id).comercialname
-	end
+      Product.select(:comercialname).find(self.product_id).comercialname
+  end
 
   def presentation
       Product.select(:comercialname).find(self.product_id).presentation
@@ -39,12 +47,13 @@ class Lot < ActiveRecord::Base
   end
 
   def productLot
-		Lot.where(available: true, product_id: self.product_id).sum(:quantity_lot)
-	end
+      Lot.where(available: true, product_id: self.product_id).sum(:quantity_lot)
+  end
 
-	def to_builder
-	    Jbuilder.new do |lot|
-	      lot.(self, :product_commercialname, :productLot, :unitprice, :presentation,:colorExpiration)
-	    end
-	end
+  def to_builder
+      Jbuilder.new do |lot|
+          lot.(self,:line,:product_commercialname, :productLot, :unitprice, :presentation,:colorExpiration)
+      end
+  end
+
 end
