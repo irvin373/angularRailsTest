@@ -20,9 +20,11 @@ class ProductsController < ApplicationController
 
   def to_sell
     @idPharmacy = current_user.role.pharmacy.id
-    @products = Product.select(:id,:comercialname,:unitprice, :presentation).joins("INNER JOIN lots as l ON(products.id = l.product_id and available = True and pharmacy_id = #{@idPharmacy})").distinct
+    @products = Product.select(:id,:comercialname,:company_id,:unitprice,:presentation).joins("INNER JOIN lots as l ON(products.id = l.product_id and available = True and pharmacy_id = #{@idPharmacy})").distinct
+    @products = @products.joins("INNER JOIN companies as c ON(products.company_id = c.id)")
     @products.each do |product|
       product.genericname = Lot.where(product_id: product.id, pharmacy_id: @idPharmacy).sum(:quantity_lot)
+      product.code = Company.where(id: product.company_id).take.line
     end
   end
 
