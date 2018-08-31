@@ -57,7 +57,12 @@ myApp.controller("ProductLotAddCtr", ['$scope', '$resource', 'Lots','$location',
         console.log(error);
     });
   };
-  
+  $scope.calcPercentGain = function(){
+    let percentage,gain;
+    percentage = parseFloat($scope.lot.cost_in) * 0.3;
+    gain = parseFloat($scope.lot.cost_in) + parseFloat(percentage);
+    $scope.lot.percentage_gain = gain; 
+  }
 }]);
 
 myApp.controller("LotUpdateCtr", ['$scope', '$resource', 'Lot', '$location', '$routeParams', 
