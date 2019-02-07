@@ -1,4 +1,4 @@
-git myApp.factory('Rol', ['$resource', function($resource){
+myApp.factory('Rol', ['$resource', function($resource){
   return $resource('/rols/:id.json', {}, {
     query: { method: 'GET' }
   });
