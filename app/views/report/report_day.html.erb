@@ -14,6 +14,7 @@
                 <th>CI</th>
                 <th>TOTAL</th>
                 <th>FECHA VENTA</th>
+                <th>USUARIO</th>
             </tr>
         </thead>
         <tbody>
@@ -24,8 +25,10 @@
                 <td><%= sell.ci %></td>
                 <td><%= sell.total %></td>
                 <td><%= sell.date_sell %></td>
+                  <td><%= sell.user_email %></td>
                 </tr>
-                <% total = total + sell.total  %>
+                <% sell_total = sell.total != nil ? sell.total : 0.0%>
+                <% total = total + sell_total  %>
             <%end%>
         </tbody>
     </table>

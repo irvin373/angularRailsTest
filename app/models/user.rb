@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   belongs_to :role
+  has_many :sell
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -16,6 +17,14 @@ class User < ActiveRecord::Base
 
   def rolename
   	self.role.name
+  end
+
+  def admin?
+      if self.role_id == 2
+          true
+      else
+          false
+      end
   end
 
   def to_builder

@@ -23,24 +23,42 @@ before_action :authenticate_user!
 
   def report_dates
     @idPharmacy = current_user.role.pharmacy.id
+    @idUser = current_user.id
+    @idRol = current_user.role_id
     date_ini = Date.parse(params[:date1])
     puts date_ini
     date_end = Date.parse(params[:date2])
     puts date_end
-    @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    if @idRol == 2
+      @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    elsif @idRol == 1
+      @sells = Sell.where(user_id: @idUser,pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    end
   end
 
   def report_day
     @idPharmacy = current_user.role.pharmacy.id
+    @idUser = current_user.id
+    @idRol = current_user.role_id
     date = params[:date]
-    @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: Date.parse(date))
+    if @idRol == 2
+      @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: Date.parse(date))
+    elsif @idRol == 1
+      @sells = Sell.where(user_id: @idUser,pharmacy_id: @idPharmacy,date_sell: Date.parse(date))
+    end
   end
 
   def report_mounth
     @idPharmacy = current_user.role.pharmacy.id
+    @idUser = current_user.id
+    @idRol = current_user.role_id
     date_ini = Date.parse(params[:date]) 
     date_end = date_ini.end_of_month
-    @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    if @idRol == 2
+      @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    elsif @idRol == 1
+      @sells = Sell.where(user_id: @idUser,pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    end
   end
 
   def updateTotal(sell)
@@ -105,8 +123,10 @@ before_action :authenticate_user!
   # POST /sells.json
   def create
     @idPharmacy = current_user.role.pharmacy.id
+    @idUser = current_user.id
     @sell = Sell.new(sell_params)
     @sell.pharmacy_id = @idPharmacy
+    @sell.user_id = @idUser
     respond_to do |format|
       if @sell.save
         #format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -120,6 +140,7 @@ before_action :authenticate_user!
   # PATCH/PUT /sells/1
   # PATCH/PUT /sells/1.json
   def update
+    authorize! :edit_sell, @sell
     respond_to do |format|
       if @sell.update(sell_params)
         #format.html { redirect_to @sell, notice: 'Sell was successfully updated.' }
@@ -134,6 +155,7 @@ before_action :authenticate_user!
   # DELETE /sells/1
   # DELETE /sells/1.json
   def destroy
+    authorize! :delete_sell, @sell
     @sell.destroy
     respond_to do |format|
       #format.html { redirect_to sells_url, notice: 'Sell was successfully destroyed.' }

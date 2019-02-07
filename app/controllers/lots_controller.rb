@@ -54,6 +54,7 @@ class LotsController < ApplicationController
   # PATCH/PUT /lots/1
   # PATCH/PUT /lots/1.json
   def update
+    authorize! :edit_lot, @lot
     respond_to do |format|
       if @lot.update(lot_params)
         format.json { render :show, status: :ok, location: @lot }
@@ -66,6 +67,7 @@ class LotsController < ApplicationController
   # DELETE /lots/1
   # DELETE /lots/1.json
   def destroy
+    authorize! :delete_lot, @lot
     @lot.destroy
     respond_to do |format|
       format.json { head :no_content }

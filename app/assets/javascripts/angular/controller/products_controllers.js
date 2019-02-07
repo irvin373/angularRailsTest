@@ -2,8 +2,8 @@ myApp
     .config(['$routeProvider','$locationProvider',productRoutes])
     .controller("ProductAddCtr",['$scope','$resource','$location','Products','Companys',productAddCtr])
     .controller("ProductListCtr",['$scope','$resource','$http','$location','expirationProducts','ProductSearch','Product','Products',productListCtr])
-    .controller("ProductUpdateCtr",['$scope','$resource','$location','$routeParams','Product',productUpdateCtr])
-    .controller("ProductShowCtr", ['$scope', '$resource','$location', '$routeParams','Product',productShowCtr])
+    .controller("ProductUpdateCtr",['$scope','$resource','$location','$routeParams','Product','Session',productUpdateCtr])
+    .controller("ProductShowCtr", ['$scope', '$resource','$location', '$routeParams','Product','Session',productShowCtr])
 
 
 function productRoutes($routeProvider, $locationProvider) {
@@ -103,7 +103,7 @@ function productListCtr($scope,$resource,$http,$location,expirationProducts,Prod
     }
 }
 
-function productUpdateCtr($scope,$resource,$location,$routeParams,Product){
+function productUpdateCtr($scope,$resource,$location,$routeParams,Product,Session){
     $scope.product = Product.show({id: $routeParams.id});
     console.log($scope.product);
     $scope.update = update;
@@ -122,11 +122,14 @@ function productUpdateCtr($scope,$resource,$location,$routeParams,Product){
     }
 }
 
-function productShowCtr($scope, $resource, $location, $routeParams,Product) {
+function productShowCtr($scope, $resource, $location, $routeParams,Product,Session) {
     $scope.product = Product.show({id: $routeParams.id});
     $scope.remove = remove;
     $scope.redirectEdit = redirectEdit;
-    
+    $scope.userEmail = Session.userEmail;
+    $scope.roleId = Session.userRole;
+    $scope.isAdmin = Session.isAdmin();
+
     function redirectEdit(){
         var route = "/products/"+$routeParams.id+"/edit";
         $location.path(route);

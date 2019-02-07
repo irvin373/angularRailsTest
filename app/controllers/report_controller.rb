@@ -2,9 +2,17 @@ class ReportController < ApplicationController
   layout 'report'
   def report_day
       @idPharmacy = current_user.role.pharmacy.id
+      @idUser = current_user.id
+      @idRol = current_user.role_id
       date = params[:date]
       @fecha = Date.parse(date)
-      @sells = Sell.where(pharmacy_id:@idPharmacy,date_sell: Date.parse(date))
+
+      if @idRol == 2
+        @sells = Sell.where(pharmacy_id:@idPharmacy,date_sell: Date.parse(date))
+      elsif @idRol == 1
+        @sells = Sell.where(user_id:@idUser,pharmacy_id:@idPharmacy,date_sell: Date.parse(date))
+      end
+
       respond_to do |format|
           format.html
           format.pdf do 
@@ -22,7 +30,15 @@ class ReportController < ApplicationController
     date_ini = Date.parse(params[:date]) 
     date_end = date_ini.end_of_month
     @fecha = date_ini
-    @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    @idUser = current_user.id
+    @idRol = current_user.role_id
+
+    if @idRol == 2
+      @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    elsif @idRol == 1
+      @sells = Sell.where(user_id: @idUser,pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    end
+
     respond_to do |format|
       format.html
       format.pdf do 
@@ -44,7 +60,15 @@ class ReportController < ApplicationController
     puts date_end
     @fecha_ini = date_ini
     @fecha_end = date_end
-    @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    @idUser = current_user.id
+    @idRol = current_user.role_id
+
+    if @idRol == 2
+      @sells = Sell.where(pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    elsif @idRol == 1
+      @sells = Sell.where(user_id: @idUser,pharmacy_id: @idPharmacy,date_sell: (date_ini..date_end))
+    end
+
     respond_to do |format|
       format.html
       format.pdf do 

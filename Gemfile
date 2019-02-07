@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'pdfkit'
 #wkhtmltopdf
 gem 'wkhtmltopdf-binary-edge'
+#cancancan
+gem 'cancancan', '~> 2.0'
 
 source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"

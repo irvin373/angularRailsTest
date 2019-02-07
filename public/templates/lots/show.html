@@ -7,8 +7,8 @@
         <div class="panel-content" ng-model="lot">
         <section class="container">
           <div class="btn-group">
-          <a class="btn btn-primary" href="{{'#/lots/'+ lot.id+ '/edit'}}">editar</a>
-          <button class="btn btn-danger" ng-click="deleteLot(lot.id)">eliminar</button>
+          <a ng-if="isAdmin" class="btn btn-primary" href="{{'#/lots/'+ lot.id+ '/edit'}}">editar</a>
+          <button ng-if="isAdmin" class="btn btn-danger" ng-click="deleteLot(lot.id)">eliminar</button>
         </div>
         </section>
 

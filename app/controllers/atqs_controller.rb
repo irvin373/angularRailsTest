@@ -50,6 +50,7 @@ class AtqsController < ApplicationController
   # PATCH/PUT /atqs/1
   # PATCH/PUT /atqs/1.json
   def update
+    authorize! :edit_atq, @atq
     respond_to do |format|
       if @atq.update(atq_params)
         format.json { render :show, status: :ok, location: @atq }
@@ -62,6 +63,7 @@ class AtqsController < ApplicationController
   # DELETE /atqs/1
   # DELETE /atqs/1.json
   def destroy
+    authorize! :delete_atq, @atq
     Comunicate.where(atq_id: @atq.id).delete_all
     @atq.destroy
     respond_to do |format|

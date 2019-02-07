@@ -76,13 +76,8 @@ myApp.controller("SellListCtr",
   });
 
   $scope.reports = function () {
-      if (role.name == "admin") {
-        var route = "/reports/";
-        $location.path(route);  
-      }
-      else{
-        alert("no tiene los permisos para esta vista");
-      }
+      var route = "/reports/";
+      $location.path(route);
   };
 
   $scope.redirectShow = function (Id) {
@@ -123,16 +118,17 @@ myApp.controller("SellAddProductSellCtr", ['$scope', '$resource', 'ProductSell',
 
 myApp.controller("SellAddCtr", ['$scope', '$resource', 'Sells','$location', '$http', 'Last',
     function($scope, $resource, Sells, $location, $http, Last) {
-  $scope.save = function () {
-    Sells.create({sell: $scope.sell}, function(){
-      $scope.last = Last.get();
-      $scope.last.$promise.then(function(data) {
-        $location.path("/sells/"+data.id);
-      });
-    }, function(error){
-        console.log(error)
-    });
-  }
+        $scope.save = function () {
+            console.log($scope.sell);
+            Sells.create({sell: $scope.sell}, function(){
+              $scope.last = Last.get();
+              $scope.last.$promise.then(function(data) {
+                $location.path("/sells/"+data.id);
+              });
+            }, function(error){
+                console.log(error)
+            });
+        }
 }]);
 
 myApp.controller("SellUpdateCtr", ['$scope', '$resource', 'Sell', '$location', '$routeParams',
@@ -148,9 +144,10 @@ myApp.controller("SellUpdateCtr", ['$scope', '$resource', 'Sell', '$location', '
   };
 }]);
 
-myApp.controller("SellShowCtr", ['$scope', '$resource', 'Sell', '$location', '$routeParams', 
-  function($scope, $resource, Sell, $location, $routeParams) {
+myApp.controller("SellShowCtr", ['$scope', '$resource', 'Sell', 'Session', '$location', '$routeParams', 
+  function($scope, $resource, Sell, Session, $location, $routeParams) {
   $scope.sell = Sell.get({id: $routeParams.id});
+  $scope.isAdmin = Session.isAdmin();
 
   $scope.deleteSell = function (sellId) {
     if (confirm("quiere eliminar la venta?")){

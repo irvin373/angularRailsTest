@@ -80,9 +80,10 @@ function($scope, $resource, Lot, $location, $routeParams) {
   };
 }]);
 
-myApp.controller("LotShowCtr", ['$scope', '$resource', 'Lot', '$location', '$routeParams', 
-  function($scope, $resource, Lot, $location, $routeParams) {
+myApp.controller("LotShowCtr", ['$scope', '$resource', 'Lot', 'Session', '$location', '$routeParams', 
+  function($scope, $resource, Lot, Session, $location, $routeParams) {
   $scope.lot = Lot.get({id: $routeParams.id});
+  $scope.isAdmin = Session.isAdmin();
 
   $scope.deleteLot = function (lotId) {
     if (confirm("Quiere eliminar este lote?")){

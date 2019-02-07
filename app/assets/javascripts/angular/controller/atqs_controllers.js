@@ -71,9 +71,10 @@ myApp.controller("AtqUpdateCtr", ['$scope', '$resource', 'Atq', '$location', '$r
   };
 }]);
 
-myApp.controller("AtqShowCtr", ['$scope', '$resource', 'Atq', '$location', '$routeParams', 
-  function($scope, $resource, Atq, $location, $routeParams) {
+myApp.controller("AtqShowCtr", ['$scope', '$resource', 'Atq', 'Session', '$location', '$routeParams', 
+  function($scope, $resource, Atq, Session, $location, $routeParams) {
   $scope.atq = Atq.get({id: $routeParams.id});
+  $scope.isAdmin = Session.isAdmin();
 
   $scope.verProducto = function(ProductId){
     var route = "/products/"+ProductId+"/show";

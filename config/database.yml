@@ -30,7 +30,7 @@ development:
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
   username: pguser
-  password: CatetO37
+  password: Catet037
   host: localhost
   port: 5432
 
@@ -59,7 +59,7 @@ test:
   <<: *default
   database: farmacia_test
   username: pguser
-  password: CatetO37
+  password: Catet037
   host: localhost
   port: 5432
 

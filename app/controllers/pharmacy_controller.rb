@@ -8,6 +8,7 @@ class PharmacyController < ApplicationController
 
   def users    
     @users = User.all
+    authorize! :manage_user,@users
   end
 
   # GET /pharmacys/1 || /pharmacys/1.json 

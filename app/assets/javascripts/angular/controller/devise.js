@@ -1,15 +1,37 @@
-myApp.factory('Rol', ['$resource', function($resource){
+git myApp.factory('Rol', ['$resource', function($resource){
   return $resource('/rols/:id.json', {}, {
     query: { method: 'GET' }
   });
 }]);
 
-myApp.controller("LogoutCtr", 
-    ['$scope', '$http', '$resource','Auth', 'Rol','$location', 
-    function($scope, $http, $resource, Auth, Rol,$location) {
+myApp.service('Session',function () {
+    this.create = function (userId, userEmail, userRole) {
+        this.userId = userId;
+        this.userEmail = userEmail;
+        this.userRole = userRole;
+    };
+
+    this.isAdmin = function() {
+        return (this.userRole == 2);
+    };
+
+    this.destroy = function() {
+        this.userId = null;
+        this.userEmail = null;
+        this.userRole = null;
+    };
+});
+
+myApp.controller("LogoutCtr",
+    ['$scope', '$http', '$resource','Auth','Session', 'Rol','$location', 
+    function($scope, $http, $resource, Auth, Session, Rol,$location) {
   
   $scope.isAdmin = false;
   Auth.currentUser().then(function(user) {
+        console.log(user);
+        Session.create(user.id,user.email,user.role_id);
+        console.log(Session.userEmail);
+        console.log(Session.userRole);
         if (user.role_id == 2) {
           $scope.isAdmin = true;
         }
@@ -33,26 +55,3 @@ myApp.controller("LogoutCtr",
     });
   };
 }]);
-
-  // var config = {
-  //           headers: {
-  //               'X-HTTP-Method-Override': 'DELETE'
-  //           }
-  //       };
-  //       // Log in user...
-  //       // ...
-  // $scope.salir = function(){
-  //   Auth.logout(config).then(function(oldUser) {
-  //             alert(oldUser.name + "you're signed out now.");
-  //         }, function(error) {
-  //             console.log(error);
-  //   });
-  // };
-
-  // Auth.currentUser().then(function(user) {
-  //           // User was logged in, or Devise returned
-  //           // previously authenticated session.
-  //           console.log(user); // => {id: 1, ect: '...'}
-  //       }, function(error) {
-  //           console.log(error);
-  // });

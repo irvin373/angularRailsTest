@@ -39,10 +39,11 @@ myApp.factory('Pharmacy', ['$resource', function($resource){
 }]);
 
 //Controller
-myApp.controller("PharmacyListCtr", ['$scope', '$http', '$resource', 'Pharmacys', 'PharmacyChange','Auth','Rol','$location', 
-    function($scope, $http, $resource, Pharmacys, PharmacyChange,Auth,Rol,$location) {
+myApp.controller("PharmacyListCtr", ['$scope', '$http', '$resource', 'Pharmacys', 'PharmacyChange','Auth','Rol','Session','$location', 
+    function($scope, $http, $resource, Pharmacys, PharmacyChange,Auth,Rol,Session,$location) {
 
     $scope.pharmacys = Pharmacys.query();
+    $scope.isAdmin = Session.isAdmin();
     var role = "";
     $scope.change = function (id) {
       PharmacyChange.query({idP: id});
