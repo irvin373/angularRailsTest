@@ -13,6 +13,7 @@ class Ability
               can :delete_sell, :all 
               can :edit_atq, :all
               can :delete_atq, :all
+              can :change_pharmacy, :all
           end
       end
     # Define abilities for the passed in user here. For example:

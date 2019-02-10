@@ -44,26 +44,13 @@ myApp.controller("PharmacyListCtr", ['$scope', '$http', '$resource', 'Pharmacys'
 
     $scope.pharmacys = Pharmacys.query();
     $scope.isAdmin = Session.isAdmin();
-    var role = "";
     $scope.change = function (id) {
       PharmacyChange.query({idP: id});
     };
 
-    Auth.currentUser().then(function(user) {
-        role = Rol.query({id: user.role_id});
-            //console.log(user); // => {id: 1, ect: '...'}
-        }, function(error) {
-            console.log(error);
-    });
-
     $scope.users = function () {
-      if (role.name == "admin") {
         var route = "/users/";
         $location.path(route);  
-      }
-      else{
-        alert("no tiene los permisos para esta vista");
-      }
     };
 }]);
 
