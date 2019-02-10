@@ -4,12 +4,20 @@ before_action :authenticate_user!
 # GET /sells || /sells.json
 
   def index
-      @idPharmacy = current_user.role.pharmacy.id
+    @idPharmacy = current_user.role.pharmacy.id
+    @idUser = current_user.id
+    @idRol = current_user.role_id
     if params[:search]
       @searchUpcase = params[:search].upcase
       @sells = Sell.where(pharmacy_id: @idPharmacy).where("ci LIKE ? OR ci LIKE ?", "%#{params[:search]}%","%#{@searchUpcase}%")
+      if @idRol == 1
+          @sells = @sells.where(user_id: @idUser)
+      end
     else
       @sells = Sell.where(pharmacy_id: @idPharmacy)
+      if @idRol == 1
+          @sells = @sells.where(user_id: @idUser)
+      end
     end
   end
 
