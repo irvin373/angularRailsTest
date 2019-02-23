@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   #get 'report/index'
-  devise_for :users, :skip => :registration
+  devise_for :users
   #devise_for :users, :controllers => {:registrations => "users/registrations"}
   get 'logout' => 'pharmacy#unlogin'
   #root to: "home#index"
