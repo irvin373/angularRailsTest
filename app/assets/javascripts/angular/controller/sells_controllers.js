@@ -165,13 +165,14 @@ myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParam
     var date2 = new Date();
     $scope.day = date;
     $scope.mounth = 0;
+    $scope.year = 2019;
     $scope.day_selected_pdf = function (){
       dates = $scope.day.getFullYear() + '-' + ($scope.day.getMonth()+1) + '-' +$scope.day.getDate(); 
       window.location.pathname = "/pdf/report/day/"+dates+".pdf";
     };
 
     $scope.mounth_selected_pdf = function (){
-      dates = date.getFullYear() + '-' + ($scope.mounth) + '-' +1;
+      dates = $scope.year + '-' + ($scope.mounth) + '-' +1;
       window.location.pathname = "/pdf/report/mounth/"+dates+".pdf";
     };
 
@@ -187,7 +188,7 @@ myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParam
       $location.path("/reports/day/"+dates);
     };
     $scope.mounth_selected = function (){
-      dates = date.getFullYear() + '-' + ($scope.mounth) + '-' +1;
+      dates = $scope.year + '-' + ($scope.mounth) + '-' +1;
       $location.path("/reports/mounth/"+dates);
     };
 

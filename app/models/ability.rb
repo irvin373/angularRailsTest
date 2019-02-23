@@ -13,6 +13,9 @@ class Ability
               can :delete_sell, :all 
               can :edit_atq, :all
               can :delete_atq, :all
+              can :view_pharmacy, :all
+              can :change_pharmacy, :all
+          else
               can :change_pharmacy, :all
           end
       end

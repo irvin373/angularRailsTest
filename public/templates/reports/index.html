@@ -35,6 +35,20 @@
 			  <option value=12>Diciembre</option>
 			</select>
 		  </div>
+            <label for="dateYear" class="col-sm-3 control-label">Ingrese el año: </label>
+            <div class="col-sm-9">
+                <select id="dateYear" class="form-control" ng-model="year">
+                    <option>2017</option>
+                    <option>2018</option>
+                    <option>2019</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                </select>
+            </div>
             <button class="btn btn-primary" ng-click="mounth_selected()">ventas del Mes</button>
             <button ng-click="mounth_selected_pdf()" class="btn btn-primary">Imprimir</button>
         </div>

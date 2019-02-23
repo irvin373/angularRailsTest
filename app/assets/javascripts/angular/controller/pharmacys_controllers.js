@@ -41,32 +41,37 @@ myApp.factory('Pharmacy', ['$resource', function($resource){
 //Controller
 myApp.controller("PharmacyListCtr", ['$scope', '$http', '$resource', 'Pharmacys', 'PharmacyChange','Auth','Rol','Session','$location', 
     function($scope, $http, $resource, Pharmacys, PharmacyChange,Auth,Rol,Session,$location) {
+        $scope.pharmacys = Pharmacys.query();
+        console.log($scope.pharmacys);
+        $scope.isAdmin = Session.isAdmin();
+        $scope.change = function (id) {
+          PharmacyChange.query({idP: id});
+          Session.changePharmacy(true);
+        };
 
-    $scope.pharmacys = Pharmacys.query();
-    $scope.isAdmin = Session.isAdmin();
-    $scope.change = function (id) {
-      PharmacyChange.query({idP: id});
-    };
+        $scope.users = function () {
+            var route = "/users/";
+            $location.path(route);
+        };
 
-    $scope.users = function () {
-        var route = "/users/";
-        $location.path(route);  
-    };
-}]);
+        $scope.registerUser = function () {
+            var route = "/sign_up/";
+            $location.path(route);
+        };
+    }]);
 
 myApp.controller("UserListCtr", ['$scope', '$http', '$resource', 'User','UserDelete', 'UserRol','$location', 
     function($scope, $http, $resource, User,UserDelete, UserRol,$location) {
+        $scope.users = User.query();
+        $scope.change_role = function (id) {
+          UserRol.query({idP: id});
+          $scope.users = User.query();
+        };
 
-    $scope.users = User.query();
-    $scope.change_role = function (id) {
-      UserRol.query({idP: id});
-      $scope.users = User.query();
-    };
-
-    $scope.delete = function (id) {
-      UserDelete.query({id: id});
-      $scope.users = User.query();
-    };
+        $scope.delete = function (id) {
+          UserDelete.query({id: id});
+          $scope.users = User.query();
+        };
 }]);
 
 myApp.controller("PharmacyAddCtr", ['$scope', '$resource', 'Pharmacys','$location', '$http',

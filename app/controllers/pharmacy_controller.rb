@@ -3,7 +3,7 @@ class PharmacyController < ApplicationController
   before_action :authenticate_user!
 # GET /pharmacys || /pharmacys.json
   def index
-    authorize! :change_pharmacy, @pharmacys
+    authorize! :view_pharmacy, @pharmacys
     @pharmacys = Pharmacy.all
   end
 
@@ -32,7 +32,7 @@ class PharmacyController < ApplicationController
   end
 
   def change
-        authorize! :change_pharmacy, @id
+    authorize! :change_pharmacy, @id
   	@id = params[:idP]
   	rol = current_user.role
   	rol.pharmacy_id = @id

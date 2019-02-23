@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190205134421) do
+ActiveRecord::Schema.define(version: 20190215184414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,9 +138,11 @@ ActiveRecord::Schema.define(version: 20190205134421) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "role_id"
+    t.integer  "pharmacy_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["pharmacy_id"], name: "index_users_on_pharmacy_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
@@ -156,5 +158,6 @@ ActiveRecord::Schema.define(version: 20190205134421) do
   add_foreign_key "roles", "pharmacies"
   add_foreign_key "sells", "pharmacies"
   add_foreign_key "sells", "users"
+  add_foreign_key "users", "pharmacies"
   add_foreign_key "users", "roles"
 end

@@ -5,14 +5,20 @@ myApp.factory('Rol', ['$resource', function($resource){
 }]);
 
 myApp.service('Session',function () {
-    this.create = function (userId, userEmail, userRole) {
+    this.create = function (userId, userEmail, userRole, userPharmacy) {
         this.userId = userId;
         this.userEmail = userEmail;
         this.userRole = userRole;
+        this.userPharmacy = userPharmacy;
+        this.pharmacyChange = false;
     };
 
     this.isAdmin = function() {
         return (this.userRole == 2);
+    };
+
+    this.changePharmacy = function(value) {
+        this.pharmacyChange = value;
     };
 
     this.destroy = function() {
@@ -23,15 +29,20 @@ myApp.service('Session',function () {
 });
 
 myApp.controller("LogoutCtr",
-    ['$scope', '$http', '$resource','Auth','Session', 'Rol','$location', 
-    function($scope, $http, $resource, Auth, Session, Rol,$location) {
+    ['$scope', '$http', '$resource','Auth','Session', 'Rol', 'PharmacyChange', '$location',
+    function($scope, $http, $resource, Auth, Session, Rol, PharmacyChange, $location) {
   
   $scope.isAdmin = false;
   Auth.currentUser().then(function(user) {
         console.log(user);
-        Session.create(user.id,user.email,user.role_id);
+        Session.create(user.id,user.email,user.role_id,user.pharmacy_id);
         console.log(Session.userEmail);
         console.log(Session.userRole);
+        console.log(Session.userPharmacy);
+        if(Session.userPharmacy != null && !Session.pharmacyChange){
+            PharmacyChange.query({idP: Session.userPharmacy});
+            console.log("Farmacia cambiada");
+        }
         if (user.role_id == 2) {
           $scope.isAdmin = true;
         }

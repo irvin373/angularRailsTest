@@ -1,0 +1,14 @@
+<form ng-if="isAdmin" name="form" class="form-signup" ng-submit="register(form.$valid)" validate>
+  <h1>Registro Usuarios</h1>
+  <input type="email" ng-model="user.email" id="inputEmail" name="email" class="form-control" placeholder="Email" required>
+  <input type="password" ng-model="user.password" id="inputPassword" name="pass" class="form-control" placeholder="Contraseña" required password>
+  <span ng-show="form.pass.$error.password">Ingrese una contraseña de al menos 8 caracteres</span>
+  <input type="password" name="confirm" ng-model="user.password_confirmation"  id="confirmationPassword" name="confirmation" class="form-control" placeholder="Repita la contraseña" required confirmation>
+  <span ng-show="form.confirm.$error.confirmation">las contraseñas no coinciden</span>
+  <select class="form-control" ng-model="user.pharmacy_id" name="pharmacy_id" required>
+      <option value="" selected disabled hidden>Seleccione Farmacia</option>
+      <option ng-repeat="pharmacy in pharmacys" value="{{pharmacy.id}}">{{pharmacy.name}}</option>
+  </select>
+  </br>
+  <button ng-click="register()" class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+</form>
