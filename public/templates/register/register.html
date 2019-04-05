@@ -1,5 +1,5 @@
 <form ng-if="isAdmin" name="form" class="form-signup" ng-submit="register(form.$valid)" validate>
-  <h1>Registro Usuarios</h1>
+  <h1>Registrar Usuario</h1>
   <input type="email" ng-model="user.email" id="inputEmail" name="email" class="form-control" placeholder="Email" required>
   <input type="password" ng-model="user.password" id="inputPassword" name="pass" class="form-control" placeholder="Contraseña" required password>
   <span ng-show="form.pass.$error.password">Ingrese una contraseña de al menos 8 caracteres</span>

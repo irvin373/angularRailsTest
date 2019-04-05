@@ -1,0 +1,40 @@
+<body>
+<div>
+    <center><h3>Farmacia Loida Hinojosa</h3></center>
+    <hr/>
+</div>
+<div class="container">
+    <center><h3>REPORTE DE EXISTENCIAS</h3></center>
+    <!--<center><h3>(<%= @fecha %>)</h3></center>-->
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>PRODUCTO</th>
+                <th>LINEA</th>
+                <th>FECHA INGRESO</th>
+                <th>FECHA EXPIRACION</th>
+                <th>COSTO INGRESO</th>
+                <th>CANTIDAD</th>
+                <th>PORCENTAJE DE GANANCIA</th>
+                <th>PRECIO UNITARIO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @lots.each do |lot| %>
+                <tr>
+                <td><%= lot.id %></td>
+                <td><%= lot.product.comercialname %></td>
+                <td><%= lot.product.line %></td>
+                <td><%= lot.date_in %></td>
+                <td><%= lot.date_expiration %></td>
+                <td><%= lot.cost_in %></td>
+                <td><%= lot.quantity_lot %></td>
+                <td><%= lot.percentage_gain %></td>
+                <td><%= lot.product.unitprice %></td>
+                </tr>
+            <%end%>
+        </tbody>
+    </table>
+</div>
+</body>

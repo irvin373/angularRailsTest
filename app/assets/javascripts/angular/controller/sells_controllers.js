@@ -182,7 +182,6 @@ myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParam
       window.location.pathname = "/pdf/report/day/"+date1+'/'+date2+".pdf";
     };
 
-
     $scope.day_selected = function (){
       dates = $scope.day.getFullYear() + '-' + ($scope.day.getMonth()+1) + '-' +$scope.day.getDate(); 
       $location.path("/reports/day/"+dates);
@@ -197,6 +196,10 @@ myApp.controller("ReportsCtr", ['$scope', '$resource', '$location', '$routeParam
       date2 = $scope.date2.getFullYear() + '-' + ($scope.date2.getMonth()+1) + '-' +$scope.date2.getDate(); 
       $location.path("/reports/day/"+date1+'/'+date2);
     };
+
+    $scope.reporteAlmacenPdf = function (){
+        window.location.pathname = "/pdf/report/lots.pdf";
+    }
 }]);
 
 myApp.controller("ReportsCtrDay", ['$scope', '$resource', '$location','Reportday', '$routeParams', 

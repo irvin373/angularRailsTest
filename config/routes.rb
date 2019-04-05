@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   #get 'report/index'
-  devise_for :users
-  #devise_for :users, :controllers => {:registrations => "users/registrations"}
+  #devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
   get 'logout' => 'pharmacy#unlogin'
   #root to: "home#index"
   #root to: 'login#index'
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'pdf/report/mounth/:date' => 'report#report_mounth'
   get 'pdf/report/day/:date1/:date2' => 'report#report_dates'
+  get 'pdf/report/lots' => 'report#report_lots'
 
   get 'reports/day/:date' => 'sells#report_day'
   get 'reports/day/:date1/:date2' => 'sells#report_dates'

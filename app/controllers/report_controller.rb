@@ -79,6 +79,20 @@ class ReportController < ApplicationController
           send_data pdf, filename: 'reporte_ventas_dias.pdf', type: 'application/pdf', disposition: 'inline'
       end
     end
+  end
+
+  def report_lots
+    @lots = Lot.where(available: true)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        html = render_to_string(layout: false, action:"report_lots.html.erb")
+        kit = PDFKit.new(html, page_size:'A4', print_media_type:true)
+        kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/bootstrap.css"
+        pdf = kit.to_pdf
+        send_data pdf, filename: 'reporte_lotes.pdf', type: 'application/pdf', disposition: 'inline'
+      end
     end
+  end
 
 end

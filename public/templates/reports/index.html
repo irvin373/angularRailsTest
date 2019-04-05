@@ -1,11 +1,11 @@
 <div class="panel">
     <div class="panel-header">
-        <strong>ventas</strong>
+        <strong>Ventas</strong>
     </div>
 
     <div class="row container">
         <div class="col-md-12">
-		  <h3>ventas del dia</h3>
+		  <h3>Ventas del dia</h3>
 		  <label for="dateDay" class="col-sm-3 control-label">Ingrese el dia: </label>
     	  <div class="col-sm-9">
           <input id="dateDay" class="form-control" type="date" ng-model="day">
@@ -17,7 +17,7 @@
         <br><br>
 
         <div class="col-md-12">
-        <h3>ventas del mes</h3>
+        <h3>Ventas del mes</h3>
         <label for="dateMounth" class="col-sm-3 control-label">Ingrese el mes: </label>
     	  <div class="col-sm-9">
             <select id="dateMounth" class="form-control" ng-model="mounth">
@@ -54,7 +54,7 @@
         </div>
         
         <div class="col-md-12">
-            <h3>ventas entre fechas</h3>
+            <h3>Ventas entre fechas</h3>
             <label for="dateInitial" class="col-sm-3 control-label">Ingrese la fecha inicial: </label>
     	  <div class="col-sm-9">
             <input id="dateInitial" class="form-control" type="date" ng-model="date1">
@@ -67,6 +67,12 @@
         <button class="btn btn-primary" ng-click=dateSelector()>ventas entre fechas</button>
         <button ng-click="dateSelectorPdf()" class="btn btn-primary">Imprimir</button>
         </div>
+
+        <div class="col-md-12">
+            <h3>Reporte de existencias</h3>
+            <button ng-click="reporteAlmacenPdf()" class="btn btn-primary">Imprimir</button>
+        </div>
+
     </div>
 </div>
 <a class="btn btn-default" href="/#/sells">Volver</a>

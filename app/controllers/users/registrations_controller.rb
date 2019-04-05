@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
    def new
-     #authorize! :manage_users, resource
+     authorize! :manage_users, resource
      super
    end
 
@@ -17,6 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
    def edit
+     authorize! :manage_users, resource
      super
    end
 
