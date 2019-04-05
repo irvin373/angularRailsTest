@@ -1,4 +1,5 @@
 class ReportController < ApplicationController
+  before_action :authenticate_user!
   layout 'report'
   def report_day
       @idPharmacy = current_user.role.pharmacy.id
